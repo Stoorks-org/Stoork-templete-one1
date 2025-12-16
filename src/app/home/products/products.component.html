@@ -1,0 +1,357 @@
+<div class="cardProucts">
+
+  <div class="text1" *ngIf="showHead">
+    <h4>{{ "products" | translate }}</h4>
+  </div>
+
+  <!-- *ngIf="!isPopularProductsLoading" -->
+  <section class="product_cont">
+   @for (product of (isMobile ? PopularProducts.slice(0, 10) : PopularProducts); track product.id) {
+
+    <div id="{{ product.id }}">
+
+      <a class="mainCard">
+        <div class="boxCard">
+
+          <blockquote class="card-img">
+
+            <img class="card-img-top" [src]="_auth.productImage(product?.images)"
+              style="object-fit: cover; width: 100%;" routerLink="/ProductDetails/{{ product?.id  }}" />
+
+            <div class="heart">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-heart"
+                viewBox="0 0 16 16" (click)="_auth.addProductToFavorites(product)" style="cursor: pointer">
+                <path
+                  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+              </svg>
+            </div>
+            <div *ngIf="fav.ProductFavorites$ | async as ProductFavorites">
+              <ng-container *ngFor="let itm of ProductFavorites">
+
+                <div class="heart active" *ngIf="itm?.product_id== product?.id "
+                  (click)="_auth.DeleteProductFromFavorites(product?.id )" style="cursor: pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="#D21318" class="bi bi-heart-fill"
+                    viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                  </svg>
+                  <!-- <i class="bi bi-heart-fill" style="cursor: pointer"></i> -->
+                </div>
+              </ng-container>
+            </div>
+            
+            <div class="addToCart" *ngIf="!isProductInCart(product.id)&&product?.count>0" (click)="toggleAddToCart(product.id,product)">
+              <img src="../../../assets/images/svg/pluseGray.png" />
+            </div>
+              <div class="addToCartInCart" (mouseenter)="showPopover(product.id)" *ngIf="isProductInCart(product.id)&&product?.count>0" (click)="toggleAddToCart(product.id,product)">
+              {{getProductCartCount(product?.id)}}
+               <div class="popoverMessage" *ngIf="activePopoverId === product.id">
+    {{ 'added' | translate }} {{getProductCartCount(product?.id)}}{{'productToCart'|translate}}<!-- أو "تم إضافة عدد 1 للسلة" -->
+  </div>
+
+
+            </div>
+            <div class="addToCart2" *ngIf="selectedProductId === product?.id&&product?.options?.length==0">
+              <button class="btn border-0" (click)="increment(product.id, product?.count,product)"
+                [disabled]="productCounts[product.id] >= product?.count">
+                <img src="../../../assets/images/svg/pluseGray.png" />
+              </button>
+
+              <div class="input">
+                <input type="number" [value]="productCounts[product.id]" style="text-align: center"
+                  (input)="onInputChange($event, product.id, product?.count)" [max]="product?.count" disabled />
+              </div>
+
+              <button class="btn border-0" (click)="decrement(product.id,product)">
+                <i class="bi bi-dash"></i>
+              </button>
+            </div>
+            <!-- <div class="addToCart" (click)="toggleAddToCart(product.id)" >
+             <img src="../../../assets/images/svg/pluseGray.png" />
+            </div>
+            <div class="addToCart2" *ngIf="selectedProductId === product.id">
+              <button class="btn border-0" (click)="counter('add',product)" [disabled]="count == product?.count">
+                 <img src="../../../assets/images/svg/pluseGray.png" />
+              </button>
+              <div class="input">
+                <input type="number" value="{{count}}" style="text-align: center" (input)="onInputChange($event)"
+          [max]="product?.count" />
+              </div>
+              <div class="minus" >
+                <i class="bi bi-trash"></i>
+              </div>
+            </div> -->
+          </blockquote>
+        </div>
+
+        <div class="card-body" routerLink="/ProductDetails/{{ product?.id  }}">
+
+          <div class="pro">
+            <h6 class="card-title">
+              <span>{{ product.name?.substring(0, 30) }} </span>
+              <span *ngIf="product.name?.length > 30">... </span>
+              <!-- <span class="tit">{{ product.description | slice : 0 : 20 }}</span> -->
+            </h6>
+
+
+          </div>
+          <div class="star2" *ngIf="product?.rating">
+            {{ product?.rating }} <i class="bi bi-star-fill"></i>
+          </div>
+          <div *ngIf="!product?.rating"></div>
+          <div class="price">
+
+
+            <div class="DisPer" *ngIf="_productSer.calcDiscountPersent(product?.price,product?.discount_price)>0">
+              <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path id="Vector 65"
+                  d="M5.17241 4.88235L4.83181 5.2484L5.28463 5.66974L5.60172 5.13867L5.17241 4.88235ZM7.06897 1.70588L7.43484 1.3651L6.98101 0.87785L6.63966 1.44956L7.06897 1.70588ZM11.9823 7.49969C12.2582 7.50948 12.4899 7.29371 12.4997 7.01774L12.6594 2.52058C12.6692 2.24461 12.4534 2.01295 12.1774 2.00315C11.9015 1.99335 11.6698 2.20912 11.66 2.48509L11.5181 6.48257L7.52058 6.34063C7.24461 6.33083 7.01295 6.5466 7.00315 6.82257C6.99335 7.09854 7.20912 7.3302 7.48509 7.34L11.9823 7.49969ZM0.659399 1.36605L4.83181 5.2484L5.51301 4.5163L1.3406 0.633952L0.659399 1.36605ZM5.60172 5.13867L7.49827 1.9622L6.63966 1.44956L4.74311 4.62603L5.60172 5.13867ZM6.70309 2.04667L11.6341 7.34078L12.3659 6.65922L7.43484 1.3651L6.70309 2.04667Z"
+                  fill="#A4080C" />
+              </svg>{{_productSer.calcDiscountPersent(product?.price,product?.discount_price)}}% {{ "OFF" | translate }}
+            </div>
+            <div>
+              <div class="colprice">
+                <a class="beforDiscount" *ngIf="product?.discount_price!=null">
+                  {{ product?.price}}
+                  {{this.currency}}
+                </a>
+                <a style="font-weight: 700;" *ngIf="product?.discount_price!=null">
+
+                  {{ product?.discount_price}}
+                  <!-- <img src="../../../assets/images/product/ProIcon.png" /> -->
+                  {{this.currency}}
+                </a>
+                <a style="font-weight: 700;" *ngIf="product?.discount_price==null">
+
+                  {{ product?.price}}
+                  <!-- <img src="../../../assets/images/product/ProIcon.png" /> -->
+                  {{this.currency}}
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </a>
+    </div>
+    }
+    <ng-container *ngIf="isPopularProductsLoading">
+
+      <div class="skeletonCard" *ngFor="let sk of[1,2,3,4,5,6]">
+        <img src="../../../assets/images/logo/TrendweyLogo.png">
+      </div>
+    </ng-container>
+  </section>
+
+
+</div>
+<div class="cartCenter" >
+<div class="cartContainer" *ngIf="cartService.CartCount.getValue() > 0&&showCartContainer&& !isFooterVisible" >
+  <div class="cartProductTotal" routerLink="/cart">
+    <div class="cartcount">
+      <img src="../../../assets/images/svg/cart.svg">
+      <!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+        <g id="vuesax/outline/bag-2">
+          <g id="bag-2">
+            <path id="Vector" fill="#FFFFFF"
+              d="M16.5 8.63005C16.09 8.63005 15.75 8.29005 15.75 7.88005V6.50005C15.75 5.45006 15.3 4.43005 14.52 3.72005C13.73 3.00005 12.71 2.67005 11.63 2.77005C9.83 2.94005 8.25 4.78005 8.25 6.70005V7.67005C8.25 8.08005 7.91 8.42005 7.5 8.42005C7.09 8.42005 6.75 8.08005 6.75 7.67005V6.69005C6.75 4.00005 8.92 1.52005 11.49 1.27005C12.99 1.13005 14.43 1.60005 15.53 2.61005C16.62 3.60005 17.25 5.02005 17.25 6.50005V7.88005C17.25 8.29005 16.91 8.63005 16.5 8.63005Z"
+              fill="#7E859B" />
+            <path fill="#FFFFFF" id="Vector_2"
+              d="M14.9998 22.75H8.99982C4.37982 22.75 3.51982 20.6 3.29982 18.51L2.54982 12.52C2.43982 11.44 2.39982 9.89 3.44982 8.73C4.34982 7.73 5.83982 7.25 7.99982 7.25H15.9998C18.1698 7.25 19.6598 7.74 20.5498 8.73C21.5898 9.89 21.5598 11.44 21.4498 12.5L20.6998 18.51C20.4798 20.6 19.6198 22.75 14.9998 22.75ZM7.99982 8.75C6.30982 8.75 5.14982 9.08 4.55982 9.74C4.06982 10.28 3.90982 11.11 4.03982 12.35L4.78982 18.34C4.95982 19.94 5.39982 21.26 8.99982 21.26H14.9998C18.5998 21.26 19.0398 19.95 19.2098 18.36L19.9598 12.35C20.0898 11.13 19.9298 10.3 19.4398 9.75C18.8498 9.08 17.6898 8.75 15.9998 8.75H7.99982Z"
+              fill="#7E859B" />
+            <path fill="#FFFFFF" id="Vector_3"
+              d="M15.4202 13.1499C14.8602 13.1499 14.4102 12.6999 14.4102 12.1499C14.4102 11.5999 14.8602 11.1499 15.4102 11.1499C15.9602 11.1499 16.4102 11.5999 16.4102 12.1499C16.4102 12.6999 15.9702 13.1499 15.4202 13.1499Z" />
+            <path fill="#FFFFFF" id="Vector_4"
+              d="M8.42016 13.1499C7.86016 13.1499 7.41016 12.6999 7.41016 12.1499C7.41016 11.5999 7.86016 11.1499 8.41016 11.1499C8.96016 11.1499 9.41016 11.5999 9.41016 12.1499C9.41016 12.6999 8.97016 13.1499 8.42016 13.1499Z" />
+          </g>
+        </g>
+      </svg> -->
+      <div class="count" *ngIf="cartService.CartCount.getValue() > 0">
+       
+
+        {{ cartService.CartCount | async }}
+      </div>
+    </div>
+    <div class="mycart">{{'myCart'|translate}}</div>
+    <div class="price">{{cartService.CartPrice| async | number:'1.2-2'}}
+      
+      {{this.currency}}</div>
+
+  </div>
+</div></div>
+<p-toast></p-toast>
+<p-dialog [(visible)]="showProductOption" [breakpoints]="{ '960px': '75vw' }" 
+  [draggable]="false" [resizable]="false" >
+
+  <div class="CartOptionContainer">
+    <div class="proSec">
+      <div class="imgCont">
+        <img [src]="_auth.productImage(selectedProduct?.images)" />
+      </div>
+      <div class="proDetails">
+        <div class="proName">{{selectedProduct?.name}}</div>
+        <div class="proDes">{{selectedProduct?.description}}</div></div></div>
+        <div class="boxRow">
+          <div class="newDiscount mt-3">
+            <div class="off"
+              *ngIf="_productSer.calcDiscountPersent(selectedProduct?.price,selectedProduct?.discount_price)>0">
+              <svg width="20" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path id="Vector 65"
+                  d="M5.17241 4.88235L4.83181 5.2484L5.28463 5.66974L5.60172 5.13867L5.17241 4.88235ZM7.06897 1.70588L7.43484 1.3651L6.98101 0.87785L6.63966 1.44956L7.06897 1.70588ZM11.9823 7.49969C12.2582 7.50948 12.4899 7.29371 12.4997 7.01774L12.6594 2.52058C12.6692 2.24461 12.4534 2.01295 12.1774 2.00315C11.9015 1.99335 11.6698 2.20912 11.66 2.48509L11.5181 6.48257L7.52058 6.34063C7.24461 6.33083 7.01295 6.5466 7.00315 6.82257C6.99335 7.09854 7.20912 7.3302 7.48509 7.34L11.9823 7.49969ZM0.659399 1.36605L4.83181 5.2484L5.51301 4.5163L1.3406 0.633952L0.659399 1.36605ZM5.60172 5.13867L7.49827 1.9622L6.63966 1.44956L4.74311 4.62603L5.60172 5.13867ZM6.70309 2.04667L11.6341 7.34078L12.3659 6.65922L7.43484 1.3651L6.70309 2.04667Z"
+                  fill="#A4080C" />
+              </svg>{{_productSer.calcDiscountPersent(selectedProduct?.price,selectedProduct?.discount_price)}}% {{ "OFF" |
+              translate }}
+            </div>
+            <div>
+              <span class="PriceBefore"
+                *ngIf="_productSer.calcDiscountPersent(selectedProduct?.price,selectedProduct?.discount_price)>0">
+                {{currency}}{{selectedProduct?.price }}</span>
+              <span class="discount">
+                {{currency}}{{selectedProductprice}}
+      
+              </span>
+            </div>
+      
+      
+      
+      
+          </div>
+          <div class="noPro" *ngIf="showNoPro">
+        {{'ThereAreOnly'|translate}}  {{selectedProduct?.count | number}}  {{'productInStock'|translate}}
+      </div>
+          <div class="addToCart2">
+            <!--  -->
+            
+            <button class="btn border-0" (click)="counter('add')" [disabled]="selectedProductCount==selectedProduct?.count">
+              <img src="../../../assets/images/svg/pluseGray.png" />
+            </button>
+      
+            <div class="input">
+              <input type="number" [value]="selectedProductCount" style="text-align: center"
+                (input)="onInputChangeSelectedProduct($event,selectedProduct?.count)" [max]="selectedProduct?.count" />
+            </div>
+      
+            <button class="btn border-0" (click)="counter('minus')" [disabled]="selectedProductCount == 1">
+              <i class="bi bi-dash"></i>
+            </button>
+          </div>
+        </div>
+      
+        <div class="box" [ngClass]="{ noOption: noOptionSelected }">
+          @if(noOptionSelected==true) {<div class="alert1"> {{'pleaseChooseYourOption'|translate}}</div>}
+          <div class="options" *ngFor="let option of selectedProduct?.options">
+            <a>{{option.name }}</a>
+      
+            <div class="mainsize">
+              <div class="size" [ngClass]="{'active':selectedValues.includes(itm.id)}" id="{{ itm.id }}" appActiveSize
+                (selectedId)="handleSelectedId(itm.id,option.id)" *ngFor="let itm of option?.values">
+                {{ itm.value }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btnSec" *ngIf="+selectedProduct?.count==0"> <button class="btnAddCart disabled"  
+      >
+      {{ "outOfStock" | translate }} </button></div>
+        
+      <div class="btnSec" *ngIf="+selectedProduct?.count>0">
+        <button class="btn btn-base-orange" (click)="addToCartWithOption(selectedProduct?.id,selectedProductCount,storeId,getSelectedValuesAsObjects(),
+          getOptionValueSelected(selectedValues,selectedProduct),selectedProduct.count,
+    _auth.productImage( selectedProduct?.images),selectedProduct.name, selectedProduct.description,
+   selectedProductprice)"   >{{"addToCart"|translate}}</button>
+        <button class="btn btn-base-black" (click)="goToCheckOut()">{{'payNow'|translate}}</button>
+      </div>
+      </div>
+      
+      
+      
+      
+      
+      
+      </p-dialog>
+<div class="popupOverlay" *ngIf="showProductOptionRes"></div>
+
+      <div class="popupCart" *ngIf="showProductOptionRes">
+       <div class="CartOptionContainer">
+         <div class="close"><i class="bi bi-x-lg" (click)="closeShowProductOptionRes()"></i></div>
+    <div class="proSec">
+      <div class="imgCont">
+        <img [src]="_auth.productImage(selectedProduct?.images)" />
+      </div>
+      <div class="proDetails">
+        <div class="proName">{{selectedProduct?.category?.name}}</div>
+        <div class="proDes">{{selectedProduct?.name}}</div></div></div>
+        <div class="boxRow">
+          <div class="newDiscount mt-3">
+            <div class="off"
+              *ngIf="_productSer.calcDiscountPersent(selectedProduct?.price,selectedProduct?.discount_price)>0">
+              <svg width="20" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path id="Vector 65"
+                  d="M5.17241 4.88235L4.83181 5.2484L5.28463 5.66974L5.60172 5.13867L5.17241 4.88235ZM7.06897 1.70588L7.43484 1.3651L6.98101 0.87785L6.63966 1.44956L7.06897 1.70588ZM11.9823 7.49969C12.2582 7.50948 12.4899 7.29371 12.4997 7.01774L12.6594 2.52058C12.6692 2.24461 12.4534 2.01295 12.1774 2.00315C11.9015 1.99335 11.6698 2.20912 11.66 2.48509L11.5181 6.48257L7.52058 6.34063C7.24461 6.33083 7.01295 6.5466 7.00315 6.82257C6.99335 7.09854 7.20912 7.3302 7.48509 7.34L11.9823 7.49969ZM0.659399 1.36605L4.83181 5.2484L5.51301 4.5163L1.3406 0.633952L0.659399 1.36605ZM5.60172 5.13867L7.49827 1.9622L6.63966 1.44956L4.74311 4.62603L5.60172 5.13867ZM6.70309 2.04667L11.6341 7.34078L12.3659 6.65922L7.43484 1.3651L6.70309 2.04667Z"
+                  fill="#A4080C" />
+              </svg>{{_productSer.calcDiscountPersent(selectedProduct?.price,selectedProduct?.discount_price)}}% {{ "OFF" |
+              translate }}
+            </div>
+            <div>
+              <span class="PriceBefore"
+                *ngIf="_productSer.calcDiscountPersent(selectedProduct?.price,selectedProduct?.discount_price)>0">
+                {{currency}}{{selectedProduct?.price }}</span>
+              <span class="discount">
+                {{currency}}{{selectedProductprice}}
+      
+              </span>
+            </div>
+      
+      
+      
+      
+          </div>
+          <div class="noPro" *ngIf="showNoPro">
+        {{'ThereAreOnly'|translate}}  {{selectedProduct?.count | number}}  {{'productInStock'|translate}}
+      </div>
+          <div class="addToCart2">
+            <!--  -->
+            
+            <button class="btn border-0" (click)="counter('add')" [disabled]="selectedProductCount==selectedProduct?.count">
+              <img src="../../../assets/images/svg/pluseGray.png" />
+            </button>
+      
+            <div class="input">
+              <input type="number" [value]="selectedProductCount" style="text-align: center"
+                (input)="onInputChangeSelectedProduct($event,selectedProduct?.count)" [max]="selectedProduct?.count" />
+            </div>
+      
+            <button class="btn border-0" (click)="counter('minus')" [disabled]="selectedProductCount == 1">
+              <i class="bi bi-dash"></i>
+            </button>
+          </div>
+        </div>
+      
+        <div class="box" [ngClass]="{ noOption: noOptionSelected }">
+          @if(noOptionSelected==true) {<div class="alert1"> {{'pleaseChooseYourOption'|translate}}</div>}
+          <div class="options" *ngFor="let option of selectedProduct?.options">
+            <a>{{option.name }}</a>
+      
+            <div class="mainsize">
+              <div class="size" [ngClass]="{'active':selectedValues.includes(itm.id)}" id="{{ itm.id }}" appActiveSize
+                (selectedId)="handleSelectedId(itm.id,option.id)" *ngFor="let itm of option?.values">
+                {{ itm.value }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btnSec" *ngIf="+selectedProduct?.count==0"> <button class="btnAddCart disabled"  
+      >
+      {{ "outOfStock" | translate }} </button></div>
+        
+      <div class="btnSec" *ngIf="+selectedProduct?.count>0">
+        <button class="btn btn-base-orange" (click)="addToCartWithOption(selectedProduct?.id,selectedProductCount,storeId,getSelectedValuesAsObjects(),
+          getOptionValueSelected(selectedValues,selectedProduct),selectedProduct.count,
+    _auth.productImage( selectedProduct?.images),selectedProduct.name, selectedProduct.description,
+   selectedProductprice)"   >{{"addToCart"|translate}}</button>
+        <button class="btn btn-base-black" (click)="goToCheckOut()">{{'payNow'|translate}}</button>
+      </div>
+      </div>
+
+      </div>

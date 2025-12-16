@@ -1,0 +1,201 @@
+.skeletonCard{
+  img{
+    width: 50px;
+    height: 50px;
+  }
+    width: 212px;
+    height: 415px;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 90px;
+   
+    background:
+    linear-gradient(90deg, rgba(255,255,255,0), #f2f2f2, rgba(255,255,255,0)) -200px 0/ 200px 100% no-repeat,
+    linear-gradient(#fff, #fff) 2px 320px/ 98% 24px no-repeat,
+    linear-gradient(#fff, #fff) 2px 350px/ 98% 24px no-repeat,
+    linear-gradient(#fff, #fff) 2px 380px/ 80% 24px no-repeat,
+    // linear-gradient(#FFFFFF, #FFFFFF) 0 0/ 100% 50px no-repeat,
+     linear-gradient(#f0f0f2, #f0f0f2);
+    
+    animation: skeleton-load 1.2s ease infinite;
+   
+  }
+  @keyframes skeleton-load {
+    100% {
+      background-position:
+        150% 0,
+        2px 320px, 
+        2px 350px,
+        2px 380px,
+        
+    }
+  }
+  .skeltonOffer{
+    width: 98%;
+    Height:315px;
+    border-radius: 0px 0px 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+    linear-gradient(90deg, rgba(255,255,255,0), #f2f2f2, rgba(255,255,255,0)) -200px 0/ 200px 100% no-repeat,
+    linear-gradient(#f0f0f2, #f0f0f2);
+    animation: skeleton-load-offer 2s ease infinite;
+  }
+  @keyframes skeleton-load-offer {
+    100% {
+      background-position:
+        150% 0,
+        }
+ }
+ .skeltonCategory{
+    width: 98%;
+    Height:200px;
+    border-radius: 10px;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+    background:
+    linear-gradient(90deg, rgba(255,255,255,0), #f2f2f2, rgba(255,255,255,0)) -200px 0/ 200px 100% no-repeat,
+    linear-gradient(#f0f0f2, #f0f0f2);
+    animation: skeleton-load-Category 2s ease infinite;
+  }
+  @keyframes skeleton-load-Category {
+    100% {
+      background-position:
+        150% 0,
+        }
+ }
+ .skeltonShopCategory{
+    width:450px;
+    Height:200px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+    linear-gradient(90deg, rgba(255,255,255,0), #f2f2f2, rgba(255,255,255,0)) -200px 0/ 200px 100% no-repeat,
+    linear-gradient(#f0f0f2, #f0f0f2);
+    animation: skeleton-load-Category 2s ease infinite;
+  }
+  @keyframes skeleton-load-Category {
+    100% {
+      background-position:
+        150% 0,
+        }
+ }
+ .skeltonOffer2{
+    width:100%;
+    Height:410px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+    linear-gradient(90deg, rgba(255,255,255,0), #f2f2f2, rgba(255,255,255,0)) -200px 0/ 200px 100% no-repeat,
+    linear-gradient(#f0f0f2, #f0f0f2);
+    animation: skeleton-load-offer2 2s ease infinite;
+  }
+  @keyframes skeleton-load-offer2 {
+    100% {
+      background-position:
+        150% 0,
+        }
+ }
+ .skeltonProductDetails{
+  width:320px;
+  Height:480px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+  linear-gradient(90deg, rgba(255,255,255,0), #f2f2f2, rgba(255,255,255,0)) -200px 0/ 200px 100% no-repeat,
+  linear-gradient(#f0f0f2, #f0f0f2);
+  animation: skeleton-load-ProductDetails 2s ease infinite;
+  
+}
+@keyframes skeleton-load-ProductDetails {
+  100% {
+    background-position:
+      150% 0,
+      }
+}
+.skeltonProductContainer{
+  width:100%;
+  Height:100px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+  linear-gradient(90deg, rgba(255,255,255,0), #f2f2f2, rgba(255,255,255,0)) -200px 0/ 200px 100% no-repeat,
+  linear-gradient(#f0f0f2, #f0f0f2);
+  animation: skeleton-load-ProductDetails 2s ease infinite;
+ 
+}
+@keyframes skeleton-load-ProductDetails {
+  100% {
+    background-position:
+      150% 0,
+      }
+}
+.skeletonProductDetailsText{
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+align-items: center;
+justify-content: center;
+ 
+ 
+  background:
+  linear-gradient(90deg, rgba(255,255,255,0), #f2f2f2, rgba(255,255,255,0)) -200px 0/ 200px 100% no-repeat,
+  linear-gradient(#fff, #fff) 400px 20px/ 100% 24px no-repeat,
+  linear-gradient(#fff, #fff) 350px 80px/ 150% 24px no-repeat,
+  linear-gradient(#fff, #fff) 250px 140px/ 190% 24px no-repeat,
+  //linear-gradient(#FFFFFF, #FFFFFF) 0 0/ 100% 50px no-repeat,
+   linear-gradient(#f0f0f2, #f0f0f2);
+  
+  animation: skeletonProductDetailsText 1.2s ease infinite;
+ 
+}
+@keyframes skeletonProductDetailsText {
+  100% {
+    background-position:
+      150% 0,
+      400px 20px, 
+      350px 80px,
+      250px 140px,
+      //0 0px,
+      
+  }
+}
+@media (max-width: 991px) {
+  
+  .skeletonCard{
+    width: 100%;}
+    .skeltonOffer{
+      width: 100%;}
+      .skeltonCategory{
+        width:100%
+      }
+      .skeltonShopCategory{
+        width:100%
+      }
+      .skeltonOffer2{
+        width:100%
+      }
+      .skeltonProductDetails{ width:100%
+      }
+      .skeltonProductContainer{width:100%
+      }
+      
+      .skeletonProductDetailsText{width:100%
+      }
+
+}

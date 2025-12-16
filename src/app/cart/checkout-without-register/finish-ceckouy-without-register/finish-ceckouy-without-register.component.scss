@@ -1,0 +1,256 @@
+@import "../../../../app/shared/components/global-style/_general";
+@import "../../../../styles.scss";
+.finish {
+  @include flex(column, space-around, center, 2rem, nowrap);
+  //padding: 30px;
+  .content {
+    margin: 1rem;
+     img{
+        width: 15%;
+      }
+    .thank {
+      color: #121212;
+      font-size: 32px;
+     // font-family: Roboto;
+      font-weight: 600;
+    }
+    .track{
+        
+      font-size: 28px;
+      //font-family: Roboto;
+      font-weight: 400;
+      .tracCode{
+        color:red;
+      }
+    }
+    .email {
+      color: #717171;
+      font-size: 24px;
+     // font-family: Roboto;
+      font-weight: 400;
+      span {
+        color: #414141;
+        font-size: 24px;
+       // font-family: Roboto;
+        font-weight: 600;
+        word-wrap: break-word;
+      }
+    }
+    .process {
+      width: 50%;
+      margin: auto;
+      text-align: center;
+      ul {
+        @include flex(row, space-around, center, 2rem, nowrap);
+        position: relative;
+        // width: 50%;
+        margin: 0rem auto;
+        li {
+          list-style: none;
+          z-index: 10;
+          &.pack {
+            .pr::after {
+              content: "";
+              position: absolute;
+              width: 23.5%;
+              top: 50%;
+              height: 5px;
+              background-color: #dadce3;
+              margin: 0rem auto;
+            }
+            &:last-child {
+              ::after {
+                width: 0px;
+                height: 0px;
+              }
+            }
+            //opacity: 0.5;
+
+            .custom-icon {
+              fill: #dadce3;
+            }
+            i {
+              color: #dadce3;
+              font-size: 24px;
+
+              // opacity: 40%;
+            }
+
+            p.text {
+              font-size: 14px;
+              font-weight: 600;
+              color: $text-co;
+            }
+          }
+
+          &.active {
+            .pr::after {
+              content: "";
+              position: absolute;
+              width: 23.5%;
+              top: 50%;
+              height: 5px;
+              background-color: $main-co;
+              margin: 0rem auto;
+            }
+            .custom-icon {
+              fill: $main-co;
+            }
+            i {
+              color: $main-co;
+              font-size: 24px;
+
+              // opacity: 40%;
+            }
+
+            p.text {
+              font-size: 14px;
+              font-weight: 600;
+              color: $main-co;
+            }
+          }
+        }
+      }
+    }
+    .orderDet {
+      @include flex(row, flex-start, flex-start, 3rem, nowrap);
+      background-color: #f0f4f8;
+      margin-top: 2rem;
+      padding: 1rem;
+      border-radius: 5px;
+      //width: 60%;
+    margin: auto;
+      .detailsInfo {
+        //width: 48%;
+        @include flex(column, flex-start, flex-start, 1rem, nowrap);
+        h5 {
+          color: #3d3d3d;
+          //text-align: left;
+        }
+
+      .orderinfo {
+          @include flex(column, flex-start, stretch, 0.5rem, nowrap);
+          width: 100%;
+          > li {
+            @include flex(row, space-between, center, 0.5rem, nowrap);
+            strong {
+             // width: 30%;
+              text-align: left;
+              white-space: nowrap;
+              color: #3d3d3d;
+            }
+            span {
+             // width: 78%;
+              text-align: right;
+            }
+          }
+        }
+      }
+
+      .paymentInfo {
+        width: 45%;
+        @include flex(column, flex-start, stretch, 0.5rem, nowrap);
+        h5 {
+          color: #3d3d3d;
+          margin-bottom: 0.5rem;
+          text-align: center;
+        }
+
+        .paymentDetails {
+          width: 100%;
+          @include flex(column, flex-start, stretch, 0.5rem, nowrap);
+          > li {
+            @include flex(row, space-between, center, 0.5rem, nowrap);
+            strong {
+             // width: 30%;
+              text-align: left;
+              white-space: nowrap;
+              color: #3d3d3d;
+            }
+            span {
+              //width: 78%;
+              text-align: right;
+            }
+          }
+          .total {
+            margin-top: 0.3rem;
+            padding: 0.5rem 0rem;
+            strong {
+              color: $main-co;
+            }
+            span {
+              color: $main-co;
+              font-weight: 800;
+            }
+          }
+        }
+      }
+    }
+  }
+  .foot {
+    @include flex(row, center, center, 1rem, wrap);
+  }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .finish {
+    .content {
+       .thank {
+      color: #121212;
+      font-size:16px;
+      //font-family: Roboto;
+      font-weight: 600;
+    }
+    .track{
+        
+      font-size: 16px;
+     // font-family: Roboto;
+      font-weight: 400;
+      .tracCode{
+        color:red;
+      }
+    }
+      img{
+        width: 50%;
+      }
+      .process {
+        width: 100%;
+        ul {
+          li {
+            &.pack {
+              .pr::after {
+                width: 21%;
+              }
+              &:last-child {
+                ::after {
+                  width: 0px;
+                  height: 0px;
+                }
+              }
+              //opacity: 0.5;
+            }
+
+            &.active {
+              .pr::after {
+                width: 21%;
+              }
+            }
+          }
+        }
+      }
+      .orderDet {
+        width: 100%;
+         @include flex(column, flex-start, flex-end, 3rem, nowrap);
+        .detailsInfo {
+          width: 100%;
+        }
+        .paymentInfo {
+          //
+          width: 100%;
+        }
+      }
+    }
+    .foot {
+      @include flex(row, center, center, 1rem, wrap);
+    }
+  }
+}

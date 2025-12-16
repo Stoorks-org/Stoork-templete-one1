@@ -1,0 +1,471 @@
+@import "../../../shared/components/global-style/_general.scss";
+@import "../../../../styles.scss";
+nav {
+  @include flex(row, flex-start, right, 0.75rem, wrap);
+  position: relative;
+  padding: 0.3rem 0.8rem 0.2rem;
+  border-bottom: thin solid #b8b8b845;
+
+  >ul {
+    &.responsive {
+      display: flex;
+      flex-wrap: wrap;
+      
+  
+    }
+
+    margin-left: 2rem;
+    
+    @include flex(row, flex-start, center, 0rem, nowrap);
+
+    >li { 
+      padding-bottom: .5rem;
+      padding: 12px 8px 8px 8px;
+      cursor: pointer;
+      .all {
+        height: 3rem;
+        width: 5.5rem;
+        color: white;
+        flex-wrap: nowrap;
+        position: relative;
+        border-radius: 0.625rem;
+        background-color:var(--main-co);
+        @include flex(row, center, center, 0.4rem, wrap);
+      }
+
+      &.active {
+        border-bottom: 2px solid $main-co;
+       
+        color: $main-co;
+        background: rgba(250, 101, 46, 0.08);
+      
+      
+        .activemega {
+        //   border-bottom: 2px solid $main-co;
+        //  // padding-bottom: .5rem;
+        //   color: $main-co;
+        //   background: rgba(250, 101, 46, 0.08);
+        }
+      }
+      .active {
+        border-bottom: 2px solid $main-co;
+       
+        color: $main-co;
+        background: rgba(250, 101, 46, 0.08);
+         &.activemega {
+      //   border-bottom: 2px solid $main-co;
+      //  // padding-bottom: .5rem;
+      //   color: $main-co;
+      //   background: rgba(250, 101, 46, 0.08);
+      }}
+     
+      .activemega {
+        border-bottom: 2px solid $main-co;
+       // padding-bottom: .5rem;
+        color: $main-co;
+        background: rgba(250, 101, 46, 0.08);
+      }
+
+      >a {
+        padding-bottom: .5rem;
+        padding: 12px 8px 8px 8px;
+        
+        width: auto;
+        height: 1.5rem;
+        text-decoration: none;
+        //font-family: "Roboto";
+        font-style: normal;
+        // font-size: 1rem;
+        // line-height: 1.5rem;
+        //color: #000000;
+        
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        white-space: nowrap;
+
+      }
+
+
+      .mega-menu {
+        @include flex(row, flex-start, flex-start, 2rem, nowrap);
+        width: 95%;
+        background: #ffffff;
+        border-radius: 0px 0px 15px 15px;
+        margin: 0.5rem 2rem;
+        transition: all 0.3s ease-in-out;
+        opacity: 0;
+        z-index: -1;
+        position: absolute;
+        top: 88%;
+        left: 0;
+        padding: 1rem;
+        box-shadow: 0rem 50rem 0.2rem 50rem rgba(0, 0, 0, 0.34);
+        .sectioncat {
+          .Categories {
+            ul {
+              @include flex(column, space-between, start, 0.5rem, wrap);
+              color: #636363;
+              font-size: 1rem;
+              // font-family: Roboto;
+              margin-top: 0.5rem;
+            }
+          }
+
+          h5 {
+            color: #565656;
+            font-size: 1.25rem;
+            // font-family: Roboto;
+            font-weight: 500;
+          }
+        }
+
+        .sectionbrand {
+          width: 42%;
+
+          .brands {
+            ul {
+              @include flex(row, flex-start, start, 0.5rem, wrap);
+              padding-top: 1rem;
+            }
+          }
+
+          h5 {
+            color: #565656;
+            font-size: 1.25rem;
+            //  font-family: Roboto;
+            font-weight: 500;
+          }
+
+          img {
+            width: 280px;
+            height: 198px;
+            border: 0.5px;
+          }
+        }
+      }
+       
+      &.allCat {
+        display: none;
+
+      }
+    }
+  }
+
+  // _______________________________________________________________
+  // __________________for mega testing ___________________________
+  .content {
+    background-color: #00000061;
+    height: 100% !important;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    z-index: 100;
+    .megaTest {
+      border-radius: 0px 0px 15px 15px;
+      transition: all 0.3s ease-in-out;
+      z-index: 1000;
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      right: 0px;
+      background-color: #00000061;
+      .overlay {
+        @include flex(row, flex-start, flex-start, 1rem, nowrap);
+        background: #ffffff;
+        padding: 1.5rem 2rem;
+        box-shadow: 0rem .2rem 0.2rem .2rem rgba(0, 0, 0, 0.34);
+        .sectioncat {
+          width: 12%;
+          .Categories {
+            ul {
+              @include flex(column, space-between, start, 0.5rem, wrap);
+              color: #636363;
+              font-size: 1rem;
+              margin-top: 0.5rem;
+            }
+
+            a {
+              cursor: pointer;
+
+              &:hover {
+                color: $main-co;
+              }
+            }
+          }
+
+          h5 {
+            color: #565656;
+            font-size: 1.25rem;
+            font-weight: 500;
+          }
+        }
+        .sectionbrand {
+          width: 34%;
+          .brands {
+            ul {
+              @include flex(row, flex-start, start, 0.5rem, wrap);
+              padding-top: 1rem;
+            }
+          }
+          h5 {
+            color: #565656;
+            font-size: 1.25rem;
+            font-weight: 500;
+          }
+          img {
+            width: 150px;
+            height: 107px;
+            border: 0.5px solid $border-co;
+            border-radius: 5px;
+          }
+        }
+        .sectionlast {
+          width:54%;
+          .last {
+            ul {
+              @include flex(row, space-between, start, 0.3rem, wrap);
+
+              li.adv1 {
+                width: 66%;
+
+                img.adv1 {
+                  width: 100%;
+                  //width:410px;
+                  height: 380px;
+                  border-radius: 5px;
+                }
+              }
+
+              li.adv2 {
+                width: 32.5%;
+
+                img.adv2 {
+                  width: 100%;
+                  //width:205px;
+                  height: 380px;
+                  border-radius: 5px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // > ul {
+  //  // @include gridRepeat(350px, flex-start, flex-start, 0.5rem);
+  //   > li {
+  //     color: #ffffff;
+  //     font-size: 2rem;
+  //   }
+  //   .home {
+  //     display: none;
+  //   }
+  //   .electeronics {
+  //     display: none;
+  //   }
+  //   .machine {
+  //     display: none;
+  //   }
+  //   .Beauty {
+  //     display: none;
+  //   }
+  //   .kitchen {
+  //     display: none;
+  //   }
+  //   .sports {
+  //     display: none;
+  //   }
+  // }
+}
+
+// }
+
+//* ___________________________________________________
+// ___________________________________________________
+//Medai query for Mobile
+@media (max-width: 767px) {
+  nav {
+    &.responsive {
+      display: none;
+    }
+
+    .content {
+      display: none;
+    }
+
+    .megaTest {
+      display: none;
+    }
+
+    @include flex(row, flex-start, right, 0.75rem, nowrap);
+    width: 100%;
+    padding: 0rem 0.8rem 0.6rem;
+    border-bottom: thin solid #b8b8b845;
+
+    >ul {
+      &.responsive {
+        display: none;
+      }
+
+      margin-left: 0rem;
+      @include flex(row, flex-start, center, .5rem, wrap);
+
+      >li {
+        border-radius: 28px;
+        border: 1px solid #E0E0E0;
+        padding-bottom: 0rem;
+        padding: 0px;
+        .all {
+          height: 1.5rem;
+          width: 3rem;
+          color: white;
+          flex-wrap: nowrap;
+          position: relative;
+          border-radius:28px;
+          background-color:var(--main-co);
+
+        }
+
+       
+
+        .activemega {
+          border-bottom: none;
+          padding: .2rem;
+          color: white;
+          flex-wrap: nowrap;
+          position: relative;
+          border-radius: 0.625rem;
+          background-color:var(--main-co);
+          // border-bottom: 2px solid $main-co;
+          // padding-bottom: .5rem;
+          // color: $main-co;
+          // background: rgba(250, 101, 46, 0.08);
+        }
+
+        >a {
+          // color:#ffffff;
+          svg {
+            width: 15px;
+          }
+
+          padding: 8px;
+          width: auto;
+          height: 1.5rem;
+          text-decoration: none;
+          // font-family: "Roboto";
+          font-style: normal;
+          // font-size: 1rem;
+          // line-height: 1.5rem;
+          color: #212121;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+        }
+        &.active {
+          border-bottom: none;
+          // padding: .2rem;
+           color: white;
+          // flex-wrap: nowrap;
+          // position: relative;
+          // border-radius: 28px;
+          background-color:var(--main-co);
+
+          // border-bottom: 2px solid $main-co;
+          // padding-bottom: .4rem;
+          // color: $main-co;
+          // background: rgba(250, 101, 46, 0.08);
+          a{color:white;}
+        }
+        .active {
+          border-radius: 28px;
+        border-bottom: none;
+        // padding: .2rem;
+         color: white;
+        // flex-wrap: nowrap;
+        // position: relative;
+        // border-radius: 28px;
+        background-color:var(--main-co);
+
+        // border-bottom: 2px solid $main-co;
+        // padding-bottom: .4rem;
+        // color: $main-co;
+        // background: rgba(250, 101, 46, 0.08);
+      }
+      }
+      
+      >li.home {
+        display: none;
+
+      } 
+      >li.allCat {
+        display: block;
+
+      }
+    }
+  }
+.touch-nav.responsive{
+  display: none;
+}
+}
+
+.touch-nav {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  display: block;
+  width: 100%;
+  padding-bottom: 5px;
+  border-bottom: 1px solid $border-co;
+
+  .nav-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  padding: 10px;
+  margin: 0;
+  list-style: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+
+ scrollbar-width: none;
+
+ .nav-item {
+  
+  a{
+    padding: 5px;
+        width: auto;
+       
+        text-decoration: none;
+        font-style: normal;
+        color: #212121;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        border: 1px solid #E0E0E0;
+        border-radius: 28px;
+      &.active,&.home{
+        background-color: $main-co;
+        color:white;
+       }
+      
+      }
+  
+       
+}
+
+}
+}
+
+
+.touch-nav::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+

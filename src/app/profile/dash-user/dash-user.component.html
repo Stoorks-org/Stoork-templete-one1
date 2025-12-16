@@ -1,0 +1,124 @@
+<section class="profile">
+  <!-- <header class="logo"></header> -->
+
+  <aside class="sideMenu" *ngIf="!noUser">
+    <div class="logo" routerLink="/">
+       <img
+      src="{{storeLogo}}"
+      routerLink="/home"
+      style="cursor: pointer"
+    />
+      <!-- <img src="/assets/images/logo/orangeLogo.png" *ngIf="lang!=='ar'" routerLink="/home" />
+      <img src="../../../assets/images/logo/Trendweyoranglogo.png" routerLink="/home" style="cursor: pointer"
+        *ngIf="lang=='ar'" />
+
+      <div class="logoar" *ngIf="lang=='ar'">ترندواي</div> -->
+    </div>
+
+    <header>
+      <h5>{{ userData?.name }} !!</h5>
+      <span>{{ userData?.email }}</span>
+    </header>
+
+    <ul>
+      <li>
+        <a routerLink="User" routerLinkActive="active-link">
+          <i class="bi bi-person"></i>
+          <span>{{'profile'|translate}}</span>
+        </a>
+      </li>
+
+      <!-- <li>
+        <a routerLink="Inbox" routerLinkActive="active-link">
+          <i class="bi bi-chat-square-text"></i>
+          <span>Inbox</span>
+        </a>
+      </li> -->
+
+      <li>
+        <a routerLink="Order" routerLinkActive="active-link">
+          <i class="bi bi-box-seam"></i>
+          <span>{{'orders'|translate}}</span>
+        </a>
+      </li>
+
+      <!-- <li>
+        <a routerLink="Address" routerLinkActive="active-link">
+          <i class="bi bi-geo-alt"></i>
+          <span>{{'address'|translate}}</span>
+        </a>
+      </li> -->
+
+      <!-- <li>
+        <a routerLink="Payment" routerLinkActive="active-link">
+          <i class="bi bi-coin"></i>
+          <span>Payment</span>
+        </a>
+      </li> -->
+
+      <!-- <li>
+        <a routerLink="Help" routerLinkActive="active-link">
+          <i class="bi bi-chat-dots"></i>
+          <span>{{'Contact-Us'|translate}}</span>
+        </a>
+      </li> -->
+
+      <!-- <li *ngIf="!userData?.supplierID">
+         
+        <a (click)="_aut.goToBeSupplier()" routerLinkActive="active-link">
+          <i class="bi bi-people"></i>
+          <span>{{'beSupplier'|translate}}</span>
+        </a>
+      </li> -->
+
+      <!-- <li *ngIf="userData?.supplierID">
+        <a routerLink="/dashBoard" routerLinkActive="active-link">
+          <i class="bi bi-person-gear"></i>
+          <span>{{'Dashboard'|translate}}</span>
+        </a>
+      </li> -->
+
+      <!-- <li>
+        <a routerLink="/">
+          <i class="bi bi-house"></i>
+          <span>Home</span>
+        </a>
+      </li> -->
+      <!--
+      <li>
+        <a routerLink="Resently_viewed" routerLinkActive="active-link">
+          <i class="bi bi-clock-history"></i>
+          <span>Resently_viewed</span>
+        </a>
+      </li> -->
+    </ul>
+  </aside>
+
+  <!-- side menu responsive 
+  <button class="proMenu btn btn-outline-light border-0" (click)="openSideFunc()" *ngIf="!noUser">
+    <svg width="50" height="50" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g id="text-left">
+        <g id="Vector">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M3 18.75C3 18.3358 3.33579 18 3.75 18H14.25C14.6642 18 15 18.3358 15 18.75C15 19.1642 14.6642 19.5 14.25 19.5H3.75C3.33579 19.5 3 19.1642 3 18.75Z"
+            fill="#FA652E" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M3 14.25C3 13.8358 3.33579 13.5 3.75 13.5H20.25C20.6642 13.5 21 13.8358 21 14.25C21 14.6642 20.6642 15 20.25 15H3.75C3.33579 15 3 14.6642 3 14.25Z"
+            fill="#FA652E" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M3 9.75C3 9.33579 3.33579 9 3.75 9H14.25C14.6642 9 15 9.33579 15 9.75C15 10.1642 14.6642 10.5 14.25 10.5H3.75C3.33579 10.5 3 10.1642 3 9.75Z"
+            fill="#FA652E" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M3 5.25C3 4.83579 3.33579 4.5 3.75 4.5H20.25C20.6642 4.5 21 4.83579 21 5.25C21 5.66421 20.6642 6 20.25 6H3.75C3.33579 6 3 5.66421 3 5.25Z"
+            fill="#FA652E" />
+        </g>
+      </g>
+    </svg>
+  </button>-->
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</section>
+
+<p-toast></p-toast>

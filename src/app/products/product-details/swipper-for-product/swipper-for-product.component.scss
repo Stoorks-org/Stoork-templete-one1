@@ -1,0 +1,37 @@
+@import "src/app/shared/components/global-style/__general.scss";
+@import "src/app/shared/components/global-style/_sekleton.scss";
+
+:host ::ng-deep{
+  
+    .swiper {
+      position: relative;
+      img{
+        height: 132px;
+          width: 99px;
+        
+      }
+      
+     
+      .swiper-pagination {
+        .swiper-pagination-bullet {
+          cursor: pointer;
+          padding: 0.3rem;
+          background: #ffffff;
+          //opacity: 1;
+        }
+        .swiper-pagination-bullet-active {
+          display: inline-block;
+          background-color: white;
+          //opacity: 1;
+          // var(--sec-co);
+          box-shadow: 0px 0px 0px 2px #ffffff;
+        }
+        
+      }.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+          bottom: 0px;
+          left: 0;
+          width: 100%;
+          background-color: rgb(20, 18, 18);
+          opacity: .5;
+      }
+    }}

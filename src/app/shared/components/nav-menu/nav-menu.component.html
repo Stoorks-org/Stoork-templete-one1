@@ -1,0 +1,30 @@
+<nav (mouseleave)="closeMegaTest('')" [ngClass]="{'responsive':isResponsiveFav||isResponsiveCart||isResponsive}" *ngIf="!isMobile">
+  <ul>
+    <li class="allCat">
+      <a class="all" routerLink="/allCategoryResponsive">
+        <span>{{ "all" | translate }}</span>
+      </a>
+
+
+    </li>
+    <li class="home" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">
+      <a routerLink="/" >{{'home'|translate}}</a>
+    </li>
+    <li *ngFor="let cat of (isMobile ? NavCategory.slice(0, 4) : NavCategory)" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active"id="{{cat.id }}" 
+        (mouseout)="StyleLeave($event)" routerLink="/AllProduct/{{ cat.id }}/0" (click)="setCategory(cat.id)">
+      <a 
+         >{{ cat.name }}</a>
+    </li>
+  </ul>
+</nav>
+<div class="touch-nav" [ngClass]="{'responsive':isResponsiveFav||isResponsiveCart||isResponsive}" *ngIf="isMobile">
+  <ul class="nav-list">
+     <li class="nav-item " >
+      <a class="active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">{{'home'|translate}}</a>
+    </li>
+    <li *ngFor="let item of NavCategory" class="nav-item" id="{{item.id }}">
+      <a  routerLink="/AllProduct/{{ item.id }}/0" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">{{ item.name }}</a>
+      
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,29 @@
+<div class="trackorder" style="margin-top: 5rem;">
+<img src="../../../assets/images/profile/order/trackOrder.png" class="mt-3">
+<h2 class="mt-3">{{ 'trackingYourOrder' | translate }}</h2>
+
+<div class="trackCode mt-3">
+<h5 [ngClass]="{ 'styleEn':_auth.isValueEn.value,'styleAr':!_auth.isValueEn.value  }" class="mt-3">{{ 'addYourOrderNumber' | translate }}</h5>
+
+    <form [formGroup]="codeForm"  class="AddForm">
+       <div class="row1 mt-3"> 
+    <label for="code">
+          <!-- <span>{{'addYourFullName'|translate}}</span> -->
+          <div>
+              <input type="text" formControlName="code" class="form-control" id="code" placeholder="33750"
+                  [class.is-invalid]="
+                  codeForm.get('code')?.invalid &&
+                  codeForm.get('code')?.touched" />
+              <div *ngIf="codeForm.get('code')?.errors?.['required']" class="invalid-feedback">
+                  {{ 'codeisrequired'| translate }}
+              </div>
+          </div>
+    </label>
+    <button type="submit" class="btn btn-orang" [disabled]="codeForm.invalid" 
+     (click)="searchOrderByCode()">{{ 'trackingYourOrder' | translate }}</button>
+  </div>  
+</form>
+<!-- routerLink="order" -->
+
+</div>
+</div>

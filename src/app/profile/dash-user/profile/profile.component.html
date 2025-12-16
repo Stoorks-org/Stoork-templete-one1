@@ -1,0 +1,173 @@
+<section class="user">
+  <header>
+    <h5>{{'profile'|translate}}</h5>
+  </header>
+
+  <!-- _________content__________ -->
+  <blockquote class="content">
+    <h6>{{'generalInfo'|translate}}</h6>
+
+    <!-- !_____ user photo___ -->
+    <div class="photo">
+      <blockquote>
+        <div *ngIf="
+            userData.image ==null
+          " class="imgname">
+          {{ capitalizedLetters(userData?.name) }}
+        </div>
+
+        <img src="{{ userData?.image }}" *ngIf="
+            userData.image !=
+            null
+          " />
+        <!-- <img [src]="getPhoto()" alt="user-img" /> -->
+      </blockquote>
+
+      <div class="controls">
+        <label for="proPhoto" class="btn btn-base-orange">
+          {{'ChangePhoto'|translate}}
+          <input type="file" name="profPhoto" hidden id="proPhoto" (change)="chanageProfilePhoto($event)" />
+        </label>
+
+        <!-- <button class="btn btn-base-delete px-4" (click)="deleteProfilePhoto()">
+          <span>Delete</span>
+          <i class="bi bi-trash-fill"></i>
+        </button> -->
+      </div>
+    </div>
+
+    <!-- !_____ user info ___ -->
+    <div class="upUserData">
+      <form [formGroup]="generalInfo">
+        <div class="globalInfo">
+          <!-- first name  -->
+          <label for="name">
+            <span>{{'FirstName'|translate}}</span>
+            <!-- [ngClass]="{'is-valid':name.invalid,'is-invalid:name.invalid'}" -->
+            <input formControlName="name" type="text" class="input-control" name="name" id="name"
+              placeholder="{{'fullname'|translate}}" />
+          </label>
+
+        </div>
+
+        <!-- !________ security  _______ -->
+        <div class="security">
+          <h6>{{'Security'|translate}}</h6>
+          <div class="inputs">
+            <!-- email  -->
+            <label for="email">
+              {{'email'|translate}}
+              <input formControlName="email" type="text" class="input-control" name="email" id="email"
+                placeholder= "{{'email'|translate}}" />
+            </label>
+
+            <!-- password  class="oldPass"-->
+
+            <!-- <label for="password" [ngClass]="{ 'oldPass':_auth.isValueEn.value,'oldPassAr':!_auth.isValueEn.value  }" >
+              {{'Password'|translate}}
+              <input formControlName="password" [type]="getType('showFour')" class="input-control password"
+                name=" password" id=" password" placeholder="{{'password'|translate}}" />
+
+              <i class="bi bi-eye" [ngClass]="{ active: showPass.showFour }" *ngIf="showPass?.showFour"
+                (click)="showPassWord('showFour')">
+              </i>
+
+              <i class="bi bi-eye-slash" *ngIf="!showPass?.showFour" (click)="showPassWord('showFour')">
+              </i>
+            </label> -->
+
+            <!-- Phone number your phone number-->
+            <label for="phone_number">
+              {{'phoneNumber'|translate}}
+              <input formControlName="phone_number" type="tel" class="input-control" name="phone_number"
+                id="phone_number" placeholder="{{'yourphonenumber'|translate}}" />
+            </label>
+          </div>
+        </div>
+      </form>
+
+      <div class="controls">
+        <button class="btn btn-update" (click)="updateInfo()">
+          {{'updateInfo'|translate}}
+        </button>
+
+        <button class="btn btn-outline-dark" (click)="showChanagePassDialog()">
+          {{'changePassword'|translate}}
+        </button>
+
+        <!-- <button class="btn btn-base-delete" (click)="deleteAccount()">
+          {{'deleteAccount'|translate}}
+        </button> -->
+      </div>
+    </div>
+  </blockquote>
+</section>
+<p-toast></p-toast>
+
+<!-- chanage password dialog -->
+
+<p-dialog [(visible)]="chanagePassDialog" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '30vw' }"
+  [draggable]="false" [resizable]="false">
+  <ng-template pTemplate="header">
+    <h4 class="w-100 text-center py-3"> {{'changePassword'|translate}}</h4>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <form [formGroup]="chanagePassForm" class="chanagePassForm">
+      <!-- *_____Old Password____ -->
+      <label for="old_password">
+        <span>{{'oldPassword'|translate}}</span>
+
+        <blockquote>
+          <input formControlName="old_password" [type]="getType('showOne')" class="input-control" name="old_password"
+            id="old_password" placeholder="{{'yourOldPassword'|translate}}" />
+
+          <i class="bi bi-eye" [ngClass]="{ active: showPass.showOne }" [ngClass]="{styleAr: !_auth.isValueEn.value,styleEn: _auth.isValueEn.value}"*ngIf="showPass?.showOne"
+            (click)="showPassWord('showOne')">
+          </i>
+
+          <i class="bi bi-eye-slash" *ngIf="!showPass?.showOne" [ngClass]="{styleAr: !_auth.isValueEn.value,styleEn: _auth.isValueEn.value}"(click)="showPassWord('showOne')">
+          </i>
+        </blockquote>
+      </label>
+
+      <!-- *_____New Password____ -->
+      <label for="newPassword">
+        <span>{{'newPassword'|translate}}</span>
+
+        <blockquote>
+          <input formControlName="newPassword" [type]="getType('showTwo')" class="input-control" name="newPassword"
+            id="newPassword" placeholder="{{'yourNewPassword'|translate}}" />
+          <i class="bi bi-eye" [ngClass]="{ active: showPass.showTwo }" *ngIf="showPass?.showTwo" [ngClass]="{styleAr: !_auth.isValueEn.value,styleEn: _auth.isValueEn.value}"
+            (click)="showPassWord('showTwo')">
+          </i>
+
+          <i class="bi bi-eye-slash" *ngIf="!showPass?.showTwo" (click)="showPassWord('showTwo')" [ngClass]="{styleAr: !_auth.isValueEn.value,styleEn: _auth.isValueEn.value}">
+          </i>
+        </blockquote>
+      </label>
+
+      <!-- *_____Confirm Password____ -->
+      <label for="confirm_password">
+        <span> {{'confirmPassword'|translate}} </span>
+
+        <blockquote>
+          <input formControlName="confirm_password" [type]="getType('showThree')" class="input-control"
+            name="confirm_password" id="confirm_password" placeholder="{{'confirmPassword'|translate}}" />
+
+          <i class="bi bi-eye" [ngClass]="{ active: showPass.showThree }" *ngIf="showPass?.showThree"
+            (click)="showPassWord('showThree')" [ngClass]="{styleAr: !_auth.isValueEn.value,styleEn: _auth.isValueEn.value}">
+          </i>
+
+          <i class="bi bi-eye-slash" *ngIf="!showPass?.showThree" (click)="showPassWord('showThree')" [ngClass]="{styleAr: !_auth.isValueEn.value,styleEn: _auth.isValueEn.value}">
+          </i>
+        </blockquote>
+      </label>
+    </form>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button class="btn btn-base-orange mt-3" (click)="updatePass()"> {{'save'|translate}}</button>
+  </ng-template>
+</p-dialog>
+<p-toast></p-toast>

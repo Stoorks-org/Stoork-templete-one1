@@ -1,0 +1,13 @@
+<swiper [config]="config" [slidesPerView]="slidesPerView" [navigation]="navigation" [scrollbar]="false"
+[pagination]="true" class="swiper" dir="ltr" [autoplay]="false" >
+@for (product of SliderImge; track $index) {
+<ng-template swiperSlide>
+ 
+  <ng-template let-product pTemplate="item">           
+    <div class="img-slide" [ngClass]="{'active':product.image_path==_auth.productImage(SliderImge)}">
+      <img src="{{product.image_path}}" appImageGallary />
+    </div>
+  </ng-template>
+</ng-template>
+}
+</swiper>

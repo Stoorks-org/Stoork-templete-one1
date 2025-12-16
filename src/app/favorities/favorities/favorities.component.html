@@ -1,0 +1,92 @@
+
+ <div [ngClass]="{'responsiveFav':isResponsive}">
+  <div class="rowb">
+     <i class="bi bi-arrow-right" routerLink="/home"  *ngIf="!_aut.isValueEn.value"></i>
+     <i class="bi bi-arrow-left" routerLink="/home" *ngIf="_aut.isValueEn.value"></i>
+    {{'favorite'|translate}}
+    
+ </div></div>
+<div  class="NoCart text-center" 
+    *ngIf="fav.itemsLength.getValue()== 0">
+    <img src="../../../assets/images/profile/order/noFavorite.png" />
+
+    <div class="txtblack mt-3">
+      {{ "yourFavoriteLooksEmpty" | translate }}
+    </div>
+    <div class="txtgray mt-3">
+      {{ "WhatAreYouWaitingFor" | translate }}
+    </div>
+    <div>
+      <button class="btn btn-base-orange mt-3" routerLink="/home">
+
+          <span>{{'startShopping'|translate}}</span>
+      </button>
+  </div>
+</div>
+<div [ngClass]="{'responsive':isResponsive}"  *ngIf="fav.itemsLength.getValue()>0">
+    <div class="bread"> <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb></div>
+    <div class="container-fluid orders">
+    
+        <h4>{{'favorite'|translate}}</h4>
+        <!-- [ngClass]="{ 'btn-controlsEn':_auth.isValueEn.value,'btn-controlsAr':!_auth.isValueEn.value  }" -->
+        <div class="content">
+            <div class="allOrders">
+                <header class="btn-controls" >
+    
+                    <button (click)=" showOrders('Favorites')" class="btn btn-lightItems" routerLink="Items"
+                         routerLinkActive="btn-items">
+                        {{'AllItems'|translate}} ({{fav.itemsLength.getValue()}})
+                    </button>
+    
+                    <button class="btn btn-lightItems " (click)="showOrders('lists')" routerLink="lists"
+                         routerLinkActive="btn-items" *ngIf="!fav.isOfflineFav()">
+                        {{'MyList'|translate}}({{fav.listsLength.getValue()}})
+                    </button>
+                    <!--[ngClass]="{ 'btn-items':  showfavoriteSt == 'Favorites' }" [ngClass]="{ 'btn-items':  showfavoriteSt == 'lists' }"<button class="btn btn-light " (click)="showOrders('OpenList')" routerLink="Open-List">
+                        open
+                    </button> -->
+                    <div class="AddList" (click)="ShowAddListDiolage()"> <button class="btn btn-lightSmall" *ngIf="!fav.isOfflineFav()"> +
+                            {{'AddList'|translate}} </button>
+                    </div>
+                </header>
+            
+                <div class="rou"> 
+                    <app-items *ngIf="showfavoriteSt=='Favorites'"></app-items> 
+                    <app-lists *ngIf="showfavoriteSt=='lists'"></app-lists>
+                    <!-- <router-outlet></router-outlet> -->
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    </div>
+    <div class="itemres" *ngIf="fav.itemsLength.getValue()>0">
+       
+        <router-outlet></router-outlet>
+    </div>
+    <p-dialog [(visible)]="showAddListDiolog" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }"
+        [draggable]="false" [resizable]="false">
+      
+        <ng-template pTemplate="content" >
+            <h4 style="text-align: center;">{{'Createalist'|translate}}</h4>
+    
+            <form [formGroup]="AddListForm" (ngSubmit)="onSubmit()" style="padding: 1rem;">
+    
+                <label for="floatingEmail">{{'ListName'|translate}}</label>
+                <input type="text" [class.is-invalid]="
+          AddListForm.get('name')?.invalid && AddListForm.get('name')?.touched
+        " formControlName="name" class="form-control mt-1" id="floatingEmail" placeholder="" />
+    
+                <div *ngIf="AddListForm.get('name')?.errors?.['required']" class="invalid-feedback">
+                    {{'nameisrequired'|translate}}
+                </div>
+                <div class="text-center mt-4">
+                    <button class="btn-orangeLarge" [disabled]="AddListForm.invalid" type="submit">
+                        {{'confirmcapital'|translate}}
+                    </button>
+                </div>
+            </form>
+        </ng-template>
+    
+    
+    </p-dialog>

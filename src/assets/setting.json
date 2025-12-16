@@ -1,0 +1,36 @@
+{
+    "storeId": "79",
+    "mainColor": "#f50057",
+    "secondaryColor": "#000000",
+    "bodyColor": "#ffffff",
+    "navColor": null,
+    "footerColor": null,
+    "storeName": "mynewstoretest",
+    "logoPath": "https:\/\/stoork.b-cdn.net\/logo\/2025-11-01_18-39-02_PEG67QfwCx.png",
+    "mainImagePath": null,
+    "announcementsPath": null,
+    "themeId": "1",
+
+  "socialLinks": [
+    { "type": "facebook", "url": "https://facebook.com/yourpage" },
+    { "type": "instagram", "url": "https://instagram.com/yourpage" },
+    { "type": "youtube", "url": "https://youtube.com/yourchannel" },
+    { "type": "tikTok", "url": "https://tiktok.com/@yourpage" },
+    { "type": "xlink", "url": "https://x.com/yourprofile" },
+    { "type": "snapChat", "url": "https://snapchat.com/add/yourusername" },
+    { "type": "pentress", "url": "https://pinterest.com/yourprofile" }
+  ],
+
+
+    "storeUrl": "mynewstoretest",
+    "currency": null,
+    "languageId": "7",
+    "build_id": null,
+    "currency_code": "EGP",
+    "currency_symbol": "EGP",
+    "currency_symbol_native": "ج.م",
+    "currency_name": "Egyptian Pound",
+    "phone": null,
+    "email": null,
+    "whatsapp": "01113530906"
+}

@@ -1,0 +1,257 @@
+<header class="container-fluid header">
+  <!--  -->
+  <div [ngClass]="{ProSerAr: !_aut.isValueEn.value,ProSerEn: _aut.isValueEn.value}"
+    *ngIf="SearchProducts?.length > 0 && Search"(click)="showSearch()"(mouseleave)="Search = false">
+    
+    <div class="box-with-arrow">
+      <div class="txtSer" id="{{ pro.id }}" *ngFor="let pro of SearchProducts" routerLink="/AllProduct/0/{{ pro.name }}">
+        {{ pro.name }}
+      </div>
+    </div>
+  </div>
+
+  <div class="logo" >
+     <img
+      src="{{storeLogo}}"
+      routerLink="/home"
+      style="cursor: pointer"
+    />
+   <!-- <img
+      src="/src/assets/images/logo/Trendwey.png"
+      style="width: 120px; padding-top: 10px; cursor: pointer"
+      routerLink="/home"
+      *ngIf="_aut.isValueEn.value"
+    /> -->
+    <!-- <div class="logoar" routerLink="/home" >
+     {{storeName}}
+    </div> -->
+    <!-- <div class="logoar" routerLink="/home" *ngIf="!_aut.isValueEn.value">
+      ترندواي
+    </div> -->
+  </div>
+
+  <div class="btnsArea">
+    <div class="cont">
+      <ul class="btnsAreaList">
+        <li>
+        
+          <button class="btn btn-header-color" *ngIf="currentLang == 'en'" (click)="changeLang('ar')">
+            العربية
+          </button>
+          <button class="btn btn-header-color" *ngIf="currentLang == 'ar'" (click)="changeLang('en')">
+            English
+          </button>
+        </li>
+        <a routerLink="favorites">
+          <li class="heart btn btn-header-color">
+            <div class="fav">
+              <i class="bi bi-heart"></i>
+              <div class="countFav" *ngIf="fav.itemsLength.getValue() > 0">
+                {{ fav.itemsLength | async }}
+              </div>
+            </div>
+            <span>{{ "Favorites" | translate }}</span>
+          </li>
+        </a>
+
+        <a routerLink="cart">
+          <li class="cart btn btn-header-color">
+            <div class="bag">
+              <i class="bi bi-bag"></i>
+              <div class="count" *ngIf="cartService.CartCount.getValue() > 0">
+                {{ cartService.CartCount | async }}
+              </div>
+            </div>
+            <span>{{ "Cart" | translate }}</span>
+          </li>
+        </a>
+
+        <li class="signin">
+          <ng-container *ngIf="(accountService.currentUser$ | async) == null">
+            <!-- <span routerLink="/auth" routerLinkActive="active">{{'Signin'|translate }}</span> -->
+             <span (click)="signinfun()">{{'Signin'|translate }}</span>
+             
+            <!-- <i class="bi bi-person mx-1"></i> -->
+          </ng-container>
+
+          <ng-container *ngIf="accountService.currentUser$ | async as user">
+            <p-overlayPanel #op>
+              <ng-template pTemplate="content">
+                <div class="op">
+                  <!-- <div
+                    class="nameimg"
+                    (click)="op.toggle($event)"
+                    *ngIf="user?.image==null">
+                    {{ capitalizedLetters(user?.name) }}
+                  </div> -->
+                  <img src="../../../../assets/images/profile/order/profilePhoto.png" *ngIf="user.image == null" (click)="op.toggle($event)"/>
+                  <img
+                    src="{{ user?.image }}"
+                    (click)="op.toggle($event)"
+                    *ngIf="user?.image!=null"
+                  />
+                  
+                  <div>
+                    {{ "Hi" | translate }}
+                    <div>
+                      {{ user?.name }}
+                    </div>
+                  </div>
+                </div>
+
+                <hr />
+                 <div class="person mb-2" (click)="navigateToProfile()"  [ngClass]="{styleAr: !_aut.isValueEn.value,styleEn: _aut.isValueEn.value}">
+                  <i class="bi bi-person"></i>
+                  {{ "profile" | translate }}
+                </div>
+               <!--routerLink="/profile" <div class="person mb-2" routerLink="/profile/Address">
+                  <i class="bi bi-geo-alt"></i>
+                  {{ "address" | translate }}
+                </div>
+              
+                <div class="person mt-2" routerLink="/profile/Be_supplier">
+                  <i class="bi bi-person-gear"></i>
+                  {{ "beSupplier" | translate }}
+                </div>
+               
+                <div class="person mt-2" routerLink="/dashBoard">
+                  <i class="bi bi-person-gear"></i>
+                  {{ "dashboard" | translate }}
+                </div>
+
+                <div class="person mb-2" routerLink="/profile/Help">
+                  <i class="bi bi-chat-dots"></i>
+                  <span>{{ "Contact-Us" | translate }}</span>
+                </div>
+-->
+                <div class="person mb-2" routerLink="/profile/Order" [ngClass]="{styleAr: !_aut.isValueEn.value,styleEn: _aut.isValueEn.value}">
+                  <i class="bi bi-box-seam"></i>
+                  {{ "orders" | translate }}
+                </div> 
+
+                <hr />
+                <div class="logout" (click)="logOut()">
+                  <a style="cursor: pointer">
+                    {{ "logout" | translate }}
+                  </a>
+                  <i class="bi bi-box-arrow-left"></i>
+                </div>
+              </ng-template>
+            </p-overlayPanel>
+
+            <div class="avatar">
+              <li class="heart btn btn-headerHi-color">
+                {{ user?.full_name?.substring(0, 6) }}
+                <strong class="m-0">{{ "Hi" | translate }}</strong>
+              </li>
+              <!-- <div
+                class="nameimg"
+               
+                *ngIf="user.image == null" (click)="op.toggle($event)">
+               
+                {{ capitalizedLetters(user?.name) }}
+              </div> -->
+             <img src="../../../../assets/images/profile/order/profilePhoto.png" *ngIf="user.image == null" (click)="op.toggle($event)"/>
+              <img
+                src="{{ user?.image }}"
+                (click)="op.toggle($event)"
+                *ngIf="user.image !=null"
+              />
+            </div>
+          </ng-container>
+        </li>
+         <li> <ng-container *ngIf="(accountService.currentUser$ | async) == null">
+          <!-- <span (click)="signinfun()">{{'Signin'|translate }}</span> -->
+          <i class="bi bi-text-left"(click)="op2.toggle($event)" style="font-size: 1.7rem;"></i>
+          <p-overlayPanel #op2>
+            <ng-template pTemplate="content">
+              <!-- <div class="op">
+               
+
+                <div>
+                  {{ "PleaseLoginToEnjoyAllFeatures" | translate }}
+                
+                  </div>
+                </div>
+              
+
+              <hr /> -->
+              <div class="person mt-2" routerLink="/trackOrder" [ngClass]="{styleAr: !_aut.isValueEn.value,styleEn: _aut.isValueEn.value}">
+                <i class="bi bi-box-seam"></i>
+                {{ "trackOrder" | translate }}
+              </div>
+
+             <!-- <div class="person mb-2" routerLink="/profile/Help">
+                 <a href="https://api.whatsapp.com/send?phone=970594010786" target="_blank"> 
+                <i class="bi bi-info-circle"></i>
+                <span>{{ "help" | translate }}</span>
+              </a> 
+              </div>-->
+
+             
+
+              <hr />
+             <div> <button class="btn-orangeLarge" (click)="signIn()">{{'Signin'|translate}}</button></div>
+                <div class="mt-2"><button class="btn btn-Largewhite" (click)="signUp()">{{'signUp'|translate}}</button></div>
+            </ng-template>
+          </p-overlayPanel>
+        </ng-container></li>
+      </ul>
+    </div>
+
+    <div class="searchArea">
+      <img src="{{storeLogo}}" [ngClass]="{'responsive':isResponsive||isResponsiveFav||isResponsiveCart||isResponsiveCategory||isResponsiveProfile}" />
+      <div class="cartcount">
+      <i class="bi bi-cart" [ngClass]="{'res':isResponsive,'responsive':!isResponsive}" routerLink="/cart">
+        <div class="count" *ngIf="cartService.CartCount.getValue() > 0">
+          {{ cartService.CartCount | async }}
+        </div>
+      
+      </i></div>
+      <blockquote [ngClass]="{'responsive':isResponsiveFav||isResponsiveCart||isResponsiveProfile}">
+        <i
+          class="bi bi-search"
+          (click)="applyFilter($event)"
+          [ngClass]="{
+            styleAr: !_aut.isValueEn.value,
+            styleEn: _aut.isValueEn.value
+          }"
+        ></i>
+        <!--  -->
+        <input
+          type="text"
+          name="searchArea"
+          id="searchArea"
+          [(ngModel)]="searchVal"
+          (keyup)="applyFilter($event)"
+          class="form-control"
+          placeholder="{{ 'searchforproducts' | translate }}"
+        />
+      </blockquote>
+      
+      
+
+      <i class="bi bi-arrow-left" [ngClass]="{'res':isResponsive||isResponsiveCategory,'responsive':!isResponsive||!isResponsiveCategory}" routerLink="/home"  *ngIf="!_aut.isValueEn.value"></i>
+      <i class="bi bi-arrow-right" [ngClass]="{'res':isResponsive||isResponsiveCategory,'responsive':!isResponsive||!isResponsiveCategory}" routerLink="/home" *ngIf="_aut.isValueEn.value"></i>
+
+      <i class="bi bi-arrow-left" [ngClass]="{'res':isResponsiveProfile,'responsive':!isResponsiveProfile}" routerLink="/profileRes"  *ngIf="!_aut.isValueEn.value"></i>
+      <i class="bi bi-arrow-right" [ngClass]="{'res':isResponsiveProfile,'responsive':!isResponsiveProfile}" routerLink="/profileRes" *ngIf="_aut.isValueEn.value"></i>
+       <!-- <div class="logo" >
+     <img
+      src="{{storeLogo}}"
+      routerLink="/home"
+      style="cursor: pointer"
+    /></div> -->
+    </div>
+
+  </div>
+  <!-- <div class="d-none mobileScreen">
+ 
+  <app-nav-menu  [NavCategory]="NavCategory"></app-nav-menu>
+</div> -->
+</header>
+
+<!-- todo__________________ Side Nav ______________________________-->
+<!--* ____________________________________________________________ -->
+
+

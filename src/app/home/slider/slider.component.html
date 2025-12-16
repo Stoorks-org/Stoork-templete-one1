@@ -1,0 +1,110 @@
+<!-- <div class="slider" dir="ltr">
+
+  <p-carousel [value]="SliderImge" [numVisible]="1" [numScroll]="1" [circular]="true"
+    [responsiveOptions]="responsiveOptions" [autoplayInterval]="3000">
+ 
+    <ng-template let-product pTemplate="item">
+     
+      <div class="imgCon text-center h-100">
+  <a
+    *ngIf="slider === 'home' && product?.stoork_offer_id!=null"
+    [routerLink]="['/ProductDetails', product?.stoork_offer_id]"
+  >
+  
+    <ng-container *ngTemplateOutlet="imageTemplate"></ng-container>
+  </a>
+<a
+    *ngIf="slider === 'offer'"
+    [routerLink]="['/ProductDetails', product.product_id]"
+  >
+   <ng-container *ngTemplateOutlet="imageTemplate"></ng-container>
+  </a>
+ 
+  <ng-container  *ngIf="slider === 'home' && product?.stoork_offer_id==null">
+    <ng-container *ngTemplateOutlet="imageTemplate"></ng-container>
+  </ng-container>
+
+  
+  <ng-template #imageTemplate>
+    <img
+      [src]="product.website_image"
+      width="100%"
+      height="100%"
+      *ngIf="ImageUrl === 'website_image'"
+      style="border-radius: 0px 0px 20px 20px;"
+      class="d-none d-md-block"
+    />
+    <img
+      [src]="product.mobile_image"
+      width="100%"
+      height="100%"
+      *ngIf="ImageUrl === 'website_image'"
+      style="border-radius: 0px 0px 0px 0px;"
+      class="d-block d-md-none"
+    />
+    <img
+      [src]="product.image_path"
+      width="100%"
+      height="100%"
+      *ngIf="ImageUrl === 'image_path'"
+      style="border-radius: 0px 0px 20px 20px;"
+      class="d-none d-md-block"
+    />
+    <img
+      [src]="product.phone_image_path"
+      width="100%"
+      height="100%"
+      *ngIf="ImageUrl === 'image_path'"
+      style="border-radius: 0px 0px 0px 0px;"
+      class="d-block d-md-none"
+    />
+  </ng-template>
+</div>
+
+
+    </ng-template>
+  </p-carousel>
+</div> -->
+
+
+
+<swiper [config]="config"
+      
+      dir="ltr">
+
+
+  <ng-template swiperSlide *ngFor="let product of SliderImge">
+    <div><img
+      [src]="product.website_image"
+      width="100%"
+      height="100%"
+      *ngIf="ImageUrl === 'website_image'"
+      style="border-radius: 0px 0px 20px 20px;"
+      class="d-none d-md-block"
+    />
+    <img
+      [src]="product.mobile_image"
+      width="100%"
+      height="100%"
+      *ngIf="ImageUrl === 'website_image'"
+      style="border-radius: 0px 0px 0px 0px;"
+      class="d-block d-md-none"
+    />
+    <img
+      [src]="product.image_path"
+      width="100%"
+      height="100%"
+      *ngIf="ImageUrl === 'image_path'"
+      style="border-radius: 0px 0px 20px 20px;"
+      class="d-none d-md-block"
+    />
+    <img
+      [src]="product.phone_image_path"
+      width="100%"
+      height="100%"
+      *ngIf="ImageUrl === 'image_path'"
+      style="border-radius: 0px 0px 0px 0px;"
+      class="d-block d-md-none"
+    /></div>
+  </ng-template>
+</swiper>

@@ -1,0 +1,194 @@
+//@import "src/app/shared/components/global-style/__general.scss";
+@import "../../../styles.scss";
+.slider {
+  margin: auto;
+  width: 100%;
+  background-color: white;
+  border-radius: 15px;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  touch-action: auto;
+
+
+  .product-item-content {
+    padding: 25px;
+    @include flex(row, flex-start, center, 15rem, nowrap);
+    margin: auto;
+  }
+}
+
+:host ::ng-deep {
+  p-carousel.p-element {
+    touch-action: pan-y !important;
+    .p-carousel {
+      touch-action: pan-y !important;
+ overscroll-behavior: contain;
+
+      .p-carousel-content {
+         touch-action: pan-y !important;
+  overscroll-behavior: contain; // يمنع الكاروسيل من حبس التمرير
+
+        // overflow: hidden;
+        // position: relative;
+        // slider
+        .p-carousel-container {
+          position: relative;
+          touch-action: pan-y !important;
+  overscroll-behavior: contain; // يمنع الكاروسيل من حبس التمرير
+
+          .p-element.p-carousel-next,
+          .p-element.p-carousel-prev {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgb(255, 255, 255);
+            color: $main-co;
+            z-index: 1;
+            padding: 1.4rem;
+          }
+
+          .p-element.p-carousel-next {
+            top: 40%;
+            right: 1rem;
+            box-shadow: 0 0 0.3rem 0.1rem #00000052;
+            transition: all 0.4s ease-in-out;
+            &:hover {
+              transform: translateX(-0.5rem);
+            }
+          }
+
+          .p-element.p-carousel-prev {
+            top: 40%;
+            left: 1rem;
+            box-shadow: 0 0 0.3rem 0.1rem #00000052;
+            transition: all 0.4s ease-in-out;
+            &:hover {
+              transform: translateX(0.5rem);
+            }
+          }
+
+          .p-carousel-items-content {
+            width: 100%;
+            margin: 0rem auto;
+            height: 315px !important;
+            .p-carousel-items-container {
+              height: 100%;
+            }
+          }
+        }
+
+        // dotes
+        .p-carousel-indicators {
+          padding: 0rem;
+          //width: fit-content;
+          position: absolute;
+          bottom: 0%;
+          z-index: 10;
+          // left: 47%;
+          width: 100%;
+          li.p-carousel-indicator {
+            button {
+              // background-color: #9e9e9e8f;
+              border-radius: 2rem;
+              padding: 0rem 0.5rem;
+              height: 0.3rem;
+            }
+          }
+          li.p-carousel-indicator.p-highlight button {
+            background: #ffc107;
+            color: #ffc107;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    
+    p-carousel.p-element {
+      touch-action: pan-y !important;
+  overscroll-behavior: contain; // يمنع الكاروسيل من حبس التمرير
+      .p-carousel {
+      touch-action: pan-y !important;
+  overscroll-behavior: contain; // يمنع الكاروسيل من حبس التمرير
+
+        .p-carousel-content {
+          // slider
+           touch-action: pan-y !important;
+  overscroll-behavior: contain; // يمنع الكاروسيل من حبس التمرير
+
+          .p-carousel-container {
+            touch-action: pan-y !important;
+  overscroll-behavior: contain; // يمنع الكاروسيل من حبس التمرير
+
+            .p-carousel-items-content {
+              width: 100%;
+            }
+
+            button {
+              display: none;
+            }
+
+            .p-carousel-items-content {
+              height: 220px !important;
+              width: 100%;
+              .p-carousel-items-container {
+                height: 100%;
+              }
+            }
+          }
+
+          // dotes
+          .p-carousel-indicators {
+            bottom: 0%;
+            z-index: 10;
+            width: 100%;
+            display: none;
+            // left: 32%;
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    p-carousel.p-element {
+     touch-action: pan-y !important;
+  overscroll-behavior: contain; // يمنع الكاروسيل من حبس التمرير
+      .p-carousel {
+         touch-action: pan-y !important;
+  overscroll-behavior: contain; // يمنع الكاروسيل من حبس التمرير
+
+        .p-carousel-content {
+           touch-action: pan-y !important;
+  overscroll-behavior: contain; // يمنع الكاروسيل من حبس التمرير
+
+          // slider
+          .p-carousel-container {
+            touch-action: pan-y !important;
+  overscroll-behavior: contain; // يمنع الكاروسيل من حبس التمرير
+
+            .p-carousel-items-content {
+              width: 100%;
+            }
+            button {
+              display: none;
+            }
+          }
+
+          // dotes
+          .p-carousel-indicators {
+            bottom: 0%;
+            width: 100%;
+            z-index: 10;
+            // left: 45%;
+          }
+        }
+      }
+    }
+  }
+}
+::ng-deep .p-carousel {
+  touch-action: pan-y !important; // يسمح بالتمرير الرأسي
+}
+
+

@@ -1,0 +1,35 @@
+<ng-container *ngIf="isLoadingcategories">
+
+  <h4>{{ "categories" | translate }}</h4>
+
+
+  <div class="skeltonCategory">
+    <img src="../../../assets/images/logo/TrendweyLogo.png" style="width:90px;height:100px;">
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!isLoadingcategories">
+  <div class="paganation">
+    <h4>{{ "categories" | translate }}</h4>
+
+    <div [ngClass]="{ 'styleEn':_auth.isValueEn.value,'styleAr':!_auth.isValueEn.value  }">
+
+      <p-carousel [value]="categories" [numVisible]="10" [responsiveOptions]="responsiveOptions" [numScroll]="10"
+        dir="ltr">
+        <ng-template let-cat pTemplate="item">
+         
+            <div class="cont" routerLink="/AllProduct/{{ cat.id }}/0" style="cursor: pointer;">
+              <div class="imgCont">
+ <img src="{{ cat.image_url }}" />
+              </div>
+             
+
+              <div class="txtcat" >
+                 {{ cat.name.substring(0, 20) }}
+              </div>
+            </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+</ng-container>

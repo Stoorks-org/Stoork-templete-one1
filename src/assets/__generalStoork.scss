@@ -1,0 +1,258 @@
+$main-co: #08adc6;
+$shadow-co: #b2e6ef;
+$disabled: #22c1d968;
+$main-bg: #e3fbff;
+$text-co: #181818;
+$sec-text-co: #717171;
+$white: #ffffff;
+$error-900: #e4462e;
+$close: #d21318;
+$p-co: #616161;
+$border-co: #dadce3;
+// golbal variables
+
+// *___________global Mixin_________________
+// _________________________________________
+
+@mixin flex($dir, $content, $align, $gap) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $content;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin grid($num1, $num2, $content, $align, $gap) {
+  display: grid;
+  grid-template-columns: $num1, $num2;
+  justify-content: $content;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin gridRepeate($px, $content, $align, $gap) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($px, 1fr));
+  justify-content: $content;
+  align-items: $align;
+  gap: $gap;
+}
+
+.active {
+  color: $main-co !important;
+}
+
+input[type="checkbox"] {
+  border: 1px solid $main-co;
+  accent-color: #08a2b9;
+  cursor: pointer;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+// *___________global btns_________________
+// ________________________________________
+.btn-mintgreen {
+  padding: 0.6rem;
+  text-align: center;
+  background-color: $main-co;
+  color: $white;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: #05899d;
+  }
+}
+
+.btn-selectMint {
+  padding: 0.5rem;
+  text-align: center;
+  background-color: #ebf8fa;
+  color: $main-co;
+  border: 1px solid #08adc6;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    color: $white;
+    background-color: #05899d;
+  }
+}
+
+.btn-outline-mintgreen {
+  padding: 0.6rem;
+  text-align: center;
+  background-color: $white;
+  color: $main-co;
+  border: thin solid $main-co;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: $main-co;
+    color: $white;
+  }
+}
+
+.btn-mint-trans {
+  padding: 0.6rem 1.2rem;
+  text-align: center;
+  background: rgba(8, 173, 198, 0.1);
+  color: $text-co;
+  border: thin solid $main-co;
+  outline: none;
+  box-shadow: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  @include flex(row, center, center, 0.3rem);
+  &:hover {
+    color: $main-co;
+  }
+}
+
+.btn-mintLighter {
+  padding: 0.6rem 1.2rem;
+  text-align: center;
+  background: #e3fbff;
+  color: $main-co;
+  border: thin solid $main-co;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  @include flex(row, center, center, 0.3rem);
+  &:hover {
+    color: $main-co;
+  }
+}
+
+.btn-cta {
+  padding: 0.6rem 1.2rem;
+  text-align: center;
+  background: #b1e0e7;
+  color: #414141;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.5s ease-in-out;
+  @include flex(row, center, center, 0.3rem);
+  &:hover {
+    color: $main-co;
+  }
+}
+
+// *___________global _________________
+// _________________________________________
+.input-text {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  &:focus {
+    border-color: $main-co;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem $shadow-co;
+  }
+}
+
+// __________________toast_____________________
+// ____________________________________________
+
+:host ::ng-deep {
+  .p-toast-message-custom {
+    background-color: #5ecada;
+    border: solid $main-co;
+    border-width: 0 0 0 6px;
+    color: $white;
+    .p-toast-icon-close {
+      color: $white;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+  .p-toast-icon-close {
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  // drop down
+  p-dropdown.p-element {
+    padding: 0.5rem 0rem;
+    width: 100%;
+    .p-dropdown {
+      width: 100%;
+      color: $main-co;
+    }
+
+    .p-dropdown:not(.p-disabled).p-focus {
+      outline: 0 none;
+      outline-offset: 0;
+      box-shadow: 0 0 0 0.2rem $shadow-co;
+      border-color: $main-co;
+    }
+  }
+
+  // for dialog
+  p-dialog.p-element {
+    .p-dialog-content {
+      text-align: center;
+      .head {
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+      }
+
+      form {
+        margin: 0rem auto;
+        width: 85%;
+        @include flex(column, flex-start, stretch, 0.5rem);
+        label {
+          text-align: left;
+          span {
+            margin-bottom: 0.3rem;
+          }
+
+          input {
+            padding: 1.5rem 0.5rem;
+          }
+        }
+      }
+    }
+
+    .p-dialog-footer {
+      text-align: center;
+      // @include flex(row, space-between, center, 0.3rem);
+      > button {
+        padding: 0.8rem;
+        margin: 0rem auto;
+        width: 85%;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    p-dialog.p-element {
+      .p-component {
+        width: 100% !important;
+        .p-dialog-header {
+        }
+      }
+    }
+  }
+}

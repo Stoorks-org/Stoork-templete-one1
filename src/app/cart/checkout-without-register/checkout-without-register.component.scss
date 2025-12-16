@@ -1,0 +1,608 @@
+
+@import "../../shared/components/global-style/_general";
+@import"../../../styles.scss";
+
+.order{
+    padding: 10px;
+        width: 60%;
+    margin: auto;
+    .checkout{ 
+          @include flex(row, flex-start,flex-start, 0rem, nowrap);
+        .address{
+            width: 55%;
+        border: 1px solid #b8b8b845;
+        border-radius:0px 10px 10px 0px;
+        padding: 10px;
+       // margin: 5px;
+        //text-align: center;
+        h4{
+            display: block;
+            color: $border-co;
+            font-size: 20px;
+            padding: 5px;
+        } 
+         h3{display: block;}
+        h6{
+            font-size: 18px;
+           // display: none;
+        }
+        form{
+        @include flex(column,center,center, 1rem, nowrap);
+        
+       
+        .row{
+            @include flex(row, flex-start,center, 1rem, nowrap);
+            width: 100%;
+            label{
+                width: 49%;
+                margin-top: 10px;
+                padding: 0;
+                 p-dropdown{
+             width: 100%;
+            } 
+           
+            }
+           
+           
+        }
+        label{
+            width: 100%;
+            margin-top: 10px;
+             &.Paiement.styleEn{
+                text-align: left;
+            }
+            &.Paiement.styleAr{
+                text-align: right;
+            }
+        }
+//         .checkoutRes{
+//     display: block;
+// }
+ .paymentMethod{
+        
+         @include flex(column,flex-start,flex-start, 0rem, nowrap);
+         width: 100%;
+         h6{
+            //display: block;
+         }
+         .rowPay{
+            border:1px solid $border-co;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px;
+            width: 100%;
+            label{
+                display: flex;
+                justify-content: flex-start;
+                gap:5px;
+                font-size: 16px;
+            input{
+                width: 20px;
+                height: 20px;
+            }}
+         }
+    }
+    }
+    }
+    .summarySec{
+     width:45%;
+     height: 100%;
+     background-color: #F7F7F7;
+      border: 1px solid #F7F7F7;
+       border-radius:10px 0px 0px 10px;
+        padding: 10px;
+        //margin: 5px; 
+         .content{
+       border: none;
+       // border-radius: 10px;
+        padding: 0px;
+        margin: 0px;
+        .item{
+            @include flex(row, flex-start,center, 1rem, nowrap);
+            margin: 5px;
+        padding: 5px;
+        border: 1px solid #b8b8b845;
+        border-radius: 10px;
+            .sec1{
+             
+               img{
+                    border: 1px solid #b8b8b845;
+                    border-radius: 5%;
+                    width: 50px;
+                    height: 75px;
+                    margin-top: .5rem;
+                }
+                .des{
+                    @include flex(column, flex-start,center, 1rem, nowrap);
+                    .proName{
+                        font-size: 14px;
+                    }
+                    
+                }
+               
+            }
+            .sec2{
+                width: 90%;
+                .des{ @include flex(row, space-between,stretch, 1rem, nowrap);}
+                .price{
+                    font-size: 20px;
+                    color: $main-co;
+                }
+                 .des{
+                    //@include flex(column, flex-start,center, 1rem, nowrap);
+                    .proName{
+                        font-size: 14px;
+                    }
+                    
+                }
+                  .optionContainer{
+                        @include flex(row, flex-start,center, 1rem, wrap);
+                    .size{
+                        font-size: 10px;
+                    }}
+            }
+        }
+        .totalSum{
+         @include flex(column, flex-end,flex-end, .1rem, nowrap);
+         width: 100%;
+         color: #737373;
+         font-size: 14px;
+         .shippingCost{
+            padding-top: 5px;
+            border-bottom: 1px solid #737373;
+            font-size: 18px;
+         }
+         .total{
+            color:$main-co;
+            font-size: 20px;
+         }
+
+    }
+    }
+    
+   }}
+    
+    .orderWeb{
+       
+    display: block;
+   
+  
+    
+}
+.paymentMethod{display: none;}
+.orderRes{
+    display: none;}
+}
+
+ .CheckoutRescol{
+    display: none;
+ }
+::ng-deep {
+    p-dropdown,
+    .p-dropdown {
+      width: 100% !important;
+    }
+  }
+  @media (max-width: 1024px) {
+   
+  
+    .order{
+         width: 100%;
+       .checkout{  .address{
+     border: none;
+       // border: 1px solid $border-co;
+       // border-radius: 10px;
+       width: 100%;
+       padding: 0px;
+        margin: 5px;
+       // text-align: center;
+        h4,h3{
+          display: none;
+        }
+        h6{
+           // display: block;
+        }
+    form{
+        @include flex(column,flex-start,center, 0rem, nowrap);
+        width: 100%;
+       
+        .row{
+            @include flex(column, flex-start,center, 0rem, nowrap);
+            width: 100%;
+            label{
+                width: 100%;
+                margin-top: 10px;
+                padding: 0;
+                 p-dropdown{
+             width: 100%;
+            }
+            }
+           
+        }
+        label{
+            width: 100%;
+            margin-top: 10px;
+             &.Paiement{
+                text-align: center;
+            }
+        }
+    
+    }
+ }
+ .summarySec{
+        display: none;
+       }
+       }
+      
+   // padding: 10px;
+     .orderWeb{
+    display: none;
+    
+}
+ 
+    .orderRes{
+    display: block;
+    .content{
+       border: none;
+       // border-radius: 10px;
+        padding: 0px;
+        margin: 0px;
+        .item{
+            @include flex(row, flex-start,center, 1rem, nowrap);
+            margin: 5px;
+        padding: 5px;
+        border: 1px solid $border-co;
+        border-radius: 10px;
+            .sec1{
+             
+               img{
+                    border: 1px solid $border-co;
+                    border-radius: 5%;
+                    width: 50px;
+                    height: 75px;
+                    margin-top: .5rem;
+                }
+                .des{
+                    @include flex(column, flex-start,center, 1rem, nowrap);
+                    .proName{
+                        font-size: 14px;
+                    }
+                    
+                }
+               
+            }
+            .sec2{
+                width: 90%;
+                .des{ @include flex(row, space-between,stretch, 1rem, nowrap);}
+                .price{
+                    font-size: 20px;
+                    color: $main-co;
+                }
+                 .des{
+                    //@include flex(column, flex-start,center, 1rem, nowrap);
+                    .proName{
+                        font-size: 14px;
+                    }
+                    
+                }
+                  .optionContainer{
+                        @include flex(row, flex-start,center, 1rem, wrap);
+                    .size{
+                        font-size: 10px;
+                    }}
+            }
+        }
+        .totalSum{
+         @include flex(column, flex-end,flex-end, .1rem, nowrap);
+         width: 100%;
+         color: #737373;
+         font-size: 14px;
+         .shippingCost{
+            padding-top: 5px;
+            border-bottom: 1px solid #737373;
+         }
+         .total{
+            color:$main-co;
+         }
+
+    }
+    }
+  
+  
+}
+  
+ }
+ .paymentMethod{
+         @include flex(column,flex-start,flex-start, 0rem, nowrap);
+         .rowPay{
+            border:1px solid $border-co;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px;
+            width: 100%;
+            label{
+                display: flex;
+                justify-content: flex-start;
+                gap:5px;
+                font-size: 12px;
+            input{
+                width: 20px;
+                height: 20px;
+            }}
+         }
+    }
+   .CheckoutRescol{
+      position: fixed;
+      bottom: 8%;
+      padding: 1rem;
+    background-color:white;
+    width: 100%;
+      @include flex(column, space-between, flex-start, 0.5rem, nowrap);
+    .CheckoutRes{
+      @include flex(row, space-between,center, 0.5rem, nowrap);
+  
+      
+     // display: block;
+    
+    span.price{
+      font-size: 18px;
+      color: $main-co;
+    }}
+    .CheckoutResOrder{
+      width: 100%;
+    @include flex(column, space-between, center, 2rem, nowrap);
+        padding: 30px;
+        border: 1px solid $border-co;
+        
+        border-radius: 3px;
+        .order {
+          @include flex(row,stretch, flex-start, 4rem, nowrap);
+          span.price{
+            color:$main-co;
+          }
+        }
+        .order2 {
+          padding-bottom:1rem;
+          @include flex(row,stretch, flex-start, 4rem, nowrap);
+          border-bottom: 1px solid $border-co;
+        }}
+    }
+    form{
+.checkoutRes{
+    display: none;
+}}
+
+}
+// .btn-orangeLarge{
+//     width: 100%;
+// }
+// @import "../../shared/components/global-style/_general";
+// @import"../../../styles.scss";
+
+// .order{
+//     padding: 10px;
+//      .address{
+//         border: 1px solid $border-co;
+//         border-radius: 10px;padding: 10px;
+//         margin: 5px;
+//         text-align: center;
+//         h4{
+//              display: block;
+//             color: $border-co;
+//         }
+//          h3{display: block;}
+//         h6{display: none;}
+        
+        
+//         form{
+//         @include flex(column,center,center, 1rem, nowrap);
+//         width: 70%;
+       
+//         .row{
+//             @include flex(row, flex-start,center, 1rem, nowrap);
+//             width: 100%;
+//             label{
+//                 width: 49%;
+//                 margin-top: 10px;
+//                 padding: 0;
+//                  p-dropdown{
+//              width: 100%;
+//             } 
+           
+//             }
+           
+           
+//         }
+//         label{
+//             width: 100%;
+//             margin-top: 10px;
+//              &.Paiement.styleEn{
+//                 text-align: left;
+//             }
+//             &.Paiement.styleAr{
+//                 text-align: right;
+//             }
+//         }
+// //         .checkoutRes{
+// //     display: block;
+// // }
+//     }
+//     }
+   
+//     .orderWeb{
+//     display: block;
+//     .content{
+//         border: 1px solid $border-co;
+//         border-radius: 10px;padding: 10px;
+//         margin: 5px;
+//         .item{
+//             @include flex(row, flex-start,center, 1rem, nowrap);
+//             .sec1{
+              
+//                img{
+//                     border: 1px solid $border-co;
+//                     border-radius: 5%;
+//                     width: 102px;
+//                     height: 108px;
+//                     margin-top: .5rem;
+//                 }
+//                 .des{
+//                     @include flex(row, flex-start,center, 1rem, nowrap);
+//                     .proName{
+//                         font-size: 20px;
+//                     }
+//                     .size{
+//                         font-size: 16px;
+//                     }
+//                 }
+//             }
+//             .sec2{
+                
+//                 .price{
+//                     font-size: 20px;
+//                     color: $main-co;
+//                 }
+//             }
+//         }
+//     }
+   
+    
+// }
+// .orderRes{
+//     display: none;}
+// }
+
+//  .CheckoutRescol{
+//     display: none;
+//  }
+// ::ng-deep {
+//     p-dropdown,
+//     .p-dropdown {
+//       width: 100% !important;
+//     }
+//   }
+//   @media (max-width: 768px) {
+   
+ 
+//     .order{
+//     padding: 10px;
+//      .orderWeb{
+//     display: none;
+    
+// }
+//   .address{
+//         border: 1px solid $border-co;
+//         border-radius: 10px;padding: 10px;
+//         margin: 5px;
+//         text-align: center;
+//         h4{
+//             color: $border-co;
+//         }
+   
+//     form{
+//         @include flex(column,center,center, 1rem, nowrap);
+//         width: 100%;
+       
+//         .row{
+//             @include flex(column, flex-start,center, 1rem, nowrap);
+//             width: 100%;
+//             label{
+//                 width: 100%;
+//                 margin-top: 10px;
+//                 padding: 0;
+//                  p-dropdown{
+//              width: 100%;
+//             }
+//             }
+           
+//         }
+//         label{
+//             width: 100%;
+//             margin-top: 10px;
+//              &.Paiement{
+//                 text-align: center;
+//             }
+//         }
+//     } }
+//     .orderRes{
+//     display: block;
+//     .content{
+//         border: 1px solid $border-co;
+//         border-radius: 10px;padding: 10px;
+//         margin: 5px;
+//         .item{
+//             @include flex(row, flex-start,center, 1rem, nowrap);
+//             .sec1{
+              
+//                img{
+//                     border: 1px solid $border-co;
+//                     border-radius: 5%;
+//                     width: 50px;
+//                     height: 75px;
+//                     margin-top: .5rem;
+//                 }
+//                 .des{
+//                     @include flex(column, flex-start,center, 1rem, nowrap);
+//                     .proName{
+//                         font-size: 20px;
+//                     }
+//                     .size{
+//                         font-size: 16px;
+//                     }
+//                 }
+//             }
+//             .sec2{
+//                 width: 90%;
+//                 .des{ @include flex(row, space-between,stretch, 1rem, nowrap);}
+//                 .price{
+//                     font-size: 20px;
+//                     color: $main-co;
+//                 }
+//             }
+//         }
+//     }
+  
+// }
+//  }
+//    .CheckoutRescol{
+//       position: fixed;
+//       bottom: 8%;
+//       padding: 1rem;
+//     background-color:white;
+//     width: 100%;
+//       @include flex(column, space-between, flex-start, 0.5rem, nowrap);
+//     .CheckoutRes{
+//       @include flex(row, space-between,center, 0.5rem, nowrap);
+  
+      
+//      // display: block;
+    
+//     span.price{
+//       font-size: 18px;
+//       color: $main-co;
+//     }}
+//     .CheckoutResOrder{
+//       width: 100%;
+//     @include flex(column, space-between, center, 2rem, nowrap);
+//         padding: 30px;
+//         border: 1px solid $border-co;
+        
+//         border-radius: 3px;
+//         .order {
+//           @include flex(row,stretch, flex-start, 4rem, nowrap);
+//           span.price{
+//             color:$main-co;
+//           }
+//         }
+//         .order2 {
+//           padding-bottom:1rem;
+//           @include flex(row,stretch, flex-start, 4rem, nowrap);
+//           border-bottom: 1px solid $border-co;
+//         }}
+//     }
+//     form{
+// .checkoutRes{
+//     display: none;
+// }}
+
+// }

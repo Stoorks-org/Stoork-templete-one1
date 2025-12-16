@@ -1,0 +1,40 @@
+@import "../../../app/shared/components/global-style/_general";
+@import"../../../styles.scss";
+.trackorder{
+    margin-top: 5rem;
+    border: 1px solid $border_co;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center; 
+    width: 50%;
+    margin: auto;
+    img{
+        width: 272px;
+        height: 139px;
+    }
+   .trackCode{
+    h5.styleAr{
+        text-align: right;
+    }
+      h5.styleEn{
+        text-align: left;
+    }
+    .row1{
+        @include flex(row, center,center, 0.8rem, nowrap);
+       
+        label{
+            width: 80%;
+           // input{width: 100%;}
+
+        }
+    }
+   }
+
+   
+}
+@media (max-width: 768px) {
+   .trackorder{
+    width: 90%;
+    margin: auto;
+   } 
+}

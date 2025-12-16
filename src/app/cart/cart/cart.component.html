@@ -1,0 +1,404 @@
+ 
+<section class="container-fluid cart">
+  <div class="bread" [ngClass]="{'responsive':isResponsive}">
+    <p-breadcrumb
+      class="max-w-full"
+      [model]="itemsMenu"
+      [home]="home"
+    ></p-breadcrumb>
+  </div>
+ <div [ngClass]="{'responsiveCart':isResponsive}">
+  <div class="rowb">
+     <i class="bi bi-arrow-right" routerLink="/home"  *ngIf="!_auth.isValueEn.value"></i>
+     <i class="bi bi-arrow-left" routerLink="/home" *ngIf="_auth.isValueEn.value"></i>
+    {{'cart'|translate}}
+    
+ </div>
+</div>
+  <div  class="NoCart text-center" 
+    *ngIf="cartSer.CartCount.getValue()== 0">
+    <img src="../../../assets/images/profile/order/noCartNew.png" />
+
+    <div class="txtblack mt-3">
+      {{ "yourCartIsEmpty" | translate }}
+    </div>
+    <div class="txtgray mt-3">
+      {{ "WhatAreYouWaitingFor" | translate }}
+    </div>
+    <div>
+      <button class="btn btn-base-orange mt-3" routerLink="/home">
+
+          <span>{{'startShopping'|translate}}</span>
+      </button>
+  </div>
+</div>
+   
+
+  <div class="CartPro" *ngIf="cartSer.CartCount.getValue() != 0">
+    <div class="ulPro">
+      <div class="fav mt-2">
+  <div class="fav">
+    <input
+      type="checkbox"
+      id="chechBrand"
+      class="chechBrand"
+      (change)="checkUncheckAll($event)"
+      checked
+    />
+    <label style="cursor: pointer">
+      {{ "checkall" | translate }}
+    </label>
+  </div>
+
+  <button
+    class="btn btn-outline-danger"
+    (click)="DeleteAll()"
+    
+  >
+  
+    <i class="bi bi-trash"></i>
+   
+  </button>
+</div>
+ <!-- <div *ngIf="(cartSer.basketSource$ | async) as cart">  -->
+<div class="columPro" *ngFor="let pro of cart">
+ 
+        <input
+          type="checkbox"
+          (change)="controlOnChange($event, pro)"
+          id="chechBrand"
+          class="chechBrand"
+          [checked]="pro?.selected"
+        />
+       
+         <div class="imgCon">
+         <img src="{{pro?.imageUrl}}"> 
+         </div>
+        <div class="desPro">
+          <div class="row1">
+            <div>
+            <span>{{ pro?.proName  | slice : 0 : 20}} <span *ngIf="pro.proName?.length > 28">..... </span>
+          
+<span class="price" class="d-flex d-md-none">  <div class="priceFont" style="font-size: 12px;"> {{'unitPrice'|translate}} : {{pro.price
+            }}{{currency}}</div></span>
+
+          
+          </span>
+           <div class="row2" *ngIf="pro.options?.length>0"> 
+            <div *ngFor="let option of pro.options">
+            {{ option.name}} : {{ option.value }}
+          </div>
+          
+        </div>
+          </div>
+            <div class="d-none d-md-flex align-items-center gap-3">
+               <div >
+               
+                <i class="bi bi-trash3" style="font-size: 20px; color:red" (click)="deleteProFromCart(pro)"></i>
+               
+              </div>
+               <!--  <div class="heart">
+               
+                <i class="bi bi-heart" style="font-size: 20px;" (click)="_auth.addProductToFavorites(pro,true)"></i>
+          </div> 
+               <div *ngIf="fav.ProductFavorites$ | async as ProductFavorites">
+                <ng-container *ngFor="let itm of ProductFavorites">
+                  <div
+                    class="heart active"
+                    *ngIf="itm?.product_id==pro?.product_id "
+                    (click)="_auth.DeleteProductFromFavorites(pro?.id )" style="cursor: pointer"
+                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" style="font-size: 20px;" width="19" height="19" fill="#D21318" class="bi bi-heart-fill" viewBox="0 0 16 16" style="cursor: pointer">
+                      <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                    </svg>
+                  </div>
+                </ng-container>
+              </div> -->
+          <!-- <div class="heart" style="cursor: pointer">
+  <ng-container *ngIf="fav.ProductFavorites$ | async as ProductFavorites">
+    <ng-container *ngIf="isFavorite(pro?.product_id); else notFav">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="#D21318"
+        class="bi bi-heart-fill"
+        viewBox="0 0 16 16"
+       
+      >
+        <path
+          fill-rule="evenodd"
+          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+        />
+      </svg>
+    </ng-container>
+    <ng-template #notFav>
+     
+      <i
+        class="bi bi-heart"
+        style="font-size: 20px;"
+        (click)="_auth.addProductToFavorites(pro, true)"
+      ></i>
+    </ng-template>
+  </ng-container>
+</div> -->
+             
+<!-- <div class="heart" style="cursor: pointer">
+  <ng-container *ngIf="fav.ProductFavorites$ | async as ProductFavorites">
+    <ng-container *ngIf="isFavorite(pro?.product_id); else notFav">
+     
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="#D21318"
+        class="bi bi-heart-fill"
+        viewBox="0 0 16 16"
+        (click)="_auth.DeleteProductFromFavorites(pro?.product_id)"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+        />
+      </svg>
+    </ng-container>
+
+    <ng-template #notFav>
+     
+      <i
+        class="bi bi-heart"
+        style="font-size: 20px;"
+        (click)="_auth.addProductToFavorites(pro, true)"
+      ></i>
+    </ng-template>
+  </ng-container>
+</div> -->
+<div class="heart" style="cursor: pointer">
+  <ng-container *ngIf="fav.ProductFavorites$ | async as ProductFavorites">
+    <ng-container *ngIf="isFavorite(ProductFavorites, pro?.product_id); else notFav">
+      <!-- ❤️ المنتج موجود في المفضلة -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="#D21318"
+        class="bi bi-heart-fill"
+        viewBox="0 0 16 16"
+        (click)="_auth.DeleteProductFromFavorites(pro?.product_id)"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+        />
+      </svg>
+    </ng-container>
+
+    <ng-template #notFav>
+      <!-- 🤍 المنتج مش في المفضلة -->
+      <i 
+        class="bi bi-heart"
+        style="font-size: 20px;"
+        (click)="_auth.addProductToFavorites(pro, true)"
+      ></i>
+    </ng-template>
+  </ng-container>
+</div>
+<select (change)="onDropdownChange(pro,$event)" [id]="pro.id" [disabled]="!pro?.selected">
+                <option
+                  [value]="number"
+                  [selected]="pro?.count === number"
+                  *ngFor="
+                    let number of getNumberArray(parseCount(pro?.stock))
+                  "
+                >
+                  {{ number }}
+                </option>
+              </select>
+            </div>
+           
+      
+            <span class="price d-none d-md-flex flex-column"> <div class="priceFont"> {{'unitPrice'|translate}} : {{pro.price
+            }}{{currency}}</div>
+            <div class="subTotal">{{'subTotal'|translate}} ( {{pro?.count}} {{'items'|translate}} ):{{cartSer.calculateTotalCountItemPrice(pro?.count,pro?.price)}}{{currency}}</div>
+            
+            </span>
+             <span class="price" class="d-flex d-md-none flex-column align-items-center gap-2"> 
+               <div class="resSelect" > 
+           <div >
+               
+                <i class="bi bi-trash3" style="font-size: 14px; color: red;" (click)="deleteProFromCart(pro)"></i>
+              
+              </div>
+          <select (change)="onDropdownChange(pro,$event)" [id]="pro.id" [disabled]="!pro?.selected">
+          
+            <option
+              [value]="number"
+              [selected]="pro?.count === number"
+              *ngFor="
+                let number of getNumberArray(parseCount(pro?.stock) )
+              "
+            >
+              {{ number }}
+            </option>
+          </select>
+
+        </div>
+              <div class="priceFont"> {{'total'|translate}}</div>
+            <div class="subTotal">{{cartSer.calculateTotalCountItemPrice(pro?.count,pro?.price) }}{{currency}}</div>
+            
+            </span>
+          </div>
+          <!-- <div class="rowNum">
+          
+        <div class="resSelect" > 
+           <div >
+               
+                <i class="bi bi-trash3" style="font-size: 10px; color: red;" (click)="deleteProFromCart(pro)"></i>
+              
+              </div>
+          <select (change)="onDropdownChange(pro,$event)" [id]="pro.id" [disabled]="!pro?.selected">
+          
+            <option
+              [value]="number"
+              [selected]="pro?.count === number"
+              *ngFor="
+                let number of getNumberArray(parseCount(pro?.stock) )
+              "
+            >
+              {{ number }}
+            </option>
+          </select>
+
+        </div></div> -->
+        
+          <!-- <div class="row2" *ngIf="pro.options?.length>0"> 
+            <div *ngFor="let option of pro.options">
+            {{ option.name}} : {{ option.value }}
+          </div>
+          
+        </div> -->
+         
+          <div class="colorflex resweb" >
+         
+            <div class="color">
+              
+            <!-- <div *ngFor="let option of pro.options">
+            {{ option.name}} : {{ option.value }}
+          </div> -->
+               <!-- <div class="d-flex d-md-none">
+               
+                <i class="bi bi-trash3" style="font-size: 10px;" (click)="deleteProFromCart(pro)"></i>
+              
+              </div> -->
+                <div  class="fav d-flex d-md-none">
+            <div class="fav">
+              <div class="res">  
+                 
+                <i class="bi bi-heart"(click)="_auth.addProductToFavorites(pro)"></i>
+               
+              <!-- <span  (click)="_auth.addProductToFavorites(pro)">
+                  {{ "MovetoFavorite" | translate }}</span
+                > -->
+              </div>
+            </div>
+          
+          </div> 
+            <!-- <div class="subTotal">{{'subTotal'|translate}} ( {{pro?.count}} {{'items'|translate}} ):{{cartSer.calculateTotalCountItemPrice(pro?.count,pro?.price) | currency : "ILS"}}</div>
+           --> </div> 
+          </div>
+        
+        </div>
+       
+</div>
+<!-- </div> -->
+</div>
+<div [ngClass]="{ 'ordersumEn':_auth.isValueEn.value,'ordersumAr':!_auth.isValueEn.value  }">
+      <div class="order">
+        <span>{{ "orderSummary" | translate }}</span>
+        <span>{{ totalCartPrice }}{{currency}}</span>
+      </div>
+      <div class="order2">
+        <span>{{ "shippingDetails" | translate }}</span>
+        <span>{{ this.cartSer.Shipping  }}{{currency}}</span>
+      </div>
+      
+      <div class="order">
+        <span>{{ "total" | translate }}</span>
+        <span  class="totalCart">{{
+          totalCartPrice
+        }}{{currency}}</span>
+      </div>
+      <!-- <button class="btn-orangeLarge" (click)="signInFlag=true" *ngIf="!cartSer.CartFromToken">
+        {{ "checkOut" | translate }}
+      </button> *ngIf="cartSer.CartFromToken"-->
+      <button class="btn-orangeLarge" (click)="checkout()" >
+        {{ "checkOut" | translate }}
+      </button>
+</div>
+  </div>
+</section>
+
+<div class="CheckoutRescol">
+  <div class="CheckoutResOrder" *ngIf="CheckoutResOrder">
+    <div class="order">
+      <span>{{ "orderSummary" | translate }}</span>
+      <span>{{ totalCartPrice  }}{{currency}}</span>
+    </div>
+    <div class="order2">
+      <span>{{ "shippingDetails" | translate }}</span>
+      <span>{{ Shipping?.shipping_cost  }}{{currency}}</span>
+    </div>
+
+    <div class="order">
+      <span>{{ "total" | translate }}</span>
+      <span  class="totalCart">{{
+        totalCartPrice
+      }}{{currency}}</span>
+    </div>
+
+</div>
+<div class="CheckoutRes" *ngIf="cartSer.CartCount.getValue()!=0">
+  <!-- <button class="btn-orangeLarge" (click)="signInFlag=true" *ngIf="!cartSer.CartFromToken">
+    {{ "checkOut" | translate }}
+  </button> *ngIf="cartSer.CartFromToken"-->
+  <button class="btn-orangeLarge" (click)="checkout()" >
+    {{ "checkOut" | translate }}
+  </button>
+  <span class="price">{{
+     totalCartPrice
+  }} {{currency}}<i class="bi bi-chevron-down" *ngIf="!CheckoutResOrder" (click)="CheckoutResOrder=true"></i>
+  <i class="bi bi-chevron-up" *ngIf="CheckoutResOrder" (click)="CheckoutResOrder=false"></i></span>
+ </div>
+</div>
+<p-toast></p-toast>
+
+
+
+<p-dialog [(visible)]="signInFlag" [breakpoints]="{ '300px': '30vw' }" [style]="{width:'20vw'}"
+[draggable]="false" [resizable]="false">
+<ng-template pTemplate="header">
+
+</ng-template>
+
+
+
+<ng-template pTemplate="footer">
+   
+   <div class="col"> <h4>{{'doYouHaveAccount'|translate}}</h4> 
+    <button class="btn-orangeLarge btnLarge" (click)="signIn()">
+        {{'signIn/signOut'|translate}}
+        </button>
+        <button class="btn-orangeLarge btnLarge" routerLink="checkoutWithoutRegister">
+          {{'BuyWithoutAnAccount'|translate}}
+          </button>
+      
+        </div>
+</ng-template>
+</p-dialog>
+
+
+
+
+
+
+    

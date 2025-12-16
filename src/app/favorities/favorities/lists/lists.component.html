@@ -1,0 +1,386 @@
+<div class="ListRes">
+    <div *ngIf="!openProduct">
+        <ul dir="ltr">
+            <div *ngIf=" fav.lists$ | async as listss">
+                <li id="{{list.id}}" *ngFor="let list of listss|slice:fav.first$.getValue():rows+fav.first$.getValue()">
+                    <!-- {{fav.first$.getValue()}}--{{rows+fav.first$.getValue()}} -->
+    
+                    <!-- <li id="{{list.id}}" *ngFor="let list of show"> -->
+                    <div class="list">
+                        <div>
+                            <h5 style="color: #121212;
+    font-size: 24px;;">{{list?.name}}</h5>
+                            <span style="color:#717171;
+    font-size: 16px;">{{'item'|translate}}({{list?.items?.length}})</span>
+                        </div>
+                    </div>
+                    <!-- <div *ngIf="list.items.length>0"> -->
+                    <div class="ItemCon">
+                        <ul>
+    
+                            <!-- <li id="{{ itm.id }}" *ngFor="let itm of list.items"> *ngIf="list.items.length>0"-->
+                            <li>
+                                <div>
+                                    <div class="imgsec2 mt-3" routerLink="/ProductDetails/{{ list?.product_list
+[0]?.id }}">
+    
+    
+    <div *ngIf="list.product_list?.length>0" >
+       <div class="imgCon">
+                                        <img [src]="_aut.productImage(list?.product_list
+[0]?.images)"  /></div>
+                                    </div>
+                                        <div *ngIf="list.product_list
+?.length>1" class="rel">
+    <div class="imgCon">
+                                            <img [src]="_aut.productImage(list.product_list
+[1]?.images)" /></div>
+                                            <div class="abs">+{{list.product_list
+.length-1}}</div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+    
+    
+                            </li>
+                        </ul>
+                        <div class="BtnColection mt-3">
+                            <div>
+                                <button class="btnAddCart" id="{{list?.id}}" type="button" (click)="OpenItemList($event)"
+                                    routerLink="Open-List/{{list?.id}}">
+                                    
+                                    {{'Open'|translate}}
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" id="{{list.id}}" class="btnlike mt-3" (click)="RenameList($event)">
+                                    <i class="bi bi-pencil-square"></i>
+                                    {{'Rename'|translate}}
+                                </button>
+                            </div>
+    
+                            <div>
+                                <button type="button" class="btnDel mt-3" (click)="DeleteList(list.id)">
+                                    <i class="bi bi-trash3"></i>
+                                    {{'delete'|translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+    
+    
+                </li>
+            </div>
+        </ul>
+        
+        <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="lists.length"
+            [showFirstLastIcon]="false"></p-paginator>
+     
+    </div></div>
+    <div class="product_contRes mt-2">
+      <div class="header">
+        <i class="bi bi-arrow-right" routerLink="/profileRes"  *ngIf="!_aut.isValueEn.value"></i>
+         <i class="bi bi-arrow-left" routerLink="/profileRes" *ngIf="_aut.isValueEn.value"></i>
+        <div class="create" (click)="showAddListDiolog=true"> +{{'create'|translate}}</div> 
+    
+    </div>
+        <div>
+            <blockquote>
+                <div
+                  class="btnt active"
+                  appButtons
+                  
+                  (selectedId)="handleSelectedIdAll($event)"
+                  [appCustomDirective]="'.btnt'"
+                >
+                  All
+                </div>
+               
+                <div
+                  class="btnt"
+                  appButtons
+                  id={{list.id}}
+                  [appCustomDirective]="'.btnt'"
+                  (selectedId)="handleSelectedId($event)" *ngFor="let list of lists"
+                >
+                {{list.name}}
+                </div>
+                
+                </blockquote>
+                
+          
+        </div>
+        
+        <div class="list" *ngIf="ListID">
+                    <div>
+                        <span style="
+    font-size: 16px;">{{'item'|translate}}({{productItems?.length}})</span>
+    
+                    </div>
+                    <div class="dot" (click)="showOpition=true"><i class="bi bi-three-dots"></i></div>
+                </div>
+    <div class="product_cont" >
+    
+     <ng-container *ngIf="isFavProductsLoading">
+                <div  class="skeletonCard" *ngFor="let sk of[1,2]" >
+                <img src="../../../assets/images/logo/TrendweyLogo.png">
+                </div>
+     </ng-container>
+      <ng-container *ngIf="ListID==undefined">
+                <div id="{{ product?.id }}" *ngFor="let product of show" >
+                <a class="mainCard">
+                 <div class="boxCard" >
+                 
+                   <blockquote class="card-img" routerLink="/ProductDetails/{{ product?.product?.id  }}">
+                 
+                     <img
+                     class="card-img-top"
+                     [src]="_aut.productImage(product.product?.images)"
+                     style="object-fit: cover; width: 100%;"
+                     routerLink="/ProductDetails/{{ product.product?.id  }}" />
+                      
+                     <div class="heart">
+                       <i
+                         class="bi bi-heart"
+                         (click)="_aut.addProductToFavorites(product.product?.id)"
+                         style="cursor: pointer"
+                       ></i>
+                     </div>
+         
+                     <div *ngIf="fav.ProductFavorites$ | async as ProductFavorites">
+                       <ng-container *ngFor="let itm of ProductFavorites">
+                         <div
+                           class="heart active"
+                           *ngIf="itm?.product?.id  == product.product?.id "
+                           (click)="_aut.DeleteProductFromFavorites(product.product?.id )"
+                         >
+                         
+                           <i class="bi bi-heart-fill" style="cursor: pointer"></i>
+                         </div>
+                       </ng-container>
+                     </div>
+                   </blockquote>
+                 </div>
+                <div class="card-body" >
+                   <div class="pro">
+                     <h6 class="card-title">
+                    <span >{{product?.product?.name?.substring(0, 15) }} </span>  
+                    <!-- <span class="tit">{{ product.product.current_variant?.sizes[0]?.price?.title | slice : 0 : 20 }}</span> 
+                     <span *ngIf="product.product.current_variant?.sizes[0]?.price?.title?.length > 20">... </span> -->
+                    </h6>
+                       </div>      
+                    <div class="star2" *ngIf="product?.rating">
+                       {{ product?.rating }} <i class="bi bi-star-fill"></i>
+                     </div>
+                     <div *ngIf="!product?.rating"></div>
+                   <div class="price">
+                   
+                          <!--<div class="DisPer">
+                            <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <path id="Vector 65" d="M5.17241 4.88235L4.83181 5.2484L5.28463 5.66974L5.60172 5.13867L5.17241 4.88235ZM7.06897 1.70588L7.43484 1.3651L6.98101 0.87785L6.63966 1.44956L7.06897 1.70588ZM11.9823 7.49969C12.2582 7.50948 12.4899 7.29371 12.4997 7.01774L12.6594 2.52058C12.6692 2.24461 12.4534 2.01295 12.1774 2.00315C11.9015 1.99335 11.6698 2.20912 11.66 2.48509L11.5181 6.48257L7.52058 6.34063C7.24461 6.33083 7.01295 6.5466 7.00315 6.82257C6.99335 7.09854 7.20912 7.3302 7.48509 7.34L11.9823 7.49969ZM0.659399 1.36605L4.83181 5.2484L5.51301 4.5163L1.3406 0.633952L0.659399 1.36605ZM5.60172 5.13867L7.49827 1.9622L6.63966 1.44956L4.74311 4.62603L5.60172 5.13867ZM6.70309 2.04667L11.6341 7.34078L12.3659 6.65922L7.43484 1.3651L6.70309 2.04667Z" fill="#A4080C"/>
+                         </svg>{{_productSer.calcDiscountPersent(product.product?.current_variant?.sizes[0]?.price?.original_price,product.product?.current_variant?.sizes[0]?.price?.discount_price)}}%  {{ "OFF" | translate }}</div>  -->
+                        <div> 
+                         <div class="colprice">
+                       <!-- <a class="beforDiscount">
+                         
+                         {{ product.product?.current_variant?.sizes[0]?.price?.original_price}}
+                         <img src="../../../assets/images/product/coin.png" />
+                       </a> -->
+                       <a style="font-weight: 700;">
+                       
+                         {{ product.product?.price }}
+                         <img src="../../../assets/images/product/ProIcon.png" />
+                       </a>
+                        </div>
+                         </div> 
+                         <div class="dot" (click)="AddItemToList(product.product?.id)"><i class="bi bi-three-dots"></i></div>
+                         </div>
+                </div>
+               </a>
+             </div>
+</ng-container>
+<ng-container *ngIf="ListID!=undefined">
+                <div id="{{ product?.id }}" *ngFor="let product of show" >
+                <a class="mainCard">
+                 <div class="boxCard" >
+                 
+                   <blockquote class="card-img" routerLink="/ProductDetails/{{ product?.id  }}">
+                 
+                     <img
+                     class="card-img-top"
+                     [src]="_aut.productImage(product?.images)"
+                     style="object-fit: cover; width: 100%;"
+                     routerLink="/ProductDetails/{{ product?.id  }}" />
+                      
+                     <div class="heart">
+                       <i
+                         class="bi bi-heart"
+                         (click)="_aut.addProductToFavorites(product?.id)"
+                         style="cursor: pointer"
+                       ></i>
+                     </div>
+         
+                     <div *ngIf="fav.ProductFavorites$ | async as ProductFavorites">
+                       <ng-container *ngFor="let itm of ProductFavorites">
+                         <div
+                           class="heart active"
+                           *ngIf="itm?.product?.id  == product?.id "
+                           (click)="_aut.DeleteProductFromFavorites(product?.id )"
+                         >
+                         
+                           <i class="bi bi-heart-fill" style="cursor: pointer"></i>
+                         </div>
+                       </ng-container>
+                     </div>
+                   </blockquote>
+                 </div>
+                <div class="card-body" >
+                   <div class="pro">
+                     <h6 class="card-title">
+                    <span >{{product?.name?.substring(0, 15) }} </span>  
+                    <!-- <span class="tit">{{ product.product.current_variant?.sizes[0]?.price?.title | slice : 0 : 20 }}</span> 
+                     <span *ngIf="product.product.current_variant?.sizes[0]?.price?.title?.length > 20">... </span> -->
+                    </h6>
+                       </div>      
+                    <div class="star2" *ngIf="product?.rating">
+                       {{ product?.rating }} <i class="bi bi-star-fill"></i>
+                     </div>
+                     <div *ngIf="!product?.rating"></div>
+                   <div class="price">
+                   
+                          <!--<div class="DisPer">
+                            <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <path id="Vector 65" d="M5.17241 4.88235L4.83181 5.2484L5.28463 5.66974L5.60172 5.13867L5.17241 4.88235ZM7.06897 1.70588L7.43484 1.3651L6.98101 0.87785L6.63966 1.44956L7.06897 1.70588ZM11.9823 7.49969C12.2582 7.50948 12.4899 7.29371 12.4997 7.01774L12.6594 2.52058C12.6692 2.24461 12.4534 2.01295 12.1774 2.00315C11.9015 1.99335 11.6698 2.20912 11.66 2.48509L11.5181 6.48257L7.52058 6.34063C7.24461 6.33083 7.01295 6.5466 7.00315 6.82257C6.99335 7.09854 7.20912 7.3302 7.48509 7.34L11.9823 7.49969ZM0.659399 1.36605L4.83181 5.2484L5.51301 4.5163L1.3406 0.633952L0.659399 1.36605ZM5.60172 5.13867L7.49827 1.9622L6.63966 1.44956L4.74311 4.62603L5.60172 5.13867ZM6.70309 2.04667L11.6341 7.34078L12.3659 6.65922L7.43484 1.3651L6.70309 2.04667Z" fill="#A4080C"/>
+                         </svg>{{_productSer.calcDiscountPersent(product.product?.current_variant?.sizes[0]?.price?.original_price,product.product?.current_variant?.sizes[0]?.price?.discount_price)}}%  {{ "OFF" | translate }}</div>  -->
+                        <div> 
+                         <div class="colprice">
+                       <!-- <a class="beforDiscount">
+                         
+                         {{ product.product?.current_variant?.sizes[0]?.price?.original_price}}
+                         <img src="../../../assets/images/product/coin.png" />
+                       </a> -->
+                       <a style="font-weight: 700;">
+                       
+                         {{ product?.price }}
+                         <img src="../../../assets/images/product/ProIcon.png" />
+                       </a>
+                        </div>
+                         </div> 
+                         <div class="dot" (click)="AddItemToList(product?.id)"><i class="bi bi-three-dots"></i></div>
+                         </div>
+                </div>
+               </a>
+             </div>
+</ng-container>
+         </div>
+        </div>
+    <div class="listOption" *ngIf="showOpition">
+    <div class="row1" (click)="showRename()">{{'edit'|translate}}<i class="bi bi-pencil-square"></i></div>
+    <hr>
+    <div class="del" (click)="DeleteList(ListID)">{{'delete'|translate}}<i class="bi bi-trash3"></i></div>
+    </div>
+    
+    <p-dialog [(visible)]="showRenameListDiolog" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }"
+        [draggable]="false" [resizable]="false">
+        <!-- <ng-template pTemplate="header">Chanage Password</ng-template> -->
+    
+        <ng-template pTemplate="content">
+            <h4>{{'ReNamelist'|translate}}</h4>
+    
+            <form [formGroup]="AddListForm" (ngSubmit)="onSubmitRenameList()">
+                <div >
+                    <label for="floatingEmail" class="mt-3">{{'ListName'|translate}}</label>
+                    <input type="text" [class.is-invalid]="
+          AddListForm.get('name')?.invalid && AddListForm.get('name')?.touched
+        " formControlName="name" class="form-control" id="floatingEmail" placeholder="" />
+    
+                    <div *ngIf="AddListForm.get('name')?.errors?.['required']" class="invalid-feedback">
+                        {{'nameisrequired'|translate}}
+                    </div>
+                </div>
+                <div class="text-center mt-5">
+                    <button class="btn btn-base-orange" [disabled]="AddListForm.invalid" type="submit">
+                        {{'ReName'|translate}}
+                    </button>
+                </div>
+            </form>
+        </ng-template>
+    
+    
+    </p-dialog>
+    <p-dialog [(visible)]="showAddListDiolog" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }"
+        [draggable]="false" [resizable]="false">
+        <!-- 
+        <ng-template pTemplate="header">
+           
+        </ng-template> -->
+        <ng-template pTemplate="content">
+            <h4 style="text-align: center;">{{'createNewList'|translate}}</h4>
+    
+            <form [formGroup]="AddListForm" (ngSubmit)="onAddListSubmit()">
+    
+                <label for="floatingEmail">{{'listName'|translate}}</label>
+                <input type="text" [class.is-invalid]="
+          AddListForm.get('name')?.invalid && AddListForm.get('name')?.touched
+        " formControlName="name" class="form-control mt-1" id="floatingEmail" placeholder="" />
+    
+                <div *ngIf="AddListForm.get('name')?.errors?.['required']" class="invalid-feedback">
+                    {{'nameisrequired'|translate}}
+                </div>
+                <div class="text-center mt-4">
+                    <button class="btn-orangeLarge" [disabled]="AddListForm.invalid" type="submit">
+                        {{'confirmcapital'|translate}}
+                    </button>
+                </div>
+            </form>
+        </ng-template>
+    
+    
+    </p-dialog>
+    <p-dialog [(visible)]="showAddItemToListDiolog" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }"
+        [draggable]="false" [resizable]="false">
+    
+    
+        <ng-template pTemplate="content">
+            <h4 style="text-align: center;">{{'addToAnotherList'|translate}}</h4>
+    
+            <form [formGroup]="AddItemTOListform" (ngSubmit)="onSubmit()">
+    
+                <div *ngFor="let list of lists">
+                    <div class="list">
+                        <div> <label style="color: #3D3D3D;
+                    font-size: 16px;
+                   "> {{list.name}}</label>
+    
+                        </div>
+    
+                        <input type="checkbox" [value]="list.id" (change)="controlOnChange($event)" class="mt-3" />
+                    </div>
+                    <div class="item">
+                        <label style="color: #717171;
+                font-size: 12px;
+               ">{{'items'|translate}}({{list.product_list?.length}})</label>
+                    </div>
+                    <hr>
+    
+                </div>
+    
+    
+                <div class="text-center mt-5">
+                    <!-- (click)="" -->
+                    <button class="btn-gray" (click)="showAddListDiolog=true">
+                        <i class="bi bi-plus-circle"></i> {{'createNewList'|translate}}
+                    </button>
+                </div>
+                <div class="save mt-3">
+                    <button [disabled]="AddItemTOListform.invalid" class="btn btn-orangeLarge" type="submit">
+                        {{'save'|translate}}
+                    </button>
+                </div>
+    
+            </form>
+        </ng-template>
+    
+    
+    </p-dialog>

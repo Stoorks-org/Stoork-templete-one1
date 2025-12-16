@@ -1,0 +1,51 @@
+<div class="mainCon">
+    <header >
+        <div class="photo text-center">
+          <blockquote>
+            
+            <img src="../../../../assets/images/profile/order/profilePhoto.png" />
+            <!-- <i class="bi bi-person-fill"></i> -->
+    </blockquote>
+        </div>
+        <div class="press" (click)="signIn()">
+          {{'Clicktologinorcreateanaccount'|translate}}!!
+        </div>
+        </header>
+        <!-- <div class="line mt-2"></div> -->
+        <ul>
+            <li routerLink="/trackOrder"><div><i class="bi bi-box-seam"></i> {{'orders'|translate}}</div>
+                @if(!_auth.isValueEn.value){
+                <i class="bi bi-chevron-left"></i>}  
+               @else{<i class="bi bi-chevron-right" ></i>} </li>  
+             <!-- routerLink="/Help" -->
+               <a href="https://api.whatsapp.com/send?phone=970594010786" target="_blank"><li > 
+
+                <div><i class="bi bi-info-circle"></i>{{'help'|translate}} </div>
+                <i class="bi bi-chevron-left" *ngIf="!_auth.isValueEn.value"></i>
+                <i class="bi bi-chevron-right" *ngIf="_auth.isValueEn.value"></i>
+              </li></a> 
+  <li> 
+    
+    <div (click)="showLang=true"><i class="bi bi-translate"></i>
+    @if(_auth.isValueEn.value){
+      <span>English</span>
+    }
+    @else{<span>العربية</span>}
+    
+  </div>  @if(!_auth.isValueEn.value){
+    <i class="bi bi-chevron-left" (click)="showLang=true"></i>}  
+   @else{<i class="bi bi-chevron-right" (click)="showLang=true"></i>} </li>
+   <div> <button class="btn-orangeLarge" (click)="signIn()">{{'Signin'|translate}}</button></div>
+   <div class="mt-3"><button class="btn btn-Largewhite" (click)="signUp()">{{'signUp'|translate}}</button></div>  
+        </ul> 
+        @if(showLang){
+  <div class="langContainer">
+        <div class="lang">
+          <h5>{{'SelectLanguage'|translate}}</h5>
+          <span  [ngClass]="{'active':langEn}" (click)="langEn=true">English</span>
+          <span [ngClass]="{'active':!langEn}" (click)="langEn=false">العربية</span>
+          <button class="btn btn-base-orange" (click)="changeLang()">confirm</button>
+        </div></div>}
+    </div>
+   
+      

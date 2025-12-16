@@ -1,0 +1,111 @@
+<div class="order">
+    <div class="orderNum">
+        {{'ordernumber'|translate}}:{{orderNumber}}</div>
+        <div class="items" *ngFor="let itm of order?.items">
+            <img [src]="_auth.productImage(itm.product?.product_images)" alt="order photo">
+            <div>
+             <span>{{itm?.product.name}}</span>
+             <span> </span>
+             <div class="row2"> 
+                <div *ngIf="itm?.product.options.length>0">
+                <div *ngFor="let op of itm?.product.options">
+                {{op.name}} : {{op.values[0].value}}
+              </div>
+            </div>
+            </div>
+            </div>
+            <!-- <img src="{{getData(itm.item_details)}}" alt="order photo">
+            <div>
+             <span>{{getDataname(itm?.product_details)}}</span>
+             <span> </span>
+             <div class="row2"> 
+                <div>
+                <div>
+                {{ "size" | translate }} : {{getDataSize(itm?.item_details)}}
+              </div>
+              <div> {{ "color" | translate }}: {{getDataColor(itm?.item_details)}}
+             
+              </div>
+
+            
+             
+            </div>
+            </div>
+            </div> -->
+            <div>
+                {{'Units'|translate}}:<span class="price">{{itm.count}}</span>
+            </div>
+            
+            <div >
+           <div> <span >{{'unitPrice'|translate}}</span> <span class="price"> {{
+                itm.price 
+              }}{{currency}}</span></div>
+            <div class="subTotal">{{'subTotal'|translate}} ( {{itm?.count}} {{'items'|translate}} )  :  {{cartSer.calculateTotalCountItemPrice(itm?.count,itm?.price) }}{{currency}}
+                
+            </div>  
+          
+            </div>
+          <!--   <div class="footerBtn">
+                <button  class="btn btn-orangPro" routerLink="orderDetails">
+                    {{'cancelProduct'|translate}} 
+                   </button>
+                   <button  class="btn btn-green mt-2" routerLink="{{itm.product_id?.id}}">
+                    {{'addYourReview'|translate}} 
+                   </button> 
+               </div>-->
+        </div>
+        <div class="row3">
+          <div class="sec1">
+         <div class="orderStatus">
+            <span>{{'orderStatus'|translate}}:</span>
+              <div
+             
+              [ngClass]="{
+                'btn-Pending1': order?.status == 'Process',
+                'btn-Delivered1': order?.status == 'Success',
+                'btn-Delivery1': order?.status == 'In-Delivery',
+                'btn-Arriving1': order?.status == 'Arriving',
+                'btn-Canceled1': order?.status == 'Canceled'
+              }"
+            >
+              {{ order?.status }}
+           </div> 
+          </div>
+           <div class="mt-2">
+              <span >{{'OrderDate'|translate}} : </span>
+              <span>{{order?.updated_at| date : "dd/MM/yyyy" }}</span>
+            </div>  
+           </div>
+           <div class="sec1">
+            <div class="orderStatus">
+              <span>{{'orderTotal'|translate}}:</span>
+              <span >{{order
+            .total|currency:"ILS"}}</span>
+            </div>
+             <!-- <div class="ShippingCost">
+                <span>{{'ShippingCost'|translate}} : </span>
+                <span>{{order.order?.shipping_cost|currency:"ILS"}}</span>
+              </div> -->
+              <!-- <div>
+                <strong>{{'TotalPrice'|translate}} : </strong>
+                <span class="total">{{_auth.getsum(+order?.order.total,+order?.order.shipping_cost)|currency:"ILS"}}</span>
+              </div> -->
+            </div>
+        </div>
+<!--  -->
+        <div class="btnfeed" *ngIf="order?.order?.status=='Success'">
+            <!-- <button class="btn-orangeLarge" type="submit" routerLink="/feedBack/{{order.id}}">
+              {{'giveUsFeedback'|translate}}
+            </button> -->
+            <!-- <button class="btn-border-orange" type="submit" routerLink="/feedBack/{{order.id}}">
+              {{'ReturnOrder'|translate}}
+            </button> 
+          </div>
+          <div class="btnfeed"
+            *ngIf="order?.order?.status=='Process'||order?.order?.status=='Arriving'||order?.order?.status=='In-Delivery'">
+            <button class="btn btn-CancelOrder" (click)="cancelOrder()">
+              {{'cancelOrder'|translate}}
+            </button>
+          </div>-->
+    </div>
+

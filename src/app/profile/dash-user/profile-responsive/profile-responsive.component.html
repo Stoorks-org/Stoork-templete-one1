@@ -1,0 +1,79 @@
+<div class="mainCon">
+    <header class="text-center" >
+      <div class="photo">
+        <blockquote>
+          @if(userData?.image ==
+             null){
+          <div class="imgname">
+            {{ capitalizedLetters(userData?.name) }}
+          </div>
+  }
+  @else{
+          <img src="{{ userData?.image }}" />}
+          <!-- <img [src]="getPhoto()" alt="user-img" /> -->
+  </blockquote>
+      </div>
+      <div>
+        <h5>{{ userData?.name }} !!</h5>
+        <span>{{ userData?.email }}</span></div>
+      </header>
+<div class="line mt-2"></div>
+<ul>
+<li routerLink="/User"><div><i class="bi bi-person" ></i> {{'profile'|translate}}</div>  <i class="bi bi-chevron-left" *ngIf="!_auth.isValueEn.value"></i>
+  <i class="bi bi-chevron-right" *ngIf="_auth.isValueEn.value"></i></li>
+<li routerLink="/Order"><div><i class="bi bi-box-seam"></i> {{'orders'|translate}}</div>  <i class="bi bi-chevron-left" *ngIf="!_auth.isValueEn.value"></i>
+  <i class="bi bi-chevron-right" *ngIf="_auth.isValueEn.value"></i></li>
+<!-- <li routerLink="/Address"><div><i class="bi bi-geo-alt"></i> {{'address'|translate}}</div>  <i class="bi bi-chevron-left" *ngIf="!_auth.isValueEn.value"></i>
+  <i class="bi bi-chevron-right" *ngIf="_auth.isValueEn.value"></i></li> -->
+</ul>
+<div class="line"></div>
+<ul>
+  <li> 
+    
+    <div (click)="showLang=true"><i class="bi bi-translate"></i>
+    @if(_auth.isValueEn.value){
+      <span>English</span>
+    }
+    @else{<span>العربية</span>}
+    
+  </div> <i class="bi bi-chevron-left" *ngIf="!_auth.isValueEn.value"></i>
+  <i class="bi bi-chevron-right" *ngIf="_auth.isValueEn.value"></i></li>
+  <li><div><i class="bi bi-heart" routerLink="/favorites" ></i> {{'favorite'|translate}}</div> <i class="bi bi-chevron-left" *ngIf="!_auth.isValueEn.value"></i>
+    <i class="bi bi-chevron-right" *ngIf="_auth.isValueEn.value"></i></li>
+  <li><div><i class="bi bi-clipboard" routerLink="/favorites/lists" ></i>  {{'MyList'|translate}}</div> 
+    <i class="bi bi-chevron-left" *ngIf="!_auth.isValueEn.value"></i>
+    <i class="bi bi-chevron-right" *ngIf="_auth.isValueEn.value"></i>
+  </li>
+  </ul>
+  <div class="line"></div>
+  <ul>
+    <!-- routerLink="/Be_supplier" -->
+    <!-- <li (click)="_auth.goToBeSupplier()">
+      <span>{{'beSupplier'|translate}}</span> <i class="bi bi-chevron-left" *ngIf="!_auth.isValueEn.value"></i>
+      <i class="bi bi-chevron-right" *ngIf="_auth.isValueEn.value"></i></li>
+      <li routerLink="/dashBoard">
+        <span>{{'dashboard'|translate}}</span> <i class="bi bi-chevron-left" *ngIf="!_auth.isValueEn.value"></i>
+        <i class="bi bi-chevron-right" *ngIf="_auth.isValueEn.value"></i></li>
+    <li routerLink="/Help">  <div><i class="bi bi-info-circle"></i>{{'help'|translate}}</div>  <i class="bi bi-chevron-left" *ngIf="!_auth.isValueEn.value"></i>
+      <i class="bi bi-chevron-right" *ngIf="_auth.isValueEn.value"></i>
+    </li> -->
+    
+    <!-- <li routerLink="/Help">   <i class="bi bi-chevron-left"></i>
+    </li> -->
+    <li class="logout" (click)="logOut()" ><span >{{'logout'|translate}}</span>
+      <i class="bi bi-box-arrow-left" *ngIf="!_auth.isValueEn.value"></i>
+      <i class="bi bi-box-arrow-right" *ngIf="_auth.isValueEn.value"></i>
+    
+    </li>
+  </ul>
+
+  @if(showLang){
+  
+  <div class="lang">
+    <h5>{{'SelectLanguage'|translate}}</h5>
+    <span  [ngClass]="{'active':langEn}" (click)="langEn=true">English</span>
+    <span [ngClass]="{'active':!langEn}" (click)="langEn=false">العربية</span>
+    <button class="btn btn-base-orange" (click)="changeLang()">confirm</button>
+  </div>}
+</div>
+

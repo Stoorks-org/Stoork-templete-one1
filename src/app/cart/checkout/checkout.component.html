@@ -1,0 +1,212 @@
+<div class="order">
+   <div class="orderWeb" > <h4 style="
+    padding: 30px 0px 20px 0px;
+">{{'yourOrder'|translate}}</h4>
+
+
+
+</div>
+<div class="checkout">
+<div class="address">
+    <!-- <h3>{{'purchaseCompletion'|translate}}</h3> -->
+    <!-- <h4>{{'pleaseFillInTheDataToOrderTheProduct'|translate}}</h4> -->
+     {{'yourAddress'|translate}}
+    <form [formGroup]="DataOrderForm"  >
+        <label for="Name">
+    <input type="text" name="Name" id="Name" class="form-control input-text" formControlName="customer_name" placeholder="{{'name'|translate}}" /></label>
+  <label for="PhoneNumber">
+        <input type="text" name="PhoneNumber" id="PhoneNumber" class="form-control input-text" placeholder="{{'phoneNumber'|translate}}" formControlName="phone_number" /></label>
+    <!-- <div class="row"> -->
+        <label for="country">
+            <p-dropdown 
+            [options]="allCountries"
+            formControlName="country_id"
+            placeholder="{{'selectCountry'|translate}}"
+            optionLabel="country_name"
+            optionValue="country_id"
+            display="chip" filter="true" filterBy="country_name" 
+            [showClear]="false" (onChange)="getGovernamentandCountry($event)"
+          ></p-dropdown>
+           </label>
+        <!-- <label for="country">
+        <input type="text" name="country" id="country" class="form-control input-text" placeholder="country" /></label> -->
+      
+    <!-- </div> -->
+    <!-- <div class="row"> -->
+        <label for="governament" *ngIf="allgovernament?.length>0">
+            <p-dropdown 
+            [options]="allgovernament"
+            formControlName="government_id"
+             placeholder="{{'selectGovernament'|translate}}"
+            optionLabel="state_name"
+            optionValue="state_id"
+            display="chip"
+            [showClear]="false" (onChange)="getAllcitiesShipping($event)"
+          ></p-dropdown>
+           </label>
+           <label for="city" *ngIf="shippingCities?.length>0">
+            <p-dropdown
+            [options]="shippingCities"
+            formControlName="city_id"
+            placeholder="{{'selectCity'|translate}}"
+            optionLabel="location.city.name"
+            optionValue="location.city.id"
+            display="chip"
+            [showClear]="false" (onChange)="getAllAreaForCities($event)"
+          ></p-dropdown>
+           </label>
+            <label for="area" *ngIf="shippingAreas?.length>0">
+            <p-dropdown
+            [options]="shippingAreas"
+            formControlName="area_id"
+            placeholder="{{'selectArea'|translate}}"
+            optionLabel="name"
+            optionValue="id"
+            display="chip" (onChange)="getAreaChipping($event)"
+            [showClear]="false"
+          ></p-dropdown>
+           </label>
+    <!-- </div> -->
+    <label for="address">
+        <textarea rows="3" type="text" name="address" id="address" class="form-control input-text" placeholder="{{'addTheRestOfYourAddress'|translate}}" formControlName="address"></textarea></label>
+        <label for="note">
+            <textarea rows="3" type="text" name="note" id="note" class="form-control input-text" placeholder="{{'addNoteForMerchant'|translate}}" formControlName="customer_note"></textarea></label>
+            <!-- <input type="checkbox" id="exampleCheckbox" name="example" value="option1">
+            <label for="exampleCheckbox">Option 1</label> -->
+            <div class="paymentMethod">
+  <h6>  {{'paymentMethod'|translate}}</h6>
+  <div class="rowPay">
+    <label for="cash">
+     
+   <input checked type="radio" id="cash" name="cash"/> {{'cashOnDelivery'|translate}}
+   </label>
+  </div>
+ <!-- <div class="rowPay">
+    <label for="visa">
+     
+   <input type="radio" id="visa" name="visa"/> {{'payWithCreditCard'|translate}}
+   <img src="../../../assets/images/profile/order/visa.png"/>
+   </label>
+  </div> -->
+</div>
+            <div class="checkoutRes" style="width: 100%; text-align: center;">
+            <!-- <label for="Paiement" class="Paiement" [ngClass]="{ 'styleEn':_auth.isValueEn.value,'styleAr':!_auth.isValueEn.value  }">
+                <input type="checkbox" name="Paiement" id="Paiement"  placeholder="note" />  {{'paiementWhenRecieving'|translate}}
+            </label> -->
+           
+            <button class="btn-orangeLarge" [disabled]="DataOrderForm.invalid" (click)="CreateOrder()">{{'Checkoutout'|translate}}</button></div>
+
+</form>
+</div>
+<div class="summarySec">
+<div class="content">
+  {{'orderSummay'|translate}}
+     {{'shipment'|translate}} ({{selectedCartItem?.length}}  {{'items'|translate}})
+    <div class="item" *ngFor="let pro of selectedCartItem">
+    <div class="sec1">
+        <img [src]="_auth.productImage(pro?.product?.images)" >
+    </div>
+   
+    <div class="sec2">
+         <div class="des">
+          <div class="proName">{{pro?.product?.name}}</div>
+         <div class="proName">{{pro?.price}}{{currency}}</div>
+        </div>
+        <div class="optionContainer"  >
+    <div class="size" *ngFor="let option of pro?.options" >{{option.name}}:{{option.value}} </div>
+    </div>
+    </div>
+   
+    </div>
+     <div class="totalSum">
+      <div class="shippingCost">{{'total'|translate}}:{{totalCartPrice}}{{currency}}</div>
+      <div class="shippingCost">{{'shippingCost'|translate}}:{{Shipping}}{{currency}}</div>
+      <div class="total">{{'totalAmount'|translate}}:{{getSum(totalCartPrice,Shipping)}}{{currency}}</div>
+      
+     </div>
+
+</div>
+</div></div>
+<div class="paymentMethod">
+  <h6>  {{'paymentMethod'|translate}}</h6>
+  <div class="rowPay">
+    <label for="cash">
+     
+   <input type="radio" id="cash" name="cash"/> {{'cashOnDelivery'|translate}}
+   </label>
+  </div>
+ <div class="rowPay">
+    <label for="visa">
+     
+   <input type="radio" id="visa" name="visa"/> {{'payWithCreditCard'|translate}}
+   <img src="../../../assets/images/profile/order/visa.png"/>
+   </label>
+  </div>
+</div>
+<div class="orderRes">
+  <h6>{{'yourOrder'|translate}}</h6>
+<div class="content">
+     {{'shipment'|translate}} ({{selectedCartItem?.length}}  {{'items'|translate}})
+    <div class="item" *ngFor="let pro of selectedCartItem">
+    <div class="sec1">
+      
+        
+        <!-- <img [src]="_auth.productImage(pro?.product?.images)" > -->
+
+        <img [src]="_auth.productImage(pro?.product?.images)" >
+       
+    </div>
+   
+    <div class="sec2">
+         <div class="des">
+          <div class="proName">{{pro?.product?.name}}</div>
+         <div class="proName">{{pro?.price| currency : "ILS"}}</div>
+        </div>
+        <div class="optionContainer"  >
+    <div class="size" *ngFor="let option of pro?.options" >{{option.name}}:{{option.value}} </div>
+    </div>
+    </div>
+    </div>
+      <div class="totalSum">
+      <div class="shippingCost">{{'total'|translate}}:{{totalCartPrice}}{{currency}}</div>
+      <div class="shippingCost">{{'shippingCost'|translate}}:{{Shipping}}{{currency}}</div>
+      <div class="total">{{'totalAmount'|translate}}:{{getSum(totalCartPrice,Shipping)}}{{currency}}</div>
+      
+     </div>
+
+</div>
+</div>
+</div>
+ <div class="CheckoutRescol">
+            <div class="CheckoutResOrder" *ngIf="CheckoutResOrder">
+              <div class="order">
+                <span>{{ "orderSummary" | translate }}</span>
+                <span>{{ totalCartPrice }}{{currency}}</span>
+              </div>
+              <div class="order2">
+                <span>{{ "shippingDetails" | translate }}</span>
+                <span>{{ Shipping}}{{currency}}</span>
+              </div>
+          
+              <div class="order">
+                <span>{{ "total" | translate }}</span>
+                <span class="price">{{
+                 _auth.getsum(+totalCartPrice,+Shipping) 
+                }}{{currency}}</span>
+                
+              </div>
+          
+          </div>
+          <!-- *ngIf="cartSer.CartCount.getValue()!=0" -->
+          <div class="CheckoutRes" >
+            <button class="btn-orangeLarge" (click)="CreateOrder()" [disabled]="DataOrderForm.invalid">
+              {{ "checkOut" | translate }}
+            </button>
+            <span class="price">{{
+                 _auth.getsum(+totalCartPrice,+Shipping)
+                }} {{currency}}
+                <!-- <i class="bi bi-chevron-down" *ngIf="!CheckoutResOrder" (click)="CheckoutResOrder=true"></i>
+            <i class="bi bi-chevron-up" *ngIf="CheckoutResOrder" (click)="CheckoutResOrder=false"></i> -->
+          </span>
+</div>
+</div>

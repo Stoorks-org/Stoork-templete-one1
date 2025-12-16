@@ -1,0 +1,158 @@
+
+<main  [ngClass]="{ 'mainSecAr':!_aut.isValueEn.value,'mainSecEn':_aut.isValueEn.value }"
+  [dir]="'dir' | translate" >
+
+  <app-header></app-header>
+  <app-nav-menu></app-nav-menu>
+  <section class="content">
+     <section class="h-100">
+   <router-outlet></router-outlet></section></section>
+   <section class="login h-100" *ngIf="isCart||isLoging||isSignUp||isforgetpassword||iscreatenewpassword||isverifypassword">
+        <div *ngIf="isCart">
+        <app-header-cart></app-header-cart>
+      </div>
+    <div *ngIf="isLoging">
+        <app-login></app-login>
+      </div>
+      <div *ngIf="isSignUp">
+        <app-register></app-register>
+      </div>
+       <div *ngIf="isforgetpassword">
+        <app-forgetpassword></app-forgetpassword>
+      </div>
+      <div *ngIf="iscreatenewpassword">
+        <app-createnewpassword></app-createnewpassword>
+      </div>
+       <div *ngIf="isverifypassword">
+        <app-verify-password></app-verify-password>
+      </div>
+    </section>
+   
+ <div class="navmenures" >
+    <ul  >
+     
+      <li routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="home">
+      <g id="vuesax/linear/home-2">
+      <g id="home-2">
+      <path id="Vector" d="M9.02 2.83992L3.63 7.03992C2.73 7.73992 2 9.22992 2 10.3599V17.7699C2 20.0899 3.89 21.9899 6.21 21.9899H17.79C20.11 21.9899 22 20.0899 22 17.7799V10.4999C22 9.28992 21.19 7.73992 20.2 7.04992L14.02 2.71992C12.62 1.73992 10.37 1.78992 9.02 2.83992Z" stroke="#7E859B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path id="Vector_2" d="M12 17.99V14.99" stroke="#7E859B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      </g>
+      </svg>
+      <!-- <i class="bi bi-house-door"></i> -->
+    <span>{{'home'|translate}}</span>
+    </li>
+    <li routerLink="/allCategoryResponsive" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="vuesax/linear/category-2">
+        <g id="category-2">
+        <path id="Vector" d="M17 10H19C21 10 22 9 22 7V5C22 3 21 2 19 2H17C15 2 14 3 14 5V7C14 9 15 10 17 10Z" stroke="#7E859B" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="Vector_2" d="M5 22H7C9 22 10 21 10 19V17C10 15 9 14 7 14H5C3 14 2 15 2 17V19C2 21 3 22 5 22Z" stroke="#7E859B" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="Vector_3" d="M6 10C8.20914 10 10 8.20914 10 6C10 3.79086 8.20914 2 6 2C3.79086 2 2 3.79086 2 6C2 8.20914 3.79086 10 6 10Z" stroke="#7E859B" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="Vector_4" d="M18 22C20.2091 22 22 20.2091 22 18C22 15.7909 20.2091 14 18 14C15.7909 14 14 15.7909 14 18C14 20.2091 15.7909 22 18 22Z" stroke="#7E859B" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        </g>
+        </svg>
+        
+      <span>{{'categories'|translate}}</span>
+      </li>
+    <li routerLink="/cart" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active2">
+        <div class="cartcount">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="vuesax/outline/bag-2">
+          <g id="bag-2">
+          <path id="Vector" d="M16.5 8.63005C16.09 8.63005 15.75 8.29005 15.75 7.88005V6.50005C15.75 5.45006 15.3 4.43005 14.52 3.72005C13.73 3.00005 12.71 2.67005 11.63 2.77005C9.83 2.94005 8.25 4.78005 8.25 6.70005V7.67005C8.25 8.08005 7.91 8.42005 7.5 8.42005C7.09 8.42005 6.75 8.08005 6.75 7.67005V6.69005C6.75 4.00005 8.92 1.52005 11.49 1.27005C12.99 1.13005 14.43 1.60005 15.53 2.61005C16.62 3.60005 17.25 5.02005 17.25 6.50005V7.88005C17.25 8.29005 16.91 8.63005 16.5 8.63005Z" fill="#7E859B"/>
+          <path id="Vector_2" d="M14.9998 22.75H8.99982C4.37982 22.75 3.51982 20.6 3.29982 18.51L2.54982 12.52C2.43982 11.44 2.39982 9.89 3.44982 8.73C4.34982 7.73 5.83982 7.25 7.99982 7.25H15.9998C18.1698 7.25 19.6598 7.74 20.5498 8.73C21.5898 9.89 21.5598 11.44 21.4498 12.5L20.6998 18.51C20.4798 20.6 19.6198 22.75 14.9998 22.75ZM7.99982 8.75C6.30982 8.75 5.14982 9.08 4.55982 9.74C4.06982 10.28 3.90982 11.11 4.03982 12.35L4.78982 18.34C4.95982 19.94 5.39982 21.26 8.99982 21.26H14.9998C18.5998 21.26 19.0398 19.95 19.2098 18.36L19.9598 12.35C20.0898 11.13 19.9298 10.3 19.4398 9.75C18.8498 9.08 17.6898 8.75 15.9998 8.75H7.99982Z" fill="#7E859B"/>
+          <path id="Vector_3" d="M15.4202 13.1499C14.8602 13.1499 14.4102 12.6999 14.4102 12.1499C14.4102 11.5999 14.8602 11.1499 15.4102 11.1499C15.9602 11.1499 16.4102 11.5999 16.4102 12.1499C16.4102 12.6999 15.9702 13.1499 15.4202 13.1499Z" fill="#7E859B"/>
+          <path id="Vector_4" d="M8.42016 13.1499C7.86016 13.1499 7.41016 12.6999 7.41016 12.1499C7.41016 11.5999 7.86016 11.1499 8.41016 11.1499C8.96016 11.1499 9.41016 11.5999 9.41016 12.1499C9.41016 12.6999 8.97016 13.1499 8.42016 13.1499Z" fill="#7E859B"/>
+          </g>
+          </g>
+          </svg>
+          <div class="count" *ngIf="cartService.CartCount.getValue() > 0">
+            {{ cartService.CartCount | async }}
+          </div></div>
+          <!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active2" >
+            <g id="vuesax/bold/bag-2">
+            <g id="bag-2">
+            <path id="Vector" d="M19.9597 8.9599C19.2897 8.2199 18.2797 7.7899 16.8797 7.6399V6.8799C16.8797 5.5099 16.2997 4.1899 15.2797 3.2699C14.2497 2.3299 12.9097 1.8899 11.5197 2.0199C9.12975 2.2499 7.11975 4.5599 7.11975 7.0599V7.6399C5.71975 7.7899 4.70975 8.2199 4.03975 8.9599C3.06975 10.0399 3.09975 11.4799 3.20975 12.4799L3.90975 18.0499C4.11975 19.9999 4.90975 21.9999 9.20975 21.9999H14.7897C19.0897 21.9999 19.8797 19.9999 20.0897 18.0599L20.7897 12.4699C20.8997 11.4799 20.9197 10.0399 19.9597 8.9599ZM11.6597 3.4099C12.6597 3.3199 13.6097 3.6299 14.3497 4.2999C15.0797 4.9599 15.4897 5.8999 15.4897 6.8799V7.5799H8.50975V7.0599C8.50975 5.2799 9.97975 3.5699 11.6597 3.4099ZM8.41975 13.1499H8.40975C7.85975 13.1499 7.40975 12.6999 7.40975 12.1499C7.40975 11.5999 7.85975 11.1499 8.40975 11.1499C8.96975 11.1499 9.41975 11.5999 9.41975 12.1499C9.41975 12.6999 8.96975 13.1499 8.41975 13.1499ZM15.4197 13.1499H15.4097C14.8597 13.1499 14.4097 12.6999 14.4097 12.1499C14.4097 11.5999 14.8597 11.1499 15.4097 11.1499C15.9697 11.1499 16.4197 11.5999 16.4197 12.1499C16.4197 12.6999 15.9697 13.1499 15.4197 13.1499Z" fill="#FF6801"/>
+            </g>
+            </g>
+            </svg> -->
+        <span>{{'cart'|translate}}</span>
+        </li>
+        <!-- /favorites/Items -->
+    <li routerLink="/favorites/Items" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">
+          <div class="cartcount">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="Group">
+            <g id="vuesax/linear/heart">
+            <g id="heart">
+            <path id="Vector" d="M12.62 20.8096C12.28 20.9296 11.72 20.9296 11.38 20.8096C8.48 19.8196 2 15.6896 2 8.68961C2 5.59961 4.49 3.09961 7.56 3.09961C9.38 3.09961 10.99 3.97961 12 5.33961C13.01 3.97961 14.63 3.09961 16.44 3.09961C19.51 3.09961 22 5.59961 22 8.68961C22 15.6896 15.52 19.8196 12.62 20.8096Z" stroke="#7E859B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            </g>
+            </g>
+            </svg>
+            <div class="count" *ngIf="fav.itemsLength.getValue() > 0">
+              {{ fav.itemsLength | async }}
+            </div>
+          </div>
+            <!-- <i class="bi bi-heart/profile/User"></i> -->
+          <span>{{'favorite'|translate}}</span>
+        </li>
+    <li  [routerLink]="(accountService.currentUser$| async)==null?'/profileResNoUser':'/profileRes'" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">
+            <svg  width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" >
+              <g id="vuesax/linear/user">
+              <g id="user">
+              <path id="Vector" d="M14.0003 13.9999C17.222 13.9999 19.8337 11.3882 19.8337 8.16659C19.8337 4.94492 17.222 2.33325 14.0003 2.33325C10.7787 2.33325 8.16699 4.94492 8.16699 8.16659C8.16699 11.3882 10.7787 13.9999 14.0003 13.9999Z" stroke="#7E859B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path id="Vector_2" d="M24.0218 25.6667C24.0218 21.1517 19.5302 17.5 14.0002 17.5C8.47018 17.5 3.97852 21.1517 3.97852 25.6667" stroke="#7E859B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              </g>
+              </svg>
+              
+            <span>{{'profile'|translate}}</span>
+        </li>
+    </ul>
+  </div> 
+   <div class="up">
+    <button class="btn up" (click)="upclick()">
+      <i class="bi bi-chevron-up"></i>
+    </button>
+  </div>
+  <div #footerAnchor>
+
+  <app-footer ></app-footer></div>
+ 
+</main>
+@if(Whatslink?.trim()){
+<div class="whatApp">
+  <a [attr.href]="'https://api.whatsapp.com/send?phone=' + Whatslink" target="_blank">
+  <img src="../assets/images/logo/whateApp.png"></a>
+</div>
+  }
+<!--  
+<div class="notifaction">
+  <div class="notificationCon" >
+<div class="rowTitleImage" *ngIf="notifactionData.title || notifactionData.description 
+|| notifactionData.smallImageUrl||notifactionData.smallImageUrl||notifactionData.secondImageUrl">
+  <div class="titleDesCon clickable" (click)="openStoreUrl()">
+    <div>{{ notifactionData.title || ('specialOfferOnYourFavoriteHude' | translate) }}</div>
+    <div class="des" (click)="openStoreUrl()">{{ notifactionData.description || ('notificationDescription' | translate) }}</div>
+  </div>
+  <img class="clickable" *ngIf="notifactionData.smallImageUrl" [src]="notifactionData.smallImageUrl" alt="Small Image" (click)="openStoreUrl()"/>
+</div>
+
+<img *ngIf="notifactionData.secondImageUrl" [src]="notifactionData.secondImageUrl" alt="Second Image" class="clickable"/>
+<div class="btnCollection" *ngIf="notifactionData.actionIds?.length">
+  <ng-container *ngFor="let btnId of notifactionData.actionIds">
+    <div
+      class="clickable"
+      (click)="handleActionClick(btnId)"
+    >
+      {{ getActionNameById(btnId) }}
+    </div>
+  </ng-container>
+</div>
+</div>
+</div> -->
+

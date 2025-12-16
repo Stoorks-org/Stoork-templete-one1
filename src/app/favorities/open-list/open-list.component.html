@@ -1,0 +1,215 @@
+<div >
+    <div class="list">
+
+        <div>
+            <h5 style="color: #121212;
+font-size: 24px;;">{{listByID?.name}}</h5>
+            <span style="color:#717171;
+font-size: 16px;">{{'items'|translate}}({{listByID?.product_list.length}})</span>
+        </div>
+        <div>
+            <i class="bi bi-three-dots" style="cursor: pointer;" (click)="op.toggle($event)"> </i>
+            <p-overlayPanel #op styleClass="op">
+                <ng-template pTemplate="content">
+                    <h6 class="mt-3" id="{{listByID?.id}}" (click)="RenameList($event)" (click)="op.toggle($event)"
+                        style="cursor: pointer; width: 150px;">
+                        <i class="bi bi-pencil-square" (click)="RenameList($event)"></i> {{'edit'|translate}}
+                    </h6>
+                    <hr>
+                    <h6 class="mt-3" id="{{listByID?.id}}" (click)="DeleteListOpen($event)"
+                        style="cursor: pointer;color: #FA4040; width: 150px;">
+                        <i class="bi bi-trash3"></i> {{'delete'|translate}}
+                    </h6>
+                </ng-template>
+            </p-overlayPanel>
+        </div>
+    </div>
+    <!-- [ListID]="ListID" -->
+    <!-- <app-items></app-items> -->
+    <ul dir="ltr">
+        <!-- *" -->
+        <li *ngFor="let product of show">
+
+            <div class="ItemCon">
+                <div class="imgsec1" routerLink="/ProductDetails/{{ product?.id }}">
+                    <!-- <div *ngFor="let img of product.images">
+                        <div *ngIf="img.is_main==1">
+                          <img class="card-img-top" src="{{img.path}}" routerLink="/ProductDetails/{{ product.id }}">
+                        </div>
+                      </div>  <img src="{{product.product?.images[0]?.path}}" /> -->
+                   
+                      <div class="imgCon">
+                        <img [src]="_aut.productImage(product?.images)"  />
+                   </div>
+                        
+
+                           
+
+                    <div class="desc">
+                        <span style="color: #121212">
+                            {{product?.name}}
+                        </span>
+                        <div>
+                            <!-- {{product.product.price.min|currency}}-{{product.product.price.max|currency}} -->
+                            <span class="productPrice">{{product?.price}}{{currency}}
+                            </span>
+                            <span>/ {{'Price'|translate}}</span>
+                        </div>
+                        <span>{{'Unit'|translate}}</span>
+                        <div>{{product?.count}} {{'units'|translate}}</div>
+                        <!-- <span style="color: #717171; font-size: 16px"><i class="bi bi-info-circle"></i> Customization:
+                        Customized
+                        packaging(Min. order {{product.product.price.order}} pieces)</span> -->
+                    </div>
+                </div>
+
+                <div class="BtnColection">
+                    <div>
+                        <button class="btnAddCart" type="button" routerLink="/ProductDetails/{{ product.id }}">
+                            {{'addToCart'|translate}}
+                        </button>
+                    </div>
+                    <div>
+                        <p-overlayPanel #op>
+                            <ng-template pTemplate="content">
+                                <h6 class="mt-3" id="{{product?.id}}" (click)="AddItemList($event)"
+                                    (click)="op.toggle($event)" style="cursor: pointer;">{{'AddtoList'|translate}}</h6>
+                                <h6 class="mt-3" routerLink="/favorites/SimilarItem" style="cursor: pointer;">View
+                                    Similar
+                                    Item</h6>
+                            </ng-template>
+                        </p-overlayPanel>
+
+                        <button type="button" id="{{product?.id}}" class="btnlike mt-3"
+                            (click)="AddItemList($event)">
+                            {{'AddtoList'|translate}}
+                            <!-- I’d Like to ...<i class="bi bi-chevron-down"></i> (click)="op.toggle($event)"-->
+                        </button>
+
+                    </div>
+                    <div>
+                        <button type="button" id="{{product.id}}" class="btnDel mt-3"
+                            (click)="DeleteProductFromList(product.id)">
+                            <i class="bi bi-trash3"></i>
+                            {{'delete'|translate}}
+                        </button>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </li>
+    </ul>
+
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows"
+        [totalRecords]="productItemslist?.length" [showFirstLastIcon]="false"></p-paginator>
+
+
+
+
+</div>
+<p-dialog [(visible)]="showRenameListDiolog" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }"
+    [draggable]="false" [resizable]="false">
+    <!-- <ng-template pTemplate="header">Chanage Password</ng-template> -->
+
+    <ng-template pTemplate="content">
+        <h4>{{'ReNamelist'|translate}}</h4>
+
+        <form [formGroup]="AddListForm" (ngSubmit)="onSubmitRenameList()">
+            <div style="text-align: left;">
+                <label for="floatingEmail" class="mt-3">List Name</label>
+                <input type="text" [class.is-invalid]="
+      AddListForm.get('name')?.invalid && AddListForm.get('name')?.touched
+    " formControlName="name" class="form-control" id="floatingEmail" placeholder="" />
+
+                <div *ngIf="AddListForm.get('name')?.errors?.['required']" class="invalid-feedback">
+                    {{'nameisrequired'|translate}}
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <button class="btn btn-base-orange" [disabled]="AddListForm.invalid" type="submit">
+                    {{'ReName'|translate}}
+                </button>
+            </div>
+        </form>
+    </ng-template>
+
+
+</p-dialog>
+<p-dialog [(visible)]="showAddItemToListDiolog" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }"
+    [draggable]="false" [resizable]="false">
+
+
+    <ng-template pTemplate="content">
+        <h4 style="text-align: center;">Add to another list</h4>
+
+        <form [formGroup]="AddItemTOListform" (ngSubmit)="onSubmit()">
+
+            <div *ngFor="let list of lists">
+                <div class="list">
+                    <div> <label style="color: #3D3D3D;
+                font-size: 16px;
+               "> {{list.name}}</label>
+
+                    </div>
+
+                    <input type="checkbox" [value]="list.id" (change)="controlOnChange($event)" class="mt-3" />
+                </div>
+                <div class="item">
+                    <label style="color: #717171;
+            font-size: 12px;
+           ">{{'items'|translate}}({{list.items.length}})</label>
+                </div>
+                <hr>
+
+            </div>
+
+
+            <div class="text-center mt-5">
+                <!-- (click)="" -->
+                <button class="btn-gray" (click)="showAddListDiolog=true">
+                    <i class="bi bi-plus-circle"></i> {{'createNewList'|translate}}
+                </button>
+            </div>
+            <div class="save mt-3">
+                <button [disabled]="AddItemTOListform.invalid" class="btn btn-orangeLarge" type="submit">
+                    {{'Save'|translate}}
+                </button>
+            </div>
+
+        </form>
+    </ng-template>
+
+
+</p-dialog>
+<p-dialog [(visible)]="showAddListDiolog" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }"
+    [draggable]="false" [resizable]="false">
+    <!-- 
+    <ng-template pTemplate="header">
+       
+    </ng-template> -->
+    <ng-template pTemplate="content">
+        <h4 style="text-align: center;">{{'createNewList'|translate}}</h4>
+
+        <form [formGroup]="AddListForm" (ngSubmit)="onAddListSubmit()">
+
+            <label for="floatingEmail">{{'ListName'|translate}}</label>
+            <input type="text" [class.is-invalid]="
+      AddListForm.get('name')?.invalid && AddListForm.get('name')?.touched
+    " formControlName="name" class="form-control mt-1" id="floatingEmail" placeholder="" />
+
+            <div *ngIf="AddListForm.get('name')?.errors?.['required']" class="invalid-feedback">
+                {{'nameisrequired'|translate}}
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn-orangeLarge" [disabled]="AddListForm.invalid" type="submit">
+                    {{'confirmcapital'|translate}}
+                </button>
+            </div>
+        </form>
+    </ng-template>
+
+
+</p-dialog>

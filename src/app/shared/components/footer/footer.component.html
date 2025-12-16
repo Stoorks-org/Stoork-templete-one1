@@ -1,0 +1,216 @@
+<!-- <footer>
+  <div class="container">
+  
+<section class="socail">
+      <blockquote class="appMenu">
+        <h5>{{'categories'|translate}}</h5>
+        <ul>
+          <li *ngFor="let cat of categories">
+           {{cat?.name}}
+          </li>
+
+         
+        </ul>
+      </blockquote>
+
+      <blockquote class="socailMenu">
+        <h5>{{'SHOPONTHEGO'|translate}}</h5>
+        <ul>
+          @for (item of FooterData; track item.id; let i = $index){
+          <li *ngIf="item.link_type.toLowerCase()=='facebook'">
+            <a [href]="item.url" target="_blank" target="_blank">
+            <img src="../../../../assets/images/footer/IconBox.png" alt="socailIcon"  />
+           </a>
+          </li>
+          <li *ngIf="item.link_type.toLowerCase()=='instagram'">
+            <a [href]="item.url" target="_blank" target="_blank">
+            <img src="../../../../assets/images/footer/IconBox-1.png"
+              alt="socailIcon" 
+            /></a>
+          </li>
+
+          <li *ngIf="item.link_type.toLowerCase()=='twitter'">
+            <a [href]="item.url" target="_blank" target="_blank">
+            <img
+              src="../../../../assets/images/footer/IconBox-2.png" 
+              alt="socailIcon"
+            />
+            </a>
+          </li>
+
+          <li *ngIf="item.link_type.toLowerCase()=='mail'">
+            <a [href]="item.url" target="_blank" target="_blank">
+            <img src="../../../../assets/images/footer/IconBox-3.png" alt="socailIcon" />
+           </a> 
+        </li>
+          
+        }
+        </ul>
+      
+      </blockquote>
+    </section>
+    <section class="socail">
+      <blockquote class="appMenu">
+        <h5>{{'SHOPONTHEGO'|translate}}</h5>
+        <ul>
+          <li>
+            <img src="/assets/images/footer/applStore.png" alt="apple store"  />
+          </li>
+
+          <li>
+            <img src="/assets/images/footer/googlePlay.png" alt="google play" />
+          </li>
+
+          <li>
+            <img
+              src="/assets/images/footer/appleGallery.png"
+              alt="apple gallery"
+            />
+          </li>
+        </ul>
+      </blockquote>
+
+      <blockquote class="socailMenu">
+        <h5>{{'SHOPONTHEGO'|translate}}</h5>
+        <ul>
+          @for (item of FooterData; track item.id; let i = $index){
+          <li *ngIf="item.link_type.toLowerCase()=='facebook'">
+            <a [href]="item.url" target="_blank" target="_blank">
+            <img src="../../../../assets/images/footer/IconBox.png" alt="socailIcon"  />
+           </a>
+          </li>
+         
+          <li *ngIf="item.link_type.toLowerCase()=='instagram'">
+            <a [href]="item.url" target="_blank" target="_blank">
+            <img src="../../../../assets/images/footer/IconBox-1.png"
+              alt="socailIcon" 
+            /></a>
+          </li>
+
+          <li *ngIf="item.link_type.toLowerCase()=='twitter'">
+            <a [href]="item.url" target="_blank" target="_blank">
+            <img
+              src="../../../../assets/images/footer/IconBox-2.png" 
+              alt="socailIcon"
+            />
+            </a>
+          </li>
+
+          <li *ngIf="item.link_type.toLowerCase()=='mail'">
+            <a [href]="item.url" target="_blank" target="_blank">
+            <img src="../../../../assets/images/footer/IconBox-3.png" alt="socailIcon" />
+           </a> 
+        </li>
+          
+        }
+        </ul>
+      
+      </blockquote>
+    </section>
+
+    <section class="paymentList">
+      <h5>Payment Partners</h5>
+      <ul>
+        <li>
+          <img src="/assets/images/footer/banktransfer.png" alt="payMethods" />
+          <img src="/assets/images/footer/visa.png" alt="payMethods" />
+          <img src="/assets/images/footer/mastercard.png" alt="payMethods" />
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="copyRight">
+    <blockquote class="logo">
+     
+      <img src="/assets/images/logo/Trendweyoranglogo.png" alt="logo" />
+    
+      <span>Copyright &copy; Trendwey</span>
+    </blockquote>
+
+   
+  </section>
+</footer> -->
+<footer>
+  <div class="container">
+    <blockquote class="category">
+      <h5>{{'categories'|translate}}</h5>
+        <ul>
+          <li *ngFor="let cat of categories" routerLink="/AllProduct/{{ cat.id }}/0">
+           {{cat?.name}}
+          </li>
+
+         
+        </ul>
+    </blockquote>
+    <blockquote class="category" *ngIf="pages?.length>0">
+      <h5>{{'pages'|translate}}</h5>
+        <ul>
+          <li *ngFor="let page of pages" [routerLink]="['/pages', page.name]">
+           {{page?.name}}
+          </li>    
+        </ul>
+    </blockquote>
+     <blockquote class="category"*ngIf="storeEmail?.trim()||storePhone?.trim()">
+      <h5>{{'contactInformation'|translate}}</h5>
+        <ul>
+          <li *ngIf="storeEmail?.trim()">
+          <i class="bi bi-envelope-fill" ></i> {{storeEmail}}
+          </li> 
+           <li *ngIf="storePhone?.trim()">
+          <i class="bi bi-telephone-fill"></i> {{storePhone}}
+          </li>    
+        </ul>
+    </blockquote>
+    <blockquote class="category">
+      <h5>{{'beTheFirstToKnow'|translate}}</h5>
+      <div class="columnEmail">
+      <div class="emailRow mt-2">
+       <input type="text"  class="form-control white-placeholder"  placeholder="{{'enterYourEmail'|translate}}" />
+        <button class="btn-outline-color" >
+          {{'subscribe'|translate}}
+          </button></div>
+          <div class="emailRow mt-2">
+          
+            <img src="/assets/images/footer/applStoreNew.png" alt="apple store"  />
+         
+            <img src="/assets/images/footer/googlePlayNew.png" alt="google play" />
+         
+          </div></div>
+    </blockquote>
+
+  </div>
+
+  <div class="socailMedia">
+    <div class="right"></div>
+<!-- <div class="subSocailMedia">
+  <div class="imgContainer">
+<img src="../../../../assets/images/footer/faceBook.png" >
+<img src="../../../../assets/images/footer/snapChat.png">
+<img src="../../../../assets/images/footer/x.png">
+<img src="../../../../assets/images/footer/p.png" >
+<img src="../../../../assets/images/footer/youtube.png">
+<img src="../../../../assets/images/footer/music.png"></div>
+<div class="powerStoork">{{'PoweredByStoorksCom'|translate}}</div>
+</div> -->
+<div class="subSocailMedia">
+  <div class="imgContainer">
+    <a
+      *ngFor="let item of storeSocialMediaLinks"
+      [href]="item.url"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img [src]="getSocialIcon(item.type)" alt="{{ item.type }}" />
+    </a>
+  </div>
+  <div class="powerStoork">
+    <div>{{ 'PoweredBy' | translate }}</div>
+
+  <a href="https://stoorks.com/" target="_blank" rel="noopener noreferrer">
+
+  <img src="../../../../assets/images/footer/stoork1.png"></a></div>
+</div>
+<div class="left"></div>
+  </div>
+</footer>

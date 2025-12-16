@@ -1,0 +1,97 @@
+<div class="bestsell">
+  <div class="header px-2">
+    <h4>{{ "dailyBestSells" | translate }}</h4>
+  </div>
+
+  <div class="main">
+    <div class="ads">
+      <blockquote class="one">
+        <div *ngIf="bottomSliderImge && bottomSliderImge.length > 0">
+          <img [src]="bottomSliderImge[0]?.full_image" />
+        </div>
+        <!-- <span class="LearnMore">{{ "learnmore" | translate }}</span> -->
+        <!-- </div> -->
+        <!-- <img src="../../../assets/images/DailyBestSells/sell2.png" /> -->
+      </blockquote>
+
+      <blockquote class="two">
+        <div *ngIf="bottomSliderImge && bottomSliderImge.length > 0">
+          <img [src]="bottomSliderImge[1]?.full_image" />
+        </div>
+        <!-- <span class="LearnMore">{{ "learnmore" | translate }}</span> -->
+        <!-- </div> -->
+        <!-- <img src="../../../assets/images/DailyBestSells/sell2.png" /> -->
+      </blockquote>
+    </div>
+
+    <blockquote class="product_cont" *ngFor="let product of MostSold">
+      <div id="{{ product.id }}">
+        <a href="{{ baseLinkUrl }}/ProductDetails/{{ product.id }}">
+          <div class="boxCard">
+            <blockquote class="card-img">
+              <ng-container *ngFor="let img of product.images">
+                <div *ngIf="img.is_main == 1">
+                  <img
+                    class="card-img-top"
+                    src="{{ img.path }}"
+                    style="object-fit: cover; width: 100%; max-height: 315px"
+                  />
+                </div>
+              </ng-container>
+
+              <div class="heart">
+                <i
+                  class="bi bi-heart"
+                  (click)="_auth.addProductToFavorites(product.id)"
+                  style="cursor: pointer"
+                ></i>
+              </div>
+
+              <div *ngIf="fav.ProductFavorites$ | async as ProductFavorites">
+                <ng-container *ngFor="let itm of ProductFavorites">
+                  <div
+                    class="heart active"
+                    *ngIf="itm?.product?.id == product.id"
+                    (click)="_auth.DeleteProductFromFavorites(product.id)"
+                  >
+                    <i class="bi bi-heart-fill" style="cursor: pointer"></i>
+                  </div>
+                </ng-container>
+              </div>
+            </blockquote>
+          </div>
+
+          <div class="card-body">
+            <h6 class="card-title">
+              {{ product.name.substring(0, 15) }}
+              <span *ngIf="product.name.length > 15">...</span>
+            </h6>
+            <p class="card-text">
+              {{ product.description | slice : 0 : 20 }}
+              <span *ngIf="product.description.length > 20">... </span>
+            </p>
+
+            <div class="price">
+              <div class="star" *ngIf="product?.rating">
+                {{ product?.rating }} <i class="bi bi-star-fill"></i>
+              </div>
+              <div *ngIf="!product?.rating"></div>
+              <a>
+                {{ _auth.getPrice(product?.price) }}
+                <img src="../../../assets/images/product/ProIcon.png" />
+              </a>
+            </div>
+          </div>
+        </a>
+      </div>
+    </blockquote>
+  </div>
+
+  <a href="{{ baseLinkUrl }}/shop/0/0/best_sellers">
+    <div  [ngClass]="{ 'seeall':_auth.isValueEn.value,'seeallAr':!_auth.isValueEn.value  }">
+      <h4 routerLink="/shop/0/0/best_sellers" style="cursor: pointer">
+        {{ "seeAll" | translate }} <i class="bi bi-arrow-right"></i>
+      </h4>
+    </div>
+  </a>
+</div>

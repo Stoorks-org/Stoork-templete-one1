@@ -1,0 +1,188 @@
+@import "../../../app/shared/components/global-style/_general.scss";
+.maintab {
+  width: 98%;
+  margin: auto;
+  // padding-top: 150px;
+  .row{ 
+    .secoverView{
+      width:65%
+    }
+   // background-color: aqua;
+    @include flex(row, space-between, space-between, 0.5rem, nowrap);
+    table {
+      width: 35%;
+     // background-color: aqua;
+      //font-family: arial, sans-serif;
+      border-collapse: collapse;
+     // width: 100%;
+      margin: 1rem;
+    
+      td,
+      th {
+        // border: 1px solid #dddddd;
+        border: none;
+        text-align: left;
+        padding: 4px;
+      }
+    
+      tr:nth-child(even) {
+        background-color: #f4f7fe;
+      }
+    }
+  
+  }
+}
+.cardProucts {
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+  .text1 {
+    @include flex(row, space-between, space-between, 0.5rem, nowrap);
+  }
+
+  ul {
+    margin: 0.5rem;
+    margin-top: 15px;
+    padding: 20px;
+    @include gridRepeat(300px, stretch, center, 0.5rem);
+    .card {
+      .card-img {
+        padding: 15px;
+        @include flex(row, space-between, space-between, 0.5rem, nowrap);
+      }
+    }
+  }
+  img {
+    width: 260px;
+    height: 223px;
+  }
+  a {
+    text-align: center;
+  }
+}
+.price {
+  // padding: 10px;
+  @include flex(row, space-between, space-between, 0.5rem, nowrap);
+  // button{
+  //     background-color: #FA652E;
+  //     color: white;
+  //     border-radius: 0.3125rem;
+  // }
+}
+.review {
+  padding: 20px;
+  .flex {
+    @include flex(row, flex-start, space-between, 2rem, wrap);
+  }
+
+  .rate {
+    // @include flex(row, flex-start, space-between, 2rem, wrap);
+    //  width: 10%;
+  }
+  .rate2 {
+    //  @include flex(row, flex-start, space-between, 2rem, wrap);
+    width: 60%;
+  }
+}
+.Customer {
+  width: 95%;
+  margin: auto;
+  .CustomerReviews {
+    @include flex(row, flex-start, space-between, 2rem, nowrap);
+    .nameimg {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background-color: $main-co;
+      color: white;
+      text-align: center;
+      // justify-content: center;
+      font-size: 16px;
+      //font-family: Roboto;
+      font-weight: 700;
+      word-wrap: break-word;
+      padding-top: 13px;
+    }
+    img {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+    }
+  }
+}
+
+table.asd {
+  // background-color: aqua;
+  border: none;
+//  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+  tr:nth-child(even) {
+    background-color: white;
+    text-align: left;
+  }
+}
+:host ::ng-deep {
+  .p-rating .p-rating-icon.p-rating-icon-active {
+    color: $main-co;
+  }
+
+  .p-rating.p-icon.p-rating-icon {
+    color: #000;
+    cursor: none;
+  }
+  p-progressbar.p-element {
+    .p-progressbar {
+      height: 1rem;
+      .p-progressbar-value {
+        background-color: $main-co;
+      }
+    }
+  }
+  .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    // border-color: black;
+    color: black;
+    border-width: 2px;
+    border: none;
+  }
+  .p-tabview .p-tabview-panels {
+    // background-color: aqua;
+    padding: 10px 0 0 0;
+    border: 2px;
+  }
+}
+@media (max-width: 786px) {
+  .maintab {
+    width: 98%;
+    margin: auto;
+    // padding-top: 150px;
+    .row{ 
+      .secoverView{
+        width:100%
+      }
+     // background-color: aqua;
+      @include flex(row, space-between, space-between, 0.5rem, wrap);
+      table {
+        width: 100%;
+  .review {
+    .rate {
+      width: 100%;
+      text-align: center;
+    }
+    .rate2 {
+      width: 100%;
+    }
+  }}}}
+  :host ::ng-deep {
+    p-progressbar.p-element {
+      .p-progressbar {
+        height: 1rem;
+        font-size: 10px;
+        .p-progressbar-value {
+          background-color: $main-co;
+        }
+      }
+    }
+  }
+}

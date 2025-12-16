@@ -1,0 +1,121 @@
+<div class="maintab">
+  <p-tabView>
+           <p-tabPanel header="{{'productDetails'|translate}}">
+        <div class="row">
+           {{proData?.description}}
+        <!--  <div *ngFor="let ovr of overview" class="secoverView">
+          <h6> {{ ovr?.header }}</h6>
+          
+        
+          <div [innerHTML]="sanitizedDescription(ovr?.description)"></div>
+          </div>
+          
+           <ul style="padding: 20px;">
+            <li id="{{ ovr.id }}" >
+              <h1 style="color: #121212; font-size: 16px">
+                {{ ovr?.header }}
+              </h1>
+              <p style="color: #717171; font-size: 14px">
+                {{ ovr?.description }}
+              </p>
+            </li>
+          </ul> 
+        
+        
+           <table>
+            <tr id="op.id" *ngFor="let op of options">
+              <td>
+                {{ op?.name }}
+              </td>
+              <td>
+              {{ op?.value }}
+              </td>
+            </tr>
+          </table>-->
+        </div> 
+        
+        </p-tabPanel>
+        <!-- <p-tabPanel header="{{'specification'|translate}}">
+          <table>
+            <tr id="op.id" *ngFor="let op of options">
+              <td>
+                {{ op?.name }}
+              </td>
+              <td>
+                {{ op?.value }}
+              </td>
+            </tr>
+          </table>
+        </p-tabPanel> 
+        <p-tabPanel header="{{'review'|translate}}">
+
+          <div class="review">
+            <div class="flex">
+              <div class="rate" *ngIf="value!=null">
+                <h5>{{'overallRating'|translate}}</h5>
+                <h1 style="font-size: 70px;color: #FF6801;" class="text-center">{{ proData?.rating }}</h1>
+
+                <p-rating [(ngModel)]="proData.rating" [readonly]="true" [cancel]="false"></p-rating>
+              </div>
+
+              <div class="rate2">
+                <table class="asd">
+
+                  <tr id="rev.id" *ngFor="let rev of rat;index i">
+
+                    <td style="width: 50px; ">
+                      {{ rev.rating }}
+                    </td>
+                    <td><p-progressBar [value]="rev.percent"></p-progressBar></td>
+                    <td style="width: 40px">({{ rev.count}})</td>
+
+                  </tr>
+
+                </table>
+              </div>
+            </div>
+          </div>
+          <hr />
+
+          <div class="Customer" *ngIf="review?.length>0">
+            <h6 style="color: #1e1e1e; font-size: 16px">
+              {{'CustomerReviews'|translate}} ({{review?.length}})
+            </h6>
+            <ul>
+              <li id="{{ revi.user_id }}" *ngFor="let revi of ShowReview">
+                <div class="CustomerReviews">
+                  <div class="cus mt-3">
+                    <div class="nameimg" *ngIf="revi?.user?.image">{{capitalizedLetters(revi.user?.name)}}
+                    </div>
+
+                   
+                  </div>
+                  <div class="des mt-3">
+                    <h6 style="color: #1e1e1e; font-size: 16px">
+                      {{ revi.user?.name }}
+                    </h6>
+                   
+                    <div class="mt-1">
+                      <p-rating [(ngModel)]="revi.rating" [readonly]="true" [cancel]="false"></p-rating>
+                    </div>
+                  </div>
+                </div>
+                 <div>
+                  Lorem ipsum dolor sit amet consectetur. Cras pharetra
+                  vulputate sit pellentesque. Volutpat nam pulvinar egestas
+                  molestie ut ut. Placerat arcu ut elementum nullam. Rutrum sed
+                  eget sed mauris.
+                </div> 
+
+                <hr />
+              </li>
+            </ul>
+            <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows"
+              [totalRecords]="review?.length" [showFirstLastIcon]="false"></p-paginator>
+          </div>
+        </p-tabPanel>-->
+      </p-tabView>
+
+</div>
+
+ 

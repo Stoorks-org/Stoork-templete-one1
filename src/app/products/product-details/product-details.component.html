@@ -1,0 +1,219 @@
+<div class="proDetails" [ngClass]="{'responsive':isResponsive}">
+  <p-breadcrumb class="max-w-full" [model]="items" [home]="home"></p-breadcrumb>
+</div>
+<h1 style="display: none;">{{proData?.name}}</h1>
+<div class="main">
+  <section class="gallary">
+
+    <ng-container *ngIf="!isLoadingProduct">
+      <div class="resOpsite">
+        <div class="imgContainer">
+          <img [src]="_auth.productImage(images)" id="preview" />
+        </div>
+      </div>
+      <div class="res">
+        <app-image-silder [SliderImge]="images" [ProductId]="proData?.id" [product]="proData"></app-image-silder>
+
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isLoadingProduct">
+      <div class="skeltonProductDetails">
+        <img src="../../../assets/images/logo/TrendweyLogo.png" style="width:90px;height:100px;">
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isLoadingProduct">
+      <div class="skeltonProductContainer mt-1">
+        <img src="../../../assets/images/logo/TrendweyLogo.png" style="
+    width: 50px;
+">
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!isLoadingProduct">
+      <div class="img-prev text-center resOpsite">
+
+        <p-carousel [value]="images" [circular]="false" [numVisible]="4" [numScroll]="1">
+          <ng-template let-product pTemplate="item">
+            <div class="img-slide" [ngClass]="{'active':product.url==_auth.productImage(images)}">
+              <img src="{{ product.url }}" appImageGallary />
+            </div>
+          </ng-template>
+        </p-carousel>
+
+      </div>
+    </ng-container>
+
+  </section>
+
+  <section class="details">
+    <ng-container *ngIf="isLoadingProduct">
+      <div class="skeletonProductDetailsText"></div>
+    </ng-container>
+    <ng-container *ngIf="!isLoadingProduct">
+      <h5 routerLink="/AllProduct/{{proData?.category?.id}}/0">{{proData?.category?.name}}</h5>
+
+      <div class="pro mt-3"> <span routerLink="/AllProduct/0/{{ proData?.name }}"> {{ proData?.name }} </span> 
+         </div>
+ <div class="boxRow">
+          <div class="newDiscount mt-3">
+            <div class="off"
+              *ngIf="_productSer.calcDiscountPersent(proData?.price,proData?.discount_price)>0">
+              <svg width="20" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path id="Vector 65"
+                  d="M5.17241 4.88235L4.83181 5.2484L5.28463 5.66974L5.60172 5.13867L5.17241 4.88235ZM7.06897 1.70588L7.43484 1.3651L6.98101 0.87785L6.63966 1.44956L7.06897 1.70588ZM11.9823 7.49969C12.2582 7.50948 12.4899 7.29371 12.4997 7.01774L12.6594 2.52058C12.6692 2.24461 12.4534 2.01295 12.1774 2.00315C11.9015 1.99335 11.6698 2.20912 11.66 2.48509L11.5181 6.48257L7.52058 6.34063C7.24461 6.33083 7.01295 6.5466 7.00315 6.82257C6.99335 7.09854 7.20912 7.3302 7.48509 7.34L11.9823 7.49969ZM0.659399 1.36605L4.83181 5.2484L5.51301 4.5163L1.3406 0.633952L0.659399 1.36605ZM5.60172 5.13867L7.49827 1.9622L6.63966 1.44956L4.74311 4.62603L5.60172 5.13867ZM6.70309 2.04667L11.6341 7.34078L12.3659 6.65922L7.43484 1.3651L6.70309 2.04667Z"
+                  fill="#A4080C" />
+              </svg>{{_productSer.calcDiscountPersent(proData?.price,proData?.discount_price)}}% {{ "OFF" |
+              translate }}
+            </div>
+            <div>
+              <span class="PriceBefore"
+                *ngIf="_productSer.calcDiscountPersent(proData?.price,proData?.discount_price)>0">
+                {{currency}}{{proData?.price }}</span>
+              <span class="discount">
+                {{currency}}{{price}}
+      
+              </span>
+            </div>
+      
+      
+      
+      
+          </div>
+          <div class="noPro" *ngIf="showNoPro">
+        {{'ThereAreOnly'|translate}}  {{proData?.count | number}}  {{'productInStock'|translate}}
+      </div>
+          <div class="addToCart2">
+            <!--  -->
+            
+            <button class="btn border-0" (click)="counter('add')" [disabled]="count==proData?.count">
+              <img src="../../../assets/images/svg/pluseGray.png" />
+            </button>
+      
+            <div class="input">
+              <input type="number" [value]="count" style="text-align: center"
+                (input)="onInputChangeproData($event,proData?.count)" [max]="proData?.count" />
+            </div>
+      
+            <button class="btn border-0" (click)="counter('minus')" [disabled]="count == 1">
+              <i class="bi bi-dash"></i>
+            </button>
+          </div>
+        </div>
+      <div class="newDiscountWeb mt-3" >
+        <div class="off" *ngIf="_productSer.calcDiscountPersent(proData?.price,proData?.discount_price)>0">
+          <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path id="Vector 65"
+              d="M5.17241 4.88235L4.83181 5.2484L5.28463 5.66974L5.60172 5.13867L5.17241 4.88235ZM7.06897 1.70588L7.43484 1.3651L6.98101 0.87785L6.63966 1.44956L7.06897 1.70588ZM11.9823 7.49969C12.2582 7.50948 12.4899 7.29371 12.4997 7.01774L12.6594 2.52058C12.6692 2.24461 12.4534 2.01295 12.1774 2.00315C11.9015 1.99335 11.6698 2.20912 11.66 2.48509L11.5181 6.48257L7.52058 6.34063C7.24461 6.33083 7.01295 6.5466 7.00315 6.82257C6.99335 7.09854 7.20912 7.3302 7.48509 7.34L11.9823 7.49969ZM0.659399 1.36605L4.83181 5.2484L5.51301 4.5163L1.3406 0.633952L0.659399 1.36605ZM5.60172 5.13867L7.49827 1.9622L6.63966 1.44956L4.74311 4.62603L5.60172 5.13867ZM6.70309 2.04667L11.6341 7.34078L12.3659 6.65922L7.43484 1.3651L6.70309 2.04667Z"
+              fill="#A4080C" />
+          </svg>{{_productSer.calcDiscountPersent(proData?.price,proData?.discount_price)}}% {{ "OFF" | translate }}
+        </div>
+        <div>
+          <span class="PriceBefore"
+            *ngIf="_productSer.calcDiscountPersent(proData?.price,proData?.discount_price)>0">{{proData?.price }} {{currency}}</span>
+          <span class="discount">
+            {{price}}{{currency}}
+
+          </span>
+        </div>
+      </div>
+
+      <div class="box" [ngClass]="{ noOption: noOptionSelected }" #optionsSection>
+       @if(noOptionSelected==true) {<div class="alert1"> {{'pleaseChooseYourOption'|translate}}</div>}
+      <div class="options" *ngFor="let option of options">
+        <a >{{option.name }}</a>
+
+        <div class="mainsize">
+          <div class="size" [ngClass]="{'active':selectedValues.includes(itm.id)}" id="{{ itm.id }}" appActiveSize
+            (selectedId)="handleSelectedId(itm.id,option.id)" *ngFor="let itm of option?.values">
+            {{ itm.value }}
+          </div>
+        </div>
+      </div>
+    </div>
+    </ng-container>
+
+<ng-container  *ngIf="proData?.count>0">
+       <div class="row1"> 
+      <div class="heart" *ngIf="fav.ProductFavorites$ | async as ProductFavorites">
+          <i class="bi bi-heart" (click)="_auth.addProductToFavorites(proData)" style="cursor: pointer"></i>
+          <ng-container *ngFor="let itm of ProductFavorites">
+            <i class="bi bi-heart-fill active" style="cursor: pointer" *ngIf="itm?.product_id == proData?.id "
+              (click)="_auth .DeleteProductFromFavorites(proData?.id )"></i>
+
+          </ng-container>
+        </div>
+       <div class="noPro" *ngIf="showNoPro">
+        {{'ThereAreOnly'|translate}}  {{proData?.count | number}}  {{'productInStock'|translate}}
+      </div>
+      <div class="btn border-0"  *ngIf="proData?.count>0">
+        <button (click)="counter('minus')" [disabled]="count == 1">
+          <i class="bi bi-dash"></i>
+        </button>
+
+        <input type="number" value="{{ count }}" style="text-align: center" (input)="onInputChange($event)"
+          [max]="proData?.count" />
+        <button (click)="counter('add')" [disabled]="count == proData?.count"><i class="bi bi-plus"></i></button>
+      </div>
+      </div>
+      </ng-container>
+      <!-- </div> -->
+
+     
+    <div class="btnicon">
+
+      <!-- <div class="row"> -->
+        <button class="btnAddCart" *ngIf="proData?.count>0" 
+          (click)="AddProductToCart(proData?.id,count,storeId,getSelectedValuesAsObjects(),
+          getOptionValueSelected(selectedValues,proData),proData?.count,
+    _auth.productImage( proData?.images),proData.name, proData.description,
+   price)">{{ "addToCart" |
+          translate }} </button> 
+          <button class="btn btn-base-black" (click)="goToCheckOut()" *ngIf="+proData?.count>0">{{'payNow'|translate}}</button>
+           <button class="btnAddCart disabled" *ngIf="+proData?.count==0">
+   {{ "outOfStock" | translate }} </button>
+    </div>
+
+  </section>
+
+  <div class="addToCartRes" *ngIf="isResponsive">
+
+    <button class="btnAddCart" *ngIf="+proData?.count>0"
+      (click)="AddProductToCart(proData?.id,count,storeId,getSelectedValuesAsObjects(),getOptionValueSelected(selectedValues,proData),proData?.count,
+    _auth.productImage( proData.images),proData.name, proData.description,price)">
+      {{ "addToCart" | translate }} </button>
+      <button class="btnAddCart disabled" *ngIf="+proData?.count==0" 
+      >
+      {{ "outOfStock" | translate }} </button>
+       <button class="btn btn-base-black" (click)="goToCheckOut()" *ngIf="+proData?.count>0">{{'payNow'|translate}}</button>
+    <!-- <div class="newDiscount">
+      <div class="off" *ngIf="_productSer.calcDiscountPersent(proData?.price,proData?.discount_price)>0">
+        <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path id="Vector 65"
+            d="M5.17241 4.88235L4.83181 5.2484L5.28463 5.66974L5.60172 5.13867L5.17241 4.88235ZM7.06897 1.70588L7.43484 1.3651L6.98101 0.87785L6.63966 1.44956L7.06897 1.70588ZM11.9823 7.49969C12.2582 7.50948 12.4899 7.29371 12.4997 7.01774L12.6594 2.52058C12.6692 2.24461 12.4534 2.01295 12.1774 2.00315C11.9015 1.99335 11.6698 2.20912 11.66 2.48509L11.5181 6.48257L7.52058 6.34063C7.24461 6.33083 7.01295 6.5466 7.00315 6.82257C6.99335 7.09854 7.20912 7.3302 7.48509 7.34L11.9823 7.49969ZM0.659399 1.36605L4.83181 5.2484L5.51301 4.5163L1.3406 0.633952L0.659399 1.36605ZM5.60172 5.13867L7.49827 1.9622L6.63966 1.44956L4.74311 4.62603L5.60172 5.13867ZM6.70309 2.04667L11.6341 7.34078L12.3659 6.65922L7.43484 1.3651L6.70309 2.04667Z"
+            fill="#A4080C" />
+        </svg>{{_productSer.calcDiscountPersent(proData?.price,proData?.discount_price)}}% {{ "OFF" | translate }}
+      </div>
+      <div>
+        <span class="PriceBefore" *ngIf="_productSer.calcDiscountPersent(proData?.price,proData?.discount_price)>0">{{
+          proData?.price }} {{currency}}</span>
+        <span class="discount"> {{price }}{{currency}}
+        </span>
+      </div>
+    </div> -->
+
+  </div>
+</div>
+<div class="title" *ngIf="proData?.description!=null">
+      <span
+          >
+          <div class="des">{{'productDescription'|translate}}</div>
+          {{ proData?.description}}
+        </span></div>
+
+        <section class="relatedProduct">
+          <h4>{{'relatedProducts'|translate}}</h4>
+<app-products
+[PopularProducts]="relatedProducts" [isPopularProductsLoading]="isLoadingProduct" [showCartContainer]="false"
+[showHead]="false" 
+></app-products>
+        </section>
+<p-toast></p-toast>
