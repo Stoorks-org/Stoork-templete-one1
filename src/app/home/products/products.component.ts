@@ -81,7 +81,7 @@ onWindowScroll() {
     private localStorageService: LocalStorageService
   ) {}
   ngAfterViewInit() {
-  const footerEl = this.dom.querySelector('[#footerAnchor]');
+  const footerEl = this.dom?.querySelector('[#footerAnchor]');
 
   if (footerEl) {
     const observer = new IntersectionObserver(
@@ -309,18 +309,27 @@ counter(type: string) {
         })
         .filter((item: any) => item !== null); // Remove null entries if no match was found
 }
-goToCheckOutForProduct(){
- const token = this.localStorageService.get('token');
+goToCheckOutForProduct(pro:any){
+ console.log(pro,'selectedCartItemForCheckout selectedCartItemForCheckout');
+ console.log(this.productCounts[pro.id],'this.productCounts[pro.id] this.productCounts[pro.id]');
+ const discountPrice = pro.discount_price !== null ? parseFloat(pro.discount_price) : parseFloat(pro.price);
+ const proCount=this.productCounts[pro.id]==undefined?1:this.productCounts[pro.id];
+  const selectedCartItemForCheckout=[{count:(proCount),
+    price:(discountPrice*proCount),
+    product:pro,
+  option_id:[]}]
+ 
+  const token = this.localStorageService.get('token');
   
 
- const selectedCartItemForCheckoutWithoutRegister=[{count:this.selectedProductCount,price:(this.selectedProductprice*this.selectedProductCount),proName: this.selectedProduct.name,
-  imageUrl:this._auth.productImage(this.selectedProduct.images),product_id:this.selectedProduct.id,option_id:this.getSelectedValuesAsObjects()}]
+ const selectedCartItemForCheckoutWithoutRegister=[{count:proCount,price:(discountPrice*proCount),proName: pro.name,
+  imageUrl:this._auth.productImage(pro.images),product_id:pro.id,option_id:[]}]
 
  if(token){ 
-  //this.cartService.setCartForcheckout(selectedCartItemForCheckout);
+  this.cartService.setCartForcheckout(selectedCartItemForCheckout);
   this.router.navigate(['/checkout']);}
 else{
-  //this.cartService.setCartForcheckout(selectedCartItemForCheckoutWithoutRegister);
+  this.cartService.setCartForcheckout(selectedCartItemForCheckoutWithoutRegister);
   this.router.navigate(['/checkoutWithoutRegister']);
 }
 

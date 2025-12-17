@@ -84,9 +84,9 @@
           </blockquote>
         </div>
 
-        <div class="card-body" routerLink="/ProductDetails/{{ product?.id  }}">
+        <div class="card-body">
 
-          <div class="pro">
+          <div class="pro" routerLink="/ProductDetails/{{ product?.id  }}">
             <h6 class="card-title">
               <span>{{ product.name?.substring(0, 30) }} </span>
               <span *ngIf="product.name?.length > 30">... </span>
@@ -95,10 +95,10 @@
 
 
           </div>
-          <div class="star2" *ngIf="product?.rating">
+          <!-- <div class="star2" *ngIf="product?.rating">
             {{ product?.rating }} <i class="bi bi-star-fill"></i>
-          </div>
-          <div *ngIf="!product?.rating"></div>
+          </div> -->
+          <!-- <div *ngIf="!product?.rating"></div> -->
           <div class="price">
             <div class="priceRow">
               <div class="colprice">
@@ -122,7 +122,7 @@
                 </a>
  
             </div>
-             <button class="btn order-btn" (click)="goToCheckOut()"> {{'اطلب الان'|translate}}</button>
+             <button class="btn order-btn" (click)="goToCheckOutForProduct(product)"> {{'orderNow'|translate}}</button>
             <!-- <div class="DisPer" *ngIf="_productSer.calcDiscountPersent(product?.price,product?.discount_price)>0">
               <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path id="Vector 65"

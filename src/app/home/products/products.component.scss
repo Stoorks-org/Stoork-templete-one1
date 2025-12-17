@@ -280,6 +280,7 @@
             @include flex(row, space-between, flex-end, 0.5rem, nowrap);
             .priceRow{ 
               @include flex(row,center, center, 0.5rem, nowrap);
+              white-space: nowrap;
               .colprice{
               @include flex(column, space-between, flex-start, 0.1rem, nowrap);
               font-size: 16px;
@@ -891,12 +892,12 @@ line-height: normal;
     }
      .product_cont {
      // @include gridRepeat(175px, center, stretch, .5rem);
-     @include flex(row, flex-start, stretch, 0.5rem, wrap);
+     @include flex(row,space-between, stretch, 0.5rem, wrap);
       > div {
         width: 48%;
         //height: auto;
         .mainCard {
-          height: 360px;
+          height:265px;
           //height: auto;
           //height: 360px;
         .card-img {
@@ -908,6 +909,7 @@ line-height: normal;
         }
 
         .card-body {
+           @include flex(column, space-between, stretch, 0rem, nowrap);
           .card-text {
             height: 35px;
           }
@@ -966,7 +968,7 @@ line-height: normal;
    .cartContainer{
  position: fixed !important;
     bottom: 65px !important;
-
+   background-color: transparent;
 .cartProductTotal{
  width: 90%;
  min-width: 0 !important;

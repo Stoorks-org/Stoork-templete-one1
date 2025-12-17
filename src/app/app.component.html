@@ -1,9 +1,9 @@
 
 <main  [ngClass]="{ 'mainSecAr':!_aut.isValueEn.value,'mainSecEn':_aut.isValueEn.value }"
   [dir]="'dir' | translate" >
-
-  <app-header></app-header>
-  <app-nav-menu></app-nav-menu>
+  <app-header-new></app-header-new>
+  <!-- <app-header></app-header> -->
+  <!-- <app-nav-menu></app-nav-menu> -->
   <section class="content">
      <section class="h-100">
    <router-outlet></router-outlet></section></section>
@@ -130,29 +130,3 @@
   <img src="../assets/images/logo/whateApp.png"></a>
 </div>
   }
-<!--  
-<div class="notifaction">
-  <div class="notificationCon" >
-<div class="rowTitleImage" *ngIf="notifactionData.title || notifactionData.description 
-|| notifactionData.smallImageUrl||notifactionData.smallImageUrl||notifactionData.secondImageUrl">
-  <div class="titleDesCon clickable" (click)="openStoreUrl()">
-    <div>{{ notifactionData.title || ('specialOfferOnYourFavoriteHude' | translate) }}</div>
-    <div class="des" (click)="openStoreUrl()">{{ notifactionData.description || ('notificationDescription' | translate) }}</div>
-  </div>
-  <img class="clickable" *ngIf="notifactionData.smallImageUrl" [src]="notifactionData.smallImageUrl" alt="Small Image" (click)="openStoreUrl()"/>
-</div>
-
-<img *ngIf="notifactionData.secondImageUrl" [src]="notifactionData.secondImageUrl" alt="Second Image" class="clickable"/>
-<div class="btnCollection" *ngIf="notifactionData.actionIds?.length">
-  <ng-container *ngFor="let btnId of notifactionData.actionIds">
-    <div
-      class="clickable"
-      (click)="handleActionClick(btnId)"
-    >
-      {{ getActionNameById(btnId) }}
-    </div>
-  </ng-container>
-</div>
-</div>
-</div> -->
-

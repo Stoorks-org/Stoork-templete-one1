@@ -24,6 +24,7 @@ import { CreatenewpasswordComponent } from './account/createnewpassword/createne
 import { VerifyPasswordComponent } from './account/verify-password/verify-password.component';
 import { FavoritiesModule } from './favorities/favorities.module';
 import { PageComponent } from './shared/components/page/page.component';
+import { HeaderNewComponent } from './shared/components/header-new/header-new.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/');
@@ -38,7 +39,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ForgetpasswordComponent,
     CreatenewpasswordComponent,
     VerifyPasswordComponent,
-    PageComponent
+    PageComponent,
+    HeaderNewComponent
 
   ],
   imports: [

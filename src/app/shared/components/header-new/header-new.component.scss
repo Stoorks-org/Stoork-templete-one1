@@ -1,0 +1,188 @@
+@import "../../../shared/components/global-style/_general.scss";
+@import"../../../../styles.scss";
+.headerMain{
+@include flex(row,space-between, center, 0.5rem, nowrap);
+padding: 1rem;
+   .btnsArea {
+    @include flex(row-reverse, space-between, center, 1.5rem, nowrap);
+    // width: 75%;
+    .cont {
+      padding-right: 2rem;
+      .btnsAreaList {
+        @include flex(row, flex-end, center, 0.5rem, nowrap);
+
+        li {
+          white-space: nowrap;
+         // color: $main-co;
+          cursor: pointer;
+          .fav {
+            position: relative;
+          }
+          .bag {
+            position: relative;
+          }
+          // &.signin {
+          //   span {
+          //     font-size: 1.4rem;
+          //   }
+          // }
+
+          .count {
+            position: absolute;
+            background-color: white;
+            //color:var(--main-co);
+            color: #333333;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            font-size: 10px;
+            // font-size: 8px;
+           // font-family: "Roboto";
+            font-weight: 500;
+            word-wrap: break-word;
+            right: -50%;
+            top: -18%;
+
+            text-align: center;
+          }
+          .countFav {
+            position: absolute;
+            background-color: white;
+            //color: var(--main-co);
+             color: #333333;;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            font-size: 10px;
+            // font-size: 8px;
+            //font-family: Roboto;
+            font-weight: 500;
+            word-wrap: break-word;
+            right: -50%;
+            top: -18%;
+
+            text-align: center;
+          }
+
+          i {
+          
+            margin: 0rem;
+            padding: 0rem;
+            display: inline-block;
+            font-weight: 400;
+            font-size: 1.2rem;
+          }
+        //  &.left{
+        //     font-size: 1.7rem;
+        //  }
+          // &:first-child,
+          // &:nth-child(2) {
+          //   margin-top: 0.5rem;
+          // }
+        }
+
+        .heart,
+        .cart {
+          @include flex(row-reverse, space-between, center, 0.5rem, nowrap);
+        }
+      }
+    }
+
+    .searchArea {
+     
+      @include flex(row, flex-start, center, 0rem, nowrap);
+      width: 65%;
+      .langs {
+        text-align: right;
+        width: fit-content;
+      }
+      img{ 
+        display: none;}
+      blockquote {
+        position: relative;
+        width: 99%;
+        .responsive{
+          display: block;
+        }
+        i.styleEn  {
+          cursor: pointer;
+          background-color:var(--main-co);
+          position: absolute;
+          height: 100%;
+          width: 13%;
+          top: 0%;
+          right: 0%;
+          color: #ffffff;
+          text-align: center;
+          padding: 0.4rem 0rem;
+          border: thin solid #fff;
+          border-top-right-radius: 0.4rem;
+          border-bottom-right-radius: 0.4rem;
+          font-size: 18px;
+        }
+        i.styleAr {
+          cursor: pointer;
+          background-color: var(--main-co);
+          position: absolute;
+          height: 100%;
+          width: 13%;
+          top: 0%;
+         left: 0%;
+          color: #ffffff;
+          text-align: center;
+          padding: 0.4rem 0rem;
+          border: thin solid #fff;
+          border-top-left-radius: 0.4rem;
+          border-bottom-left-radius: 0.4rem;
+          font-size: 18px;
+        }
+       
+        input {
+          //border: thin solid #ffffff;
+          width: 100%;
+          padding: 0.5rem 2rem;
+          //height: 5.3vh;
+        }
+      }
+      i.responsive{
+        display: none;
+      }
+      i.res{ display: none;}
+    }
+  
+  }
+ .logo {
+    
+    cursor: pointer;
+    padding-left: 2rem;
+    @include flex(row, space-between, center, 1rem, wrap);
+    img{
+      //width:50px;
+    height: 60px;}
+    
+    .logoar {
+      color: $main-co;
+      font-size: 36px;
+      //font-family: Tajawal;
+      font-weight: 700;
+      word-wrap: break-word;
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 426px) {
+    .headerMain{
+@include flex(row,space-between, center, 0.5rem, nowrap);
+padding: 1rem;
+   .btnsArea {
+   display: none;
+  }
+  .logo{
+    .logoar,.logoEn{
+    font-size: 24px;
+    font-weight: 600;
+    }
+  }
+ 
+}
+}
