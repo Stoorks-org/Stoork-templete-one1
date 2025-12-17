@@ -29,6 +29,7 @@ import { ProductResponsiveComponent } from './product-responsive/product-respons
 import { AllCategoryResponsiveComponent } from '../all-category-responsive/all-category-responsive.component';
 import { ProductsModule } from '../products/products.module';
 import { ActiveSizeDirective } from './products/active-size.directive';
+import { CategoryComponent } from './category/category.component';
 
 
 
@@ -49,6 +50,8 @@ import { ActiveSizeDirective } from './products/active-size.directive';
          ProductResponsiveComponent,
          //SwipperForCategoryComponent,
          AllCategoryResponsiveComponent,
+         CategoryComponent,
+        
    
     // SearchPipe,
     // LoginComponent,

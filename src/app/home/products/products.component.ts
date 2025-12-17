@@ -309,6 +309,22 @@ counter(type: string) {
         })
         .filter((item: any) => item !== null); // Remove null entries if no match was found
 }
+goToCheckOutForProduct(){
+ const token = this.localStorageService.get('token');
+  
+
+ const selectedCartItemForCheckoutWithoutRegister=[{count:this.selectedProductCount,price:(this.selectedProductprice*this.selectedProductCount),proName: this.selectedProduct.name,
+  imageUrl:this._auth.productImage(this.selectedProduct.images),product_id:this.selectedProduct.id,option_id:this.getSelectedValuesAsObjects()}]
+
+ if(token){ 
+  //this.cartService.setCartForcheckout(selectedCartItemForCheckout);
+  this.router.navigate(['/checkout']);}
+else{
+  //this.cartService.setCartForcheckout(selectedCartItemForCheckoutWithoutRegister);
+  this.router.navigate(['/checkoutWithoutRegister']);
+}
+
+}
 goToCheckOut(){
   
     if (!this.validateAllOptionsSelected()) {

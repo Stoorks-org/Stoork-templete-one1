@@ -6,11 +6,10 @@
       <app-slider [SliderImge]="heroImages" ImageUrl="image_path" slider="home" dir="ltr" ></app-slider>
     </div>
   </div>
-  <div class="web"> 
+  <app-category [categories]="categories" [isLoadingcategories]="isLoadingcategories"></app-category>
+  <!-- <div class="web"> 
   <app-catogriespaginator  [categories]="categories" [isLoadingcategories]="isLoadingcategories"></app-catogriespaginator>  </div>     
-  <!-- <div class="responsive">class="web"
-     <app-swipper-for-category [categories]="categories"  [isLoadingcategories]="isLoadingcategories" [sliderColor]="sliderColor"></app-swipper-for-category>
-  </div> -->
+  
   <div class="responsive"> 
   <div class="swiperCats">
      <h6 style="font-weight: 650;margin-bottom: .4rem; padding: 5px;">{{ "categories" | translate }}</h6>
@@ -38,7 +37,7 @@
       </ng-template>}
   </swiper>
   </div>
-</div>
+</div> -->
   <!-- first products ( 10 )   -->
   <div class="firstProducts">
     <app-products  [PopularProducts]="PopularProducts" [showHead]="true" [isPopularProductsLoading]="isPopularProductsLoading"

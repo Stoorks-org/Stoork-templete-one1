@@ -1,0 +1,15 @@
+@import "../../../app/shared/components/global-style/_general";
+@import "../../../app/shared/components/global-style/_sekleton.scss";
+.categoryMain{
+.imgCatCon{
+    @include flex(row, center, center, 1rem, wrap);
+    width: 100%;
+.imgCat{
+    width: 32%;
+    
+    img{
+        width: 100%;height: 135px;
+    }
+}
+}
+}

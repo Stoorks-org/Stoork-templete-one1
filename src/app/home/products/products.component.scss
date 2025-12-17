@@ -17,24 +17,25 @@
     
     padding-top: 1.5rem;
     width: 100%;
-    @include gridRepeat(200px, center, stretch, .5rem);
+    @include gridRepeat(330px, center, stretch, 1.5rem);
     > div {
       width: 100%;
       .mainCard {
-        border: thin solid #e3e3e3;
-        border-radius: 0.3rem;
-        //direction: rtl;
+        //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* ظل خفيف وناعم */
+        border-radius: 16px;
         cursor: pointer;
         width: 100%;
        // height: 100%;
-       height: 415px;
+       height: 347px;
         flex-grow: 1;
         @include flex(column, space-between, stretch, 0rem, nowrap);
 
         .boxCard {
-          padding: 3px;
+          //padding: 3px;
           border-color: transparent;
-          height: 80%;
+
+          //height: 80%;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -167,8 +168,8 @@
         }
 
         .card-body {
-          padding: 0.5rem;
-          height: 25%;
+          padding: 0.5rem .5rem 0px 0px;
+          //height: 25%;
           //margin-top: .5rem;
           @include flex(column, space-between, stretch, 0rem, nowrap);
          .pro{
@@ -177,8 +178,8 @@
             height: fit-content;
             margin: 0rem; 
             span{
-              font-weight: 500;
-               font-size: 14px;
+              font-weight: 600;
+               font-size: 16px;
                
             }
             span.tit{
@@ -220,6 +221,7 @@
              .colprice{
                @include flex(column, space-between, flex-start, 0.1rem, nowrap);
                font-size: 16px;
+               
              //  padding: 0px 4px 0px 4px;
              }
              .DisPer{
@@ -275,10 +277,15 @@
             padding-bottom:.2rem;
            // margin-top: 5px;
             color: #121212;
-            @include flex(row, flex-end, flex-end, 0.5rem, nowrap);
-            .colprice{
+            @include flex(row, space-between, flex-end, 0.5rem, nowrap);
+            .priceRow{ 
+              @include flex(row,center, center, 0.5rem, nowrap);
+              .colprice{
               @include flex(column, space-between, flex-start, 0.1rem, nowrap);
               font-size: 16px;
+              a{
+                color:$main-co
+               }
             //  padding: 0px 4px 0px 4px;
             }
             .DisPer{
@@ -327,10 +334,17 @@
              
 
               }
-            }
+            }}
+           
           
           }
         }
+     &:hover {
+     transform: scale(1.015); /* تكبير بسيط جدًا */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* ظل خفيف وناعم */
+
+}
+
       }
     }
   }
@@ -1373,3 +1387,35 @@ line-height: normal;
     }
   }
 }
+
+.order-btn {
+ background-color: $main-co;
+ border: 1px solid $main-co;
+ border-radius:0px 20px 0px 20px;
+ color: white;
+ outline: none;
+  box-shadow: none;
+ 
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+ 
+  &:hover {
+   box-shadow: 0 0 0 0.2rem $main-co;
+  }
+}
+
+
+// /* شارة عرض خاص */
+// .meal-box::before {
+//   content: "عرض خاص";
+//   position: absolute;
+//   top: 10px;
+//   left: -30px;
+//   background: #ff0000;
+//   color: #fff;
+//   padding: 5px 40px;
+//   transform: rotate(-45deg);
+//   font-size: 12px;
+//   font-weight: bold;
+// }
+
