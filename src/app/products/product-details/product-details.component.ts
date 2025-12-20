@@ -390,7 +390,7 @@ goToCheckOut(){
     if (!this.validateAllOptionsSelected()) {
   return; // Stop process if validation fails
     }
-  const selectedCartItemForCheckout=[{count:this.count,price:(this.price*this.count),
+  const selectedCartItemForCheckout=[{count:this.count,price:(this.price),
     product:this.proData,option_id:this.getSelectedValuesAsObjects()}]
   const token = this.localStorageService.get('token');
   const productForCart = {
@@ -400,7 +400,7 @@ goToCheckOut(){
 };
 
  //const selectedCartItemForCheckoutWithoutRegister=[{count:this.count,price:(this.price*this.count),product: productForCart}]
-const selectedCartItemForCheckoutWithoutRegister=[{count:this.count,price:(this.price*this.count),proName: this.proData.name,
+const selectedCartItemForCheckoutWithoutRegister=[{count:this.count,price:(this.price),proName: this.proData.name,
   imageUrl:this._auth.productImage(this.proData.images),
 product_id:this.proData.id,option_id:this.getSelectedValuesAsObjects()}]
  if(token){ 
