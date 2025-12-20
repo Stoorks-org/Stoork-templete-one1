@@ -1,8 +1,8 @@
 <div class="categoryMain">
-<h4>{{ "categories" | translate }}</h4>
+<h3>{{ "categories" | translate }}</h3>
 <div class="imgCatCon">
 <div *ngFor="let cat of categories" class="imgCat">
-    <img src="{{cat.image_url}}">
+    <img src="{{cat.image_url}}" routerLink="/AllProduct/{{ cat.id }}/0">
 
 </div>
 </div></div>

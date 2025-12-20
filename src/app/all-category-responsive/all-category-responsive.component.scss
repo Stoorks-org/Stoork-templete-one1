@@ -48,16 +48,18 @@
 //       }
 // }
 .sec2{
-    @include flex(row,flex-start, center, .3rem, wrap);
+    @include flex(column,flex-start, center, .3rem, wrap);
     width: 100%;
     .imgColumn{
-        @include flex(column,flex-end, center, 0.5rem, nowrap);
-        height: 150px;
-        width: 32%;
+        width: 100%;
+    //     @include flex(column,flex-end, center, 0.5rem, nowrap);
+    //     height: 150px;
+    //     width: 100%;
         img{
         max-height: 110px;
-          width: 79px;
-       }}
+          width: 100%;
+       }
+    }
     
     
 }

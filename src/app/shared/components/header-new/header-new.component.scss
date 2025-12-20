@@ -4,7 +4,7 @@
 @include flex(row,space-between, center, 0.5rem, nowrap);
 padding: 1rem;
    .btnsArea {
-    @include flex(row-reverse, space-between, center, 1.5rem, nowrap);
+    @include flex(row, space-between, center, 1.5rem, nowrap);
     // width: 75%;
     .cont {
       padding-right: 2rem;
@@ -168,11 +168,18 @@ padding: 1rem;
       word-wrap: break-word;
     }
   }
+  .lastSec{
+    ul{
+      @include flex(row, flex-end, center, 0.5rem, nowrap);
+      li{
+
+      }}
+  }
 }
 
 @media (min-width: 320px) and (max-width: 426px) {
     .headerMain{
-@include flex(row,space-between, center, 0.5rem, nowrap);
+@include flex(row,center, center, 0.5rem, nowrap);
 padding: 1rem;
    .btnsArea {
    display: none;
@@ -182,6 +189,9 @@ padding: 1rem;
     font-size: 24px;
     font-weight: 600;
     }
+  }
+  .lastSec{
+    display: none;
   }
  
 }

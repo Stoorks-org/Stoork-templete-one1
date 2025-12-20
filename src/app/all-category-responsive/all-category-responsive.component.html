@@ -11,7 +11,7 @@
      @for (cat of Parentcats; track cat.id){
         <div class="imgColumn">
          <img src="{{cat.image}}" alt="{{cat.name}}" routerLink="/AllProduct/{{cat.id}}/0" >
-         <div>{{cat.name.substring(0, 20)}} <span *ngIf="cat.name?.length > 20">... </span></div>
+         <!-- <div>{{cat.name.substring(0, 20)}} <span *ngIf="cat.name?.length > 20">... </span></div> -->
         
         </div>
     }

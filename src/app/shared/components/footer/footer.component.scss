@@ -268,7 +268,7 @@ footer{
   
    padding:.5rem .2rem 6rem .2rem;
    .container{
-   
+    @include flex(row, flex-start,flex-start, 0.5rem, wrap);
     .category{
       .columnEmail{
        gap:1rem;

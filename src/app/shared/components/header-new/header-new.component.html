@@ -2,145 +2,9 @@
      <div class="btnsArea">
     <div class="cont">
       <ul class="btnsAreaList">
-          <li class="signin">
-          <ng-container *ngIf="(accountService.currentUser$ | async) == null">
-            <!-- <span routerLink="/auth" routerLinkActive="active">{{'Signin'|translate }}</span> -->
-             <span (click)="signinfun()">{{'Signin'|translate }}</span>
-             
-            <!-- <i class="bi bi-person mx-1"></i> -->
-          </ng-container>
-
-          <ng-container *ngIf="accountService.currentUser$ | async as user">
-            <p-overlayPanel #op>
-              <ng-template pTemplate="content">
-                <div class="op">
-                  <!-- <div
-                    class="nameimg"
-                    (click)="op.toggle($event)"
-                    *ngIf="user?.image==null">
-                    {{ capitalizedLetters(user?.name) }}
-                  </div> -->
-                  <img src="../../../../assets/images/profile/order/profilePhoto.png" *ngIf="user.image == null" (click)="op.toggle($event)"/>
-                  <img
-                    src="{{ user?.image }}"
-                    (click)="op.toggle($event)"
-                    *ngIf="user?.image!=null"
-                  />
-                  
-                  <div>
-                    {{ "Hi" | translate }}
-                    <div>
-                      {{ user?.name }}
-                    </div>
-                  </div>
-                </div>
-
-                <hr />
-                 <div class="person mb-2" (click)="navigateToProfile()"  [ngClass]="{styleAr: !_aut.isValueEn.value,styleEn: _aut.isValueEn.value}">
-                  <i class="bi bi-person"></i>
-                  {{ "profile" | translate }}
-                </div>
-               <!--routerLink="/profile" <div class="person mb-2" routerLink="/profile/Address">
-                  <i class="bi bi-geo-alt"></i>
-                  {{ "address" | translate }}
-                </div>
-              
-                <div class="person mt-2" routerLink="/profile/Be_supplier">
-                  <i class="bi bi-person-gear"></i>
-                  {{ "beSupplier" | translate }}
-                </div>
-               
-                <div class="person mt-2" routerLink="/dashBoard">
-                  <i class="bi bi-person-gear"></i>
-                  {{ "dashboard" | translate }}
-                </div>
-
-                <div class="person mb-2" routerLink="/profile/Help">
-                  <i class="bi bi-chat-dots"></i>
-                  <span>{{ "Contact-Us" | translate }}</span>
-                </div>
--->
-                <div class="person mb-2" routerLink="/profile/Order" [ngClass]="{styleAr: !_aut.isValueEn.value,styleEn: _aut.isValueEn.value}">
-                  <i class="bi bi-box-seam"></i>
-                  {{ "orders" | translate }}
-                </div> 
-
-                <hr />
-                <div class="logout" (click)="logOut()">
-                  <a style="cursor: pointer">
-                    {{ "logout" | translate }}
-                  </a>
-                  <i class="bi bi-box-arrow-left"></i>
-                </div>
-              </ng-template>
-            </p-overlayPanel>
-
-            <div class="avatar">
-              <li class="heart btn btn-headerHi-color">
-                {{ user?.full_name?.substring(0, 6) }}
-                <strong class="m-0">{{ "Hi" | translate }}</strong>
-              </li>
-              <!-- <div
-                class="nameimg"
-               
-                *ngIf="user.image == null" (click)="op.toggle($event)">
-               
-                {{ capitalizedLetters(user?.name) }}
-              </div> -->
-             <img src="../../../../assets/images/profile/order/profilePhoto.png" *ngIf="user.image == null" (click)="op.toggle($event)"/>
-              <img
-                src="{{ user?.image }}"
-                (click)="op.toggle($event)"
-                *ngIf="user.image !=null"
-              />
-            </div>
-          </ng-container>
-        </li>
-         <li> <ng-container *ngIf="(accountService.currentUser$ | async) == null">
-          <!-- <span (click)="signinfun()">{{'Signin'|translate }}</span> -->
-          <i class="bi bi-text-left"(click)="op2.toggle($event)" style="font-size: 1.7rem;"></i>
-          <p-overlayPanel #op2>
-            <ng-template pTemplate="content">
-              <!-- <div class="op">
-               
-
-                <div>
-                  {{ "PleaseLoginToEnjoyAllFeatures" | translate }}
-                
-                  </div>
-                </div>
-              
-
-              <hr /> -->
-              <div class="person mt-2" routerLink="/trackOrder" [ngClass]="{styleAr: !_aut.isValueEn.value,styleEn: _aut.isValueEn.value}">
-                <i class="bi bi-box-seam"></i>
-                {{ "trackOrder" | translate }}
-              </div>
-
-             <!-- <div class="person mb-2" routerLink="/profile/Help">
-                 <a href="https://api.whatsapp.com/send?phone=970594010786" target="_blank"> 
-                <i class="bi bi-info-circle"></i>
-                <span>{{ "help" | translate }}</span>
-              </a> 
-              </div>-->
-
-             
-
-              <hr />
-             <div> <button class="btn-orangeLarge" (click)="signIn()">{{'Signin'|translate}}</button></div>
-                <div class="mt-2"><button class="btn btn-Largewhite" (click)="signUp()">{{'signUp'|translate}}</button></div>
-            </ng-template>
-          </p-overlayPanel>
-        </ng-container></li> 
-        <li>
-        
-          <button class="btn btn-header-color" *ngIf="currentLang == 'en'" (click)="changeLang('ar')">
-            العربية
-          </button>
-          <button class="btn btn-header-color" *ngIf="currentLang == 'ar'" (click)="changeLang('en')">
-            English
-          </button>
-        </li>
+         
+       
+      
         <a routerLink="favorites">
           <li class="heart btn btn-header-color">
             <div class="fav">
@@ -202,7 +66,116 @@
       routerLink="/home"
       style="cursor: pointer"
     />
-    <div class="logoar" routerLink="/home" >
-     {{storeName}}
-    </div>
+     <!-- <li class="signin">
+          <ng-container *ngIf="(accountService.currentUser$ | async) == null">
+          
+             <span (click)="signinfun()">{{'Signin'|translate }}</span>
+           
+          </ng-container>
+
+          <ng-container *ngIf="accountService.currentUser$ | async as user">
+            <p-overlayPanel #op>
+              <ng-template pTemplate="content">
+                <div class="op">
+                 
+                  <img src="../../../../assets/images/profile/order/profilePhoto.png" *ngIf="user.image == null" (click)="op.toggle($event)"/>
+                  <img
+                    src="{{ user?.image }}"
+                    (click)="op.toggle($event)"
+                    *ngIf="user?.image!=null"
+                  />
+                  
+                  <div>
+                    {{ "Hi" | translate }}
+                    <div>
+                      {{ user?.name }}
+                    </div>
+                  </div>
+                </div>
+
+                <hr />
+                 <div class="person mb-2" (click)="navigateToProfile()"  [ngClass]="{styleAr: !_aut.isValueEn.value,styleEn: _aut.isValueEn.value}">
+                  <i class="bi bi-person"></i>
+                  {{ "profile" | translate }}
+                </div>
+
+                <div class="person mb-2" routerLink="/profile/Order" [ngClass]="{styleAr: !_aut.isValueEn.value,styleEn: _aut.isValueEn.value}">
+                  <i class="bi bi-box-seam"></i>
+                  {{ "orders" | translate }}
+                </div> 
+
+                <hr />
+                <div class="logout" (click)="logOut()">
+                  <a style="cursor: pointer">
+                    {{ "logout" | translate }}
+                  </a>
+                  <i class="bi bi-box-arrow-left"></i>
+                </div>
+              </ng-template>
+            </p-overlayPanel>
+
+            <div class="avatar">
+              <li class="heart btn btn-headerHi-color">
+                {{ user?.full_name?.substring(0, 6) }}
+                <strong class="m-0">{{ "Hi" | translate }}</strong>
+              </li>
+          
+             <img src="../../../../assets/images/profile/order/profilePhoto.png" *ngIf="user.image == null" (click)="op.toggle($event)"/>
+              <img
+                src="{{ user?.image }}"
+                (click)="op.toggle($event)"
+                *ngIf="user.image !=null"
+              />
+            </div>
+          </ng-container>
+        </li> -->
+         
+</div>
+<div class="lastSec">
+  <ul>
+   <li> <ng-container *ngIf="(accountService.currentUser$ | async) == null">
+          <!-- <span (click)="signinfun()">{{'Signin'|translate }}</span> -->
+          <i class="bi bi-text-left"(click)="op2.toggle($event)" style="font-size: 1.7rem;"></i>
+          <p-overlayPanel #op2>
+            <ng-template pTemplate="content">
+              <!-- <div class="op">
+               
+
+                <div>
+                  {{ "PleaseLoginToEnjoyAllFeatures" | translate }}
+                
+                  </div>
+                </div>
+              
+
+              <hr /> -->
+              <div class="person mt-2" routerLink="/trackOrder" [ngClass]="{styleAr: !_aut.isValueEn.value,styleEn: _aut.isValueEn.value}">
+                <i class="bi bi-box-seam"></i>
+                {{ "trackOrder" | translate }}
+              </div>
+
+             <!-- <div class="person mb-2" routerLink="/profile/Help">
+                 <a href="https://api.whatsapp.com/send?phone=970594010786" target="_blank"> 
+                <i class="bi bi-info-circle"></i>
+                <span>{{ "help" | translate }}</span>
+              </a> 
+              </div>-->
+
+             
+
+              <hr />
+             <div> <button class="btn-orangeLarge" (click)="signIn()">{{'Signin'|translate}}</button></div>
+                <div class="mt-2"><button class="btn btn-Largewhite" (click)="signUp()">{{'signUp'|translate}}</button></div>
+            </ng-template>
+          </p-overlayPanel>
+        </ng-container></li> 
+          <li>
+        
+          <button class="btn btn-header-color" *ngIf="currentLang == 'en'" (click)="changeLang('ar')">
+            العربية
+          </button>
+          <button class="btn btn-header-color" *ngIf="currentLang == 'ar'" (click)="changeLang('en')">
+            English
+          </button>
+        </li></ul>
 </div>

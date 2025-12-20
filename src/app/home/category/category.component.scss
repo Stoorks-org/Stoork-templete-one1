@@ -1,20 +1,30 @@
 @import "../../../app/shared/components/global-style/_general";
 @import "../../../app/shared/components/global-style/_sekleton.scss";
-.categoryMain{
+.categoryMain{ 
+    margin-top: 2rem;
+    h3{
+       display: none;
+    }
 .imgCatCon{
     @include flex(row, center, center, 1rem, wrap);
     width: 100%;
+   
 .imgCat{
     width: 32%;
     
     img{
         width: 100%;height: 135px;
+        cursor: pointer;
     }
 }
 }
 }
 @media (min-width: 320px) and (max-width: 426px){
 .categoryMain{
+     h3{
+        text-align: center;
+        display: block;
+    }
 .imgCatCon{
     @include flex(row, center, center, 1rem, wrap);
     width: 100%;

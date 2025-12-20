@@ -315,14 +315,14 @@ goToCheckOutForProduct(pro:any){
  const discountPrice = pro.discount_price !== null ? parseFloat(pro.discount_price) : parseFloat(pro.price);
  const proCount=this.productCounts[pro.id]==undefined?1:this.productCounts[pro.id];
   const selectedCartItemForCheckout=[{count:(proCount),
-    price:(discountPrice*proCount),
+    price:(discountPrice),
     product:pro,
   option_id:[]}]
  
   const token = this.localStorageService.get('token');
   
 
- const selectedCartItemForCheckoutWithoutRegister=[{count:proCount,price:(discountPrice*proCount),proName: pro.name,
+ const selectedCartItemForCheckoutWithoutRegister=[{count:proCount,price:(discountPrice),proName: pro.name,
   imageUrl:this._auth.productImage(pro.images),product_id:pro.id,option_id:[]}]
 
  if(token){ 
@@ -340,13 +340,13 @@ goToCheckOut(){
   return; 
     }
   const selectedCartItemForCheckout=[{count:this.selectedProductCount,
-    price:(this.selectedProductprice*this.selectedProductCount),
+    price:(this.selectedProductprice),
     product:this.selectedProduct,
   option_id:this.getSelectedValuesAsObjects()}]
   const token = this.localStorageService.get('token');
   
 
- const selectedCartItemForCheckoutWithoutRegister=[{count:this.selectedProductCount,price:(this.selectedProductprice*this.selectedProductCount),proName: this.selectedProduct.name,
+ const selectedCartItemForCheckoutWithoutRegister=[{count:this.selectedProductCount,price:(this.selectedProductprice),proName: this.selectedProduct.name,
   imageUrl:this._auth.productImage(this.selectedProduct.images),product_id:this.selectedProduct.id,option_id:this.getSelectedValuesAsObjects()}]
 
  if(token){ 

@@ -101,6 +101,10 @@
           <!-- <div *ngIf="!product?.rating"></div> -->
           <div class="price">
             <div class="priceRow">
+              <a class="beforDiscount" *ngIf="product?.discount_price!=null">
+                  {{ product?.price}}
+                  {{this.currency}}
+                </a>
               <div class="colprice">
                
                 <a style="font-weight: 700;" *ngIf="product?.discount_price!=null">
@@ -116,10 +120,7 @@
                   {{this.currency}}
                 </a>
               </div>
-              <a class="beforDiscount" *ngIf="product?.discount_price!=null">
-                  {{ product?.price}}
-                  {{this.currency}}
-                </a>
+              
  
             </div>
              <button class="btn order-btn" (click)="goToCheckOutForProduct(product)"> {{'orderNow'|translate}}</button>
