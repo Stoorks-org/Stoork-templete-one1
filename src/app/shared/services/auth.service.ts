@@ -409,4 +409,15 @@ export class AuthService {
       });
     }
   }
+   updateFcmToken(token: any,user_id:any){
+    
+     this.patch(`v4/api/device-tokens/${user_id}`,{fcm_web:token,device_type: "web"}).subscribe({
+      next: (res) => {
+        console.log(res,'updateFcmToken');
+      },
+      error: (error) => {
+        console.log(error,'error updateFcmToken');
+      }
+    });
+  }
 }

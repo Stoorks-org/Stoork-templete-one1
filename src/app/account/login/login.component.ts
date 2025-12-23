@@ -11,6 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../shared/models/user';
 import { SettingsService } from '../../shared/services/settings.service';
 import { Location } from '@angular/common';
+import { FCMServiceService } from '../../shared/services/fcmservice.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -35,7 +36,7 @@ export class LoginComponent {
     private _ResponsiveService:ResponsiveService,
     private _setting:SettingsService,
     private location: Location,
-
+private _fcm:FCMServiceService
     //private _fcm:FCMService
 
   ) {
@@ -75,6 +76,7 @@ onSubmit() {
         this.accountService.currentUserSource.next(this.cats.currUserDetails);
          // this.router.navigateByUrl(this.accountService.redirectUrl);
         this.accountService.loginStatus(false);
+        this._fcm.requestPermission(this.cats.id);
         this.cartSer.updateUserByCardId(this.storeId);
         this._auth.updateUserByFavorities(this.storeId);
         this.cartSer.CartFromToken=true;
