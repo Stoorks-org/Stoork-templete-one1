@@ -6,7 +6,8 @@ import { SettingsService } from '../../services/settings.service';
 @Component({
   selector: 'app-page',
   templateUrl: './page.component.html',
-  styleUrl: './page.component.scss'
+  styleUrl: './page.component.scss',
+  standalone:false
 })
 export class PageComponent {
 storeId:any;

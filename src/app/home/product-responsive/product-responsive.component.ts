@@ -9,7 +9,8 @@ import { SettingsService } from '../../shared/services/settings.service';
 @Component({
   selector: 'app-product-responsive',
   templateUrl: './product-responsive.component.html',
-  styleUrl: './product-responsive.component.scss'
+  styleUrl: './product-responsive.component.scss',
+  standalone:false
 })
 export class ProductResponsiveComponent {
  baseLinkUrl: string = utils.baseLinkUrl;

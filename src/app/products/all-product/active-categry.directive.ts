@@ -8,6 +8,7 @@ import {
 
 @Directive({
   selector: '[appActiveCategry]',
+  standalone:false
 })
 export class ActiveCategryDirective {
   @Output() selectedCatIds: EventEmitter<string> = new EventEmitter<string>();

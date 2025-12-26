@@ -9,7 +9,8 @@ import { SettingsService } from '../../shared/services/settings.service';
 @Component({
   selector: 'app-order-details-offline',
   templateUrl: './order-details-offline.component.html',
-  styleUrl: './order-details-offline.component.scss'
+  styleUrl: './order-details-offline.component.scss',
+  standalone:false
 })
 export class OrderDetailsOfflineComponent {
   order:any;

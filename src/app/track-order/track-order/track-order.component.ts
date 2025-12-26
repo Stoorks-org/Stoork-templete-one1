@@ -9,7 +9,8 @@ import { SettingsService } from '../../shared/services/settings.service';
 @Component({
   selector: 'app-track-order',
   templateUrl: './track-order.component.html',
-  styleUrl: './track-order.component.scss'
+  styleUrl: './track-order.component.scss',
+  standalone:false
 })
 export class TrackOrderComponent {
  codeForm:FormGroup;

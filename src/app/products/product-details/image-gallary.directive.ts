@@ -2,6 +2,7 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[appImageGallary]',
+  standalone:false
 })
 export class ImageGallaryDirective {
   constructor(private el: ElementRef) {}

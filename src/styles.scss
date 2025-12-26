@@ -5,6 +5,8 @@
 @import "../src/app/shared/components/global-style/__general.scss";
 @import "swiper/scss";
 @import 'swiper/scss/navigation';
+//@use 'swiper/scss/pagination' as *;
+
 @import 'swiper/scss/pagination';
 
 $main-co:var(--main-co);

@@ -12,6 +12,7 @@ import { FavoriteService } from '../../favorities/favorite.service';
   selector: 'app-daily-best-sells',
   templateUrl: './daily-best-sells.component.html',
   styleUrls: ['./daily-best-sells.component.scss'],
+  standalone:false
 })
 export class DailyBestSellsComponent {
   @Input() MostSold: any = [];

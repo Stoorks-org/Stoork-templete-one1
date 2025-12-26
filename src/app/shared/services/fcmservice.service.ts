@@ -1,17 +1,26 @@
 import { inject, Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-import { getToken, onMessage } from 'firebase/messaging';
+//import { getToken, onMessage } from 'firebase/messaging';
 import { environment } from '../../environments/environment';
-
-import { Messaging } from '@angular/fire/messaging';
+import { initializeApp } from 'firebase/app';
+import {
+  getMessaging,
+  getToken,
+  onMessage,
+  Messaging,
+} from 'firebase/messaging';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FCMServiceService {
 
-  private messaging = inject(Messaging);
- constructor(private _auth:AuthService) {}
+  private messaging : Messaging;
+   constructor(private _auth: AuthService) {
+    const app = initializeApp(environment.firebase);
+    this.messaging = getMessaging(app);
+  }
+
   requestPermission(userId: string) {
     Notification.requestPermission().then((permission) => {
       if (permission === 'granted') {

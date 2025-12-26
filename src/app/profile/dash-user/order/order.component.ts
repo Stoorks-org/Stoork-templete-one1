@@ -10,7 +10,8 @@ import { SettingsService } from '../../../shared/services/settings.service';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrl: './order.component.scss'
+  styleUrl: './order.component.scss',
+  standalone:false
 })
 export class OrderComponent {
 showOrderSt: string = 'all';

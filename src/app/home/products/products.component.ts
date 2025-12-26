@@ -17,6 +17,7 @@ import { LocalStorageService } from '../../shared/services/local-storage.service
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
+  standalone:false
 })
 export class ProductsComponent {
   // PopularProducts: PopularProducts[] | [] | undefined;

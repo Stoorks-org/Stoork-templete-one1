@@ -8,7 +8,8 @@ import { CartService } from '../../cart.service';
 @Component({
   selector: 'app-finish-checkout',
   templateUrl: './finish-checkout.component.html',
-  styleUrl: './finish-checkout.component.scss'
+  styleUrl: './finish-checkout.component.scss',
+  standalone:false
 })
 export class FinishCheckoutComponent {
   order_id = this.activatedRoute.snapshot.paramMap.get('order_id');

@@ -23,6 +23,7 @@ SwiperCore.use([Navigation, Pagination]);
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  standalone:false
 })
 export class LandingPageComponent implements OnInit, AfterViewInit {
   res: any;

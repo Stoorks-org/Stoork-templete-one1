@@ -48,6 +48,7 @@ interface filter {
   selector: 'app-all-product',
   templateUrl: './all-product.component.html',
   styleUrls: ['./all-product.component.scss'],
+  standalone:false
 })
 export class AllProductComponent {
   baseLinkUrl: string = utils.baseLinkUrl;

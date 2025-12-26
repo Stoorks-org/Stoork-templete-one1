@@ -15,6 +15,7 @@ interface rating {
   selector: 'app-tab-view',
   templateUrl: './tab-view.component.html',
   styleUrls: ['./tab-view.component.scss'],
+  standalone:false
 })
 export class TabViewComponent {
   value!: number;

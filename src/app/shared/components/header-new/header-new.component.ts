@@ -13,7 +13,8 @@ import { ResponsiveService } from '../../services/responsive.service';
 @Component({
   selector: 'app-header-new',
   templateUrl: './header-new.component.html',
-  styleUrl: './header-new.component.scss'
+  styleUrl: './header-new.component.scss',
+  standalone:false
 })
 export class HeaderNewComponent {
 storeLogo: any;

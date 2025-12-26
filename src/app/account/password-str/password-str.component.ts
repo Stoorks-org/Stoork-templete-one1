@@ -4,7 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-password-str',
   templateUrl: './password-str.component.html',
-  styleUrl: './password-str.component.scss'
+  styleUrl: './password-str.component.scss',
+  standalone:false
 })
 export class PasswordStrComponent {
  bar0: string = '';

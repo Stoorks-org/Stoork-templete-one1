@@ -11,7 +11,8 @@ import { SettingsService } from '../../shared/services/settings.service';
 @Component({
   selector: 'app-createnewpassword',
   templateUrl: './createnewpassword.component.html',
-  styleUrl: './createnewpassword.component.scss'
+  styleUrl: './createnewpassword.component.scss',
+  standalone:false
 })
 export class CreatenewpasswordComponent {
  showpassword: boolean = false;

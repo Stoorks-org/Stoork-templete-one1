@@ -8,7 +8,8 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-verify-password',
   templateUrl: './verify-password.component.html',
-  styleUrl: './verify-password.component.scss'
+  styleUrl: './verify-password.component.scss',
+  standalone:false
 })
 export class VerifyPasswordComponent {
  @ViewChild('input0') input0!: ElementRef;

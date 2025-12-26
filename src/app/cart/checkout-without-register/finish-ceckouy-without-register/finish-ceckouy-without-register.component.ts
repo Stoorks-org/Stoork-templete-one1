@@ -9,7 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-finish-ceckouy-without-register',
   templateUrl: './finish-ceckouy-without-register.component.html',
-  styleUrl: './finish-ceckouy-without-register.component.scss'
+  styleUrl: './finish-ceckouy-without-register.component.scss',
+  standalone:false
 })
 export class FinishCeckouyWithoutRegisterComponent {
   order_id = this.activatedRoute.snapshot.paramMap.get('order_id');

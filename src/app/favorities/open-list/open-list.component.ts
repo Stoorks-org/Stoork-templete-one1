@@ -11,7 +11,8 @@ import { SettingsService } from '../../shared/services/settings.service';
 @Component({
   selector: 'app-open-list',
   templateUrl: './open-list.component.html',
-  styleUrl: './open-list.component.scss'
+  styleUrl: './open-list.component.scss',
+  standalone:false
 })
 export class OpenListComponent {
   res: any;

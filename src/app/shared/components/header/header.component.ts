@@ -35,6 +35,7 @@ import { filter, Observable, take } from 'rxjs';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  standalone:false
 })
 export class HeaderComponent implements OnInit, OnChanges {
   //*_________________properties__________________

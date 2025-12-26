@@ -5,7 +5,8 @@ import { SettingsService } from '../shared/services/settings.service';
 @Component({
   selector: 'app-all-category-responsive',
   templateUrl: './all-category-responsive.component.html',
-  styleUrl: './all-category-responsive.component.scss'
+  styleUrl: './all-category-responsive.component.scss',
+  standalone:false
 })
 export class AllCategoryResponsiveComponent {
  subcats: any;

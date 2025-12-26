@@ -14,7 +14,8 @@ import { LocalStorageService } from '../../../shared/services/local-storage.serv
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
-  styleUrl: './items.component.scss'
+  styleUrl: './items.component.scss',
+  standalone:false
 })
 export class ItemsComponent {
   isResponsive=true;

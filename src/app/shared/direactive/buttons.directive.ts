@@ -9,6 +9,7 @@ import {
 
 @Directive({
   selector: '[appButtons]',
+  standalone:false
 })
 export class ButtonsDirective {
   @Output() selectedId: EventEmitter<string> = new EventEmitter<string>();

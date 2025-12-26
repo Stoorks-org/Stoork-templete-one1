@@ -38,6 +38,7 @@ interface Idetails {
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
+  standalone:false
 })
 export class ProductDetailsComponent implements OnInit {
   responsiveOptions: any[] | undefined;

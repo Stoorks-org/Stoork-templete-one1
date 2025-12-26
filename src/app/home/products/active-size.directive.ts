@@ -8,6 +8,7 @@ import {
 
 @Directive({
   selector: '[appActiveSize]',
+  standalone:false
 })
 export class ActiveSizeDirective {
   @Output() selectedId: EventEmitter<string> = new EventEmitter<string>();

@@ -10,7 +10,8 @@ import { SettingsService } from '../../../../shared/services/settings.service';
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.component.html',
-  styleUrl: './order-details.component.scss'
+  styleUrl: './order-details.component.scss',
+  standalone:false
 })
 export class OrderDetailsComponent {
 orderDetails: any;

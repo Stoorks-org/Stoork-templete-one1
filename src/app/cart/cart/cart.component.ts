@@ -17,7 +17,8 @@ interface IitemsOrder {
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss'
+  styleUrl: './cart.component.scss',
+  standalone:false
 })
 export class CartComponent {
   itemsMenu: MenuItem[] | undefined;

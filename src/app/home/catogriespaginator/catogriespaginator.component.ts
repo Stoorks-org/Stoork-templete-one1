@@ -19,6 +19,7 @@ interface PageEvent {
   selector: 'app-catogriespaginator',
   templateUrl: './catogriespaginator.component.html',
   styleUrls: ['./catogriespaginator.component.scss'],
+  standalone:false
 })
 export class CatogriespaginatorComponent {
   cats: MainCat[] | any;

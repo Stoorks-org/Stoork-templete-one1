@@ -7,7 +7,8 @@ import { LocalStorageService } from '../../shared/services/local-storage.service
 @Component({
   selector: 'app-header-cart',
   templateUrl: './header-cart.component.html',
-  styleUrl: './header-cart.component.scss'
+  styleUrl: './header-cart.component.scss',
+  standalone:false
 })
 export class HeaderCartComponent {
   showMe: boolean = true;

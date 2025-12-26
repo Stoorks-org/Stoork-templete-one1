@@ -11,7 +11,8 @@ import { ResponsiveService } from '../../../shared/services/responsive.service';
 @Component({
   selector: 'app-profile-responsive',
   templateUrl: './profile-responsive.component.html',
-  styleUrl: './profile-responsive.component.scss'
+  styleUrl: './profile-responsive.component.scss',
+  standalone:false
 })
 export class ProfileResponsiveComponent {
  userData:any;

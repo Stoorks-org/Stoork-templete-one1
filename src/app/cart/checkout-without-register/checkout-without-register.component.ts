@@ -12,7 +12,8 @@ import { SettingsService } from '../../shared/services/settings.service';
 @Component({
   selector: 'app-checkout-without-register',
   templateUrl: './checkout-without-register.component.html',
-  styleUrl: './checkout-without-register.component.scss'
+  styleUrl: './checkout-without-register.component.scss',
+  standalone:false
 })
 export class CheckoutWithoutRegisterComponent {
   

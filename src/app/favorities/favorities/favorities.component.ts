@@ -10,7 +10,8 @@ import { SettingsService } from '../../shared/services/settings.service';
 @Component({
   selector: 'app-favorities',
   templateUrl: './favorities.component.html',
-  styleUrl: './favorities.component.scss'
+  styleUrl: './favorities.component.scss',
+  standalone:false
 })
 export class FavoritiesComponent {
   constructor(

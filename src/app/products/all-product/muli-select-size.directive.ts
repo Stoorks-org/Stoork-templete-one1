@@ -8,6 +8,7 @@ import {
 
 @Directive({
   selector: '[appMuliSelectSize]',
+  standalone:false
 })
 export class MuliSelectSizeDirective {
   @Output() selectedIds: EventEmitter<string> = new EventEmitter<string>();

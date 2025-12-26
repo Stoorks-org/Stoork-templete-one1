@@ -9,7 +9,8 @@ import { SettingsService } from '../../shared/services/settings.service';
 @Component({
   selector: 'app-forgetpassword',
   templateUrl: './forgetpassword.component.html',
-  styleUrl: './forgetpassword.component.scss'
+  styleUrl: './forgetpassword.component.scss',
+  standalone:false
 })
 export class ForgetpasswordComponent {
   showMe: boolean = true;

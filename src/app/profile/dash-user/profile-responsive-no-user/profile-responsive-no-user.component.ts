@@ -8,7 +8,8 @@ import { LocalStorageService } from '../../../shared/services/local-storage.serv
 @Component({
   selector: 'app-profile-responsive-no-user',
   templateUrl: './profile-responsive-no-user.component.html',
-  styleUrl: './profile-responsive-no-user.component.scss'
+  styleUrl: './profile-responsive-no-user.component.scss',
+  standalone:false
 })
 export class ProfileResponsiveNoUserComponent {
 showLang=false;

@@ -6,7 +6,8 @@ import { SettingsService } from '../../shared/services/settings.service';
 @Component({
   selector: 'app-dash-user',
   templateUrl: './dash-user.component.html',
-  styleUrl: './dash-user.component.scss'
+  styleUrl: './dash-user.component.scss',
+  standalone:false
 })
 export class DashUserComponent {
  logInProfile: string = '';
