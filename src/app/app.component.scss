@@ -132,7 +132,7 @@
 .whatApp {
   position: fixed;
   left: 0%;
-  bottom: 120px;
+  bottom: 0px;
   z-index:100;
   cursor: pointer;
    background-color: transparent !important;
@@ -218,4 +218,5 @@
       display: block;
     }
   }
+  .whatApp { bottom:68px;}
 }

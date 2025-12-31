@@ -154,7 +154,7 @@ padding: 1rem;
  .logo {
     
     cursor: pointer;
-    padding-left: 2rem;
+    // padding-left: 2rem;
     @include flex(row, space-between, center, 1rem, wrap);
     img{
       //width:50px;
