@@ -81,7 +81,7 @@ a {
   font-size: 1rem;
   padding: 10px 10px;
   background-color:$main-co;
-  color: #ffffff;
+  color: $text-co;
   font-weight: 500;
   display: block;
   flex-grow: 0;
@@ -178,7 +178,7 @@ a {
 // *__________________[ buttons ]____________
 .btn-base-orange {
   background-color: $main-co;
-  color: #fff;
+  color: $text-co;
   outline: none;
   padding: 0.5rem .5rem;
   transition: all 0.4s ease-in-out;
@@ -539,7 +539,7 @@ input {
   height: 46px;
 }
 .btn-orangeLarge {
-  color: #ffffff;
+  color:$text-co;
   background-color: $main-co;
   border: 1px solid #ffffff;
   padding: 0.5rem;
@@ -572,7 +572,7 @@ input {
 // *__________________[ buttons ]____________
 .btn-base-orange {
   background-color: $main-co;
-  color: #fff;
+  color: $text-co;
   outline: none;
   transition: all 0.4s ease-in-out;
   &:hover {
@@ -590,7 +590,7 @@ input {
   height: 70px;
   // font-size: 20px;
   background-color: $main-co;
-  color: #fff;
+  color:$text-co;
   outline: none;
   transition: all 0.4s ease-in-out;
   &:hover {

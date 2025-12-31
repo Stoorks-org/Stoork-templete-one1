@@ -391,7 +391,7 @@
   min-width: 25rem;
    .cartcount{
         position: relative;
-        color: #fff;
+        color: $text-co;
         .count{
           position: absolute;
           //top:1%;
@@ -407,14 +407,14 @@
           font-size: 0.6rem;
         }
         svg{
-          color: white;
+          color:$text-co;
         }
       }
       .mycart{
-        color: white;
+        color: $text-co;
       }
       .price{
-         color: white;
+         color:$text-co;
       }
 }
 }}
@@ -1405,7 +1405,7 @@ line-height: normal;
  background-color: $main-co;
  border: 1px solid $main-co;
  border-radius:0px 1rem 0px 1rem;
- color: white;
+ color:$text-co;
  outline: none;
   box-shadow: none;
  
