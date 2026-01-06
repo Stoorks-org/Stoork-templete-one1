@@ -117,4 +117,10 @@ currentLang:any;
     else this._aut.isValueEn.next(false);
     //console.log(this._aut.isValueEn.value, 'his._aut.isValueEn');
   }
+   signIn(){
+  this.accountService.loginStatus(true);
+}
+signUp(){
+  this.accountService.SingUpStatus(true);
+}
 }

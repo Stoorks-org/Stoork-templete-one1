@@ -11,7 +11,7 @@
     "announcementsPath": null,
     "themeId": "1",
 
-  "socialLinks": [
+  "socialMedia": [
     { "type": "facebook", "url": "https://facebook.com/yourpage" },
     { "type": "instagram", "url": "https://instagram.com/yourpage" },
     { "type": "youtube", "url": "https://youtube.com/yourchannel" },

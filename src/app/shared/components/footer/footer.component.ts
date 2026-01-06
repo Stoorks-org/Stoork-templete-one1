@@ -64,7 +64,7 @@ export class FooterComponent {
       this.storeId = data.storeId;
       this.storeEmail=data.email;
       this.storePhone=data.phone;
-      this.storeSocialMediaLinks=data.socialLinks;
+      this.storeSocialMediaLinks=data.socialMedia;
       this.getFooterNavData();
       this.getAllCats();
       this.getFooterPages();

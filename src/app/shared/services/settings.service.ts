@@ -18,7 +18,7 @@ interface Settings {
     mainImagePath: string;
     announcementsPath: string;
     themeId: string;
-    socialLinks:any;
+    socialMedia:any;
     storeUrl: string;
     currency: string;
     languageId: string;

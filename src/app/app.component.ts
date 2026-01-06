@@ -128,7 +128,7 @@ notifactionData:any;
       console.log(data, 'data data');
       this.storeId = data.storeId;
       this.mainColor = data.mainColor;
-      this.textColor = data.textColor;
+      this.textColor = data.secondaryColor;
       this.title = data.storeName;
       this.Whatslink = data.whatsapp;
 
