@@ -160,12 +160,12 @@ export class AllProductComponent {
   bulidUrlString():string{
     this.searchvalue= this.activatedRoute.snapshot.paramMap.get('name');
     this.categoryID = this.activatedRoute.snapshot.paramMap.get('id');
-   let Baseurl:string=`v3/api/${this.storeId}/products?perPage=${this.rowsTemp}&page=${this.page}`;
-    if(this.searchvalue!=null&&this.searchvalue!="0"){
-      Baseurl+=`&q=${this.searchvalue}`;
-    }
+   let Baseurl:string=`v3/api/${this.storeId}/products`;
+   
     if(this.categoryID!=null&&this.categoryID!= "0"){
- Baseurl+=`&category=${this.categoryID}`;
+ Baseurl+=`?category=${this.categoryID}`;
+    } if(this.searchvalue!=null&&this.searchvalue!="0"){
+      Baseurl+=`&q=${this.searchvalue}`;
     }
   return Baseurl;
       
