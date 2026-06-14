@@ -15,20 +15,18 @@ export class LocalStorageService {
   get(key: string): any {
     if (isPlatformBrowser(this.platformId)) {
       const value = localStorage.getItem(key);
-      if (value) {
-        try {
-          return JSON.parse(value);
-        } catch (error) {
-          console.error(
-            'Error parsing JSON from local storage for key:',
-            key,
-            error
-          );
-          return null; // Return null or any default value
-        }
+      if (value === null) {
+        return null;
       }
-      return null;
+      try {
+        return JSON.parse(value);
+      } catch {
+        // Value was stored as a plain (non-JSON) string — e.g. a raw token or
+        // language code written by older code. Return it as-is rather than failing.
+        return value;
+      }
     }
+    return null;
   }
   remove(key: string): void {
     if (isPlatformBrowser(this.platformId)) {

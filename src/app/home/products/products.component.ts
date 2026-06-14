@@ -82,7 +82,7 @@ onWindowScroll() {
     private localStorageService: LocalStorageService
   ) {}
   ngAfterViewInit() {
-  const footerEl = this.dom?.querySelector('[#footerAnchor]');
+  const footerEl = this.dom?.querySelector('#footerAnchor');
 
   if (footerEl) {
     const observer = new IntersectionObserver(
